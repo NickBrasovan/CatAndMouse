@@ -38,7 +38,7 @@ public class PlayerGUI extends JFrame{
 		
 		bp = new BasePanel(cl);
 		tc = new TitlescreenControl(bp);
-		ts = new Titlescreen(tc);
+		ts = new Titlescreen(tc);//
 		gr = new Gameroom();
 	
 		//id_map = new IDandPasswords();
