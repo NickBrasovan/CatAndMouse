@@ -20,9 +20,10 @@ public class Titlescreen extends JPanel {
 	private JPasswordField passwordField = new JPasswordField();
 	
 	//Titlescreen Labels
-	JLabel userIDLabel;
-	JLabel userPasswordLabel;
-	JLabel messageLabel = new JLabel();
+	private JLabel welcomeLbl;
+	JLabel playerNameLabel;
+	JLabel passwordLabel;
+	JLabel messageLabel;
 	JLabel enterPasswordLabel;
 	JLabel instruction1;
 	JLabel instruction2;
@@ -91,14 +92,14 @@ public class Titlescreen extends JPanel {
 			
 			// Main Panel Buttons
 			
-			userIDLabel = new JLabel("  Player Name:");
-			userIDLabel.setBounds(200, 500, 75, 25);
-			userIDLabel.setOpaque(true);
+			playerNameLabel = new JLabel("  Player Name:");
+			playerNameLabel.setBounds(200, 500, 75, 25);
+			playerNameLabel.setOpaque(true);
 			playerNameField.setBounds(275, 500, 200, 25);
 			
-			userPasswordLabel = new JLabel("  Password:");
-			userPasswordLabel.setOpaque(true);
-			userPasswordLabel.setBounds(200, 530, 75, 25);
+			passwordLabel = new JLabel("  Password:");
+			passwordLabel.setOpaque(true);
+			passwordLabel.setBounds(200, 530, 75, 25);
 			passwordField.setBounds(275, 530, 200, 25);
 			
 			btnLogin = new JButton("Login");
@@ -123,8 +124,8 @@ public class Titlescreen extends JPanel {
 			
 			this.add(playerNameField);
 			this.add(passwordField);
-			this.add(userIDLabel);
-			this.add(userPasswordLabel);
+			this.add(playerNameLabel);
+			this.add(passwordLabel);
 			
 			
 		}//end Panel Constructor

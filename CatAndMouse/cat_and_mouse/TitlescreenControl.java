@@ -32,8 +32,9 @@ public class TitlescreenControl implements ActionListener
     	//System.out.print("Player Name in LoginData Object is " + data.getPlayerName());
     	//System.out.print("\nPassword in LoginData Object is " + data.getPassword());
     	
-    	//CardLayout cardLayout = (CardLayout)container.getLayout();
-        //cardLayout.show(container, "2");
+    	//Show Gameroom JPanel
+    	CardLayout cardLayout = (CardLayout)container.getLayout();
+        cardLayout.show(container, "2"); //container 2 is Gameroom.
         }
     
     //NewAccount Button Action Handler

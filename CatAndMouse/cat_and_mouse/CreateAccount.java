@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class CreateAccount extends JPanel {
 
-	private JLabel welcomeLbl;
+	private JLabel panelTitleLbl;
 	private JLabel instructLbl;
 	private JLabel playerNameLabel;
 	private JTextField playerNameField;
@@ -19,9 +19,6 @@ public class CreateAccount extends JPanel {
 	private JLabel passwordMatchLabel;
 	private JTextField passwordMatchField;
 	private JButton btnSubmit;
-	 
-
-	
 
 	//Getter for Player Name
 	public String getPlayerName() {
@@ -30,32 +27,29 @@ public class CreateAccount extends JPanel {
 		
 	// Getter for the text in the password field. 
 	public String getPassword() {
-		return new String(passwordField.getText()); //todo fix "getText" to "getPassword"
+		return new String(passwordField.getText()); //TODO fix "getText" to "getPassword"
 	}
 	
 	// Getter for the text in the password field. 
 	public String getPasswordMatch() {
-		return new String(passwordMatchField.getText()); //todo fix "getText" to "getPassword"
+		return new String(passwordMatchField.getText()); //TODO fix "getText" to "getPassword"
 	}
 	
-	
-	//Constructor
+	//CreateAccount Constructor. Constructor takes CreateAccountControl Object (cac) as an argument.  
 	public CreateAccount(CreateAccountControl cac) {
 	
 		this.setBackground(Color.BLACK);
-		
-		this.setPreferredSize(new Dimension(800, 800));
 		setLayout(null);
 		this.setVisible(true);
 		
 		//Screen Title
-		welcomeLbl = new JLabel();
-		welcomeLbl.setForeground(Color.green);
-		welcomeLbl.setBackground(Color.GRAY);
-		welcomeLbl.setText("CREATE ACCOUNT SCREEN - PROTOTYPE");
-		welcomeLbl.setBounds(250, 50, 500, 28);
-		add(welcomeLbl);
-		welcomeLbl.setVisible(true);
+		panelTitleLbl = new JLabel();
+		panelTitleLbl.setForeground(Color.green);
+		panelTitleLbl.setBackground(Color.GRAY);
+		panelTitleLbl.setText("CREATE ACCOUNT SCREEN - PROTOTYPE");
+		panelTitleLbl.setBounds(250, 50, 500, 28);
+		add(panelTitleLbl);
+		panelTitleLbl.setVisible(true);
 		
 		//Screen Instructions
 		instructLbl = new JLabel();
@@ -66,9 +60,8 @@ public class CreateAccount extends JPanel {
 		add(instructLbl);
 		instructLbl.setVisible(true);		
 		
-		// Main Panel Buttons
-	
-		playerNameLabel = new JLabel("  userID:");
+		//Create Account Panel Buttons
+		playerNameLabel = new JLabel("//Player Name:");
 		playerNameLabel.setBounds(200, 500, 75, 25);
 		playerNameLabel.setOpaque(true);
 		this.add(playerNameLabel);
@@ -98,7 +91,7 @@ public class CreateAccount extends JPanel {
 		btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(300, 625, 122, 33);
 		this.add(btnSubmit);
-		btnSubmit.addActionListener(cac);
+		btnSubmit.addActionListener(cac); //button action listener receives a CreateAccountControl Object.
 	
 	}
 	

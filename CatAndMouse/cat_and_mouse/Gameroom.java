@@ -14,39 +14,51 @@ public class Gameroom extends JPanel {
 	
 	
 	//Widget Declarations
-	JLabel messageLabel = new JLabel();
-	JButton inviteBtn;
-	JButton acceptBtn;
+	private JLabel titleLabel;
+	private JButton inviteBtn;
+	private JButton acceptBtn;
+	private JLabel instructLbl;
+	
 	//JTextField username_field;
 	
 	public Gameroom () {
 	
 		this.setBackground(Color.BLACK);
-		
-		this.setPreferredSize(new Dimension(800, 800));
 		setLayout(null);
 		this.setVisible(true);
 		
+		//Screen Title
+		titleLabel = new JLabel();
+		titleLabel.setForeground(Color.green);
+		titleLabel.setBackground(Color.GRAY);
+		titleLabel.setText("Welcome to the Gameroom!");
+		titleLabel.setBounds(250, 50, 500, 28);
+		add(titleLabel);
+		titleLabel.setVisible(true);
 		
-		messageLabel.setForeground(Color.green);
-		messageLabel.setBackground(Color.GRAY);
-		messageLabel.setText("Login successful");
-		messageLabel.setBounds(400, 400, 100, 28);
-		add(messageLabel);
-		messageLabel.setVisible(true);
+		//Screen Instructions
+		instructLbl = new JLabel();
+		instructLbl.setForeground(Color.green);
+		instructLbl.setBackground(Color.GRAY);
+		instructLbl.setText("Invite a Friend or Accept an Invitation to Play");
+		instructLbl.setBounds(200, 80, 500, 28);
+		add(instructLbl);
+		instructLbl.setVisible(true);
 		
+		
+		//Gameroom Panel Buttons
 		inviteBtn = new JButton("Invite a Friend");
 		inviteBtn.setBounds(500, 625, 122, 33);
 		this.add(inviteBtn);
 		
-		inviteBtn = new JButton("Accept an Invitation");
+		acceptBtn = new JButton("Accept an Invitation");
 		inviteBtn.setBounds(300, 625, 152, 33);
 		this.add(inviteBtn);
 		//btnLogin.addActionListener(new loginListener());
 
-		acceptBtn = new JButton("See Scores");
+		/*seeScoresBtn = new JButton("See Scores");
 		acceptBtn.setBounds(150, 625, 122, 33);
-		add(acceptBtn);
+		add(acceptBtn); */
 	
 	}
 

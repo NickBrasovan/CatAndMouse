@@ -12,7 +12,7 @@ public class BasePanel extends JPanel {
 	public BasePanel(CardLayout cl) {
 	
 	this.setBackground(Color.BLACK);
-	//this.setPreferredSize(new Dimension(800, 900));
+	this.setPreferredSize(new Dimension(800, 900));
 	this.setVisible(true);
 	this.setLayout(cl);
 	

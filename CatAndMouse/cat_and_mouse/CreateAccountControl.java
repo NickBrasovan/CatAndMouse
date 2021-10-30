@@ -19,7 +19,7 @@ public class CreateAccountControl implements ActionListener{
 	  public void actionPerformed(ActionEvent new_acct_ae){
 
 	    //get data from titlescreen object
-	    CreateAccount create_account = (CreateAccount)container.getComponent(2);
+	    CreateAccount create_account = (CreateAccount)container.getComponent(2);  //Component 2 must refer to the 3rd element in the CardLayout array of Japanels
 	    CreateAccountData data = new CreateAccountData(create_account.getPlayerName(), create_account.getPassword(), create_account.getPasswordMatch()); 
 	    
 	  //Data integrity check
