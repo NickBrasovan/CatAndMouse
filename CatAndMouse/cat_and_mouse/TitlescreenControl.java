@@ -26,8 +26,17 @@ public class TitlescreenControl implements ActionListener
     /*Login Button Action Handler*/
     if (command.equals("Login"))
    {
-    	CardLayout cardLayout = (CardLayout)container.getLayout();
-        cardLayout.show(container, "2");
+    	//get data from titlescreen object
+    	Titlescreen titlescreen = (Titlescreen)container.getComponent(0);
+    	LoginData data = new LoginData(titlescreen.getPlayerName(), titlescreen.getPassword());
+    	
+    	//Data integrity check
+    	//System.out.print("Player Name in LoginData Object is " + data.getPlayerName());
+    	//System.out.print("\nPassword in LoginData Object is " + data.getPassword());
+    	
+    	//CardLayout cardLayout = (CardLayout)container.getLayout();
+        //cardLayout.show(container, "2");
+        
     	
   }
     /*NewAccount Button Action Handler

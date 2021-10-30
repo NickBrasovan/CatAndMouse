@@ -15,31 +15,33 @@ import javax.swing.JTextField;
 
 public class Titlescreen extends JPanel {
 		
+	//Titlescreen Text Fields
+	private JTextField playerNameField = new JTextField();
+	private JPasswordField passwordField = new JPasswordField();
 	
-	private JTextField userIDField = new JTextField();
-	private JPasswordField userPasswordField = new JPasswordField();
-	
-	
-	
-	
-	
-	
+	//Titlescreen Labels
 	JLabel userIDLabel;
 	JLabel userPasswordLabel;
 	JLabel messageLabel = new JLabel();
 	JLabel enterPasswordLabel;
-	
-	//Titlescreen Buttons
-	JButton btnNewAcct;
-	JButton btnLogin;
 	JLabel instruction1;
 	JLabel instruction2;
 	JLabel instruction3;
 	
-	//IDandPasswords id_password_map;	
+	//Titlescreen Buttons
+	JButton btnNewAcct;
+	JButton btnLogin;
 	
+	//Getter for Player Name
+	public String getPlayerName() {
+		return playerNameField.getText();
+	}
 	
-	//HashMap<String,String> logininfo;	
+	// Getter for the text in the password field.
+	public String getPassword(){
+	    return new String(passwordField.getPassword());
+	  }
+	  
 			
 	//Construct Titlescreen		
 		public Titlescreen(TitlescreenControl tc) {
@@ -92,12 +94,12 @@ public class Titlescreen extends JPanel {
 			userIDLabel = new JLabel("  userID:");
 			userIDLabel.setBounds(200, 500, 75, 25);
 			userIDLabel.setOpaque(true);
-			userIDField.setBounds(275, 500, 200, 25);
+			playerNameField.setBounds(275, 500, 200, 25);
 			
 			userPasswordLabel = new JLabel("  password:");
 			userPasswordLabel.setOpaque(true);
 			userPasswordLabel.setBounds(200, 530, 75, 25);
-			userPasswordField.setBounds(275, 530, 200, 25);
+			passwordField.setBounds(275, 530, 200, 25);
 			
 			btnLogin = new JButton("Login");
 			btnLogin.setBounds(500, 625, 122, 33);
@@ -119,8 +121,8 @@ public class Titlescreen extends JPanel {
 			//resetButton.addActionListener(this);
 			
 			
-			this.add(userIDField);
-			this.add(userPasswordField);
+			this.add(playerNameField);
+			this.add(passwordField);
 			this.add(userIDLabel);
 			this.add(userPasswordLabel);
 			
