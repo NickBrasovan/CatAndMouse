@@ -6,3 +6,6 @@
 /Titlescreen.class
 /TitlescreenControl.class
 /LoginData.class
+/CreateAccountData.class
+/CreateAccountData$CreatAccountData.class
+/CreateAccountControl.class

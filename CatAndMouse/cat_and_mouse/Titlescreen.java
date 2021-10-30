@@ -91,12 +91,12 @@ public class Titlescreen extends JPanel {
 			
 			// Main Panel Buttons
 			
-			userIDLabel = new JLabel("  userID:");
+			userIDLabel = new JLabel("  Player Name:");
 			userIDLabel.setBounds(200, 500, 75, 25);
 			userIDLabel.setOpaque(true);
 			playerNameField.setBounds(275, 500, 200, 25);
 			
-			userPasswordLabel = new JLabel("  password:");
+			userPasswordLabel = new JLabel("  Password:");
 			userPasswordLabel.setOpaque(true);
 			userPasswordLabel.setBounds(200, 530, 75, 25);
 			passwordField.setBounds(275, 530, 200, 25);

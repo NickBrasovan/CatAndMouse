@@ -18,14 +18,12 @@ public class TitlescreenControl implements ActionListener
   }
   
   // Handle button clicks.
-  public void actionPerformed(ActionEvent ae)
-  {
+  public void actionPerformed(ActionEvent ae){
     // Get the name of the button clicked.
     String command = ae.getActionCommand();
     
-    /*Login Button Action Handler*/
-    if (command.equals("Login"))
-   {
+    //Login Button Action Handler
+    if (command.equals("Login")){
     	//get data from titlescreen object
     	Titlescreen titlescreen = (Titlescreen)container.getComponent(0);
     	LoginData data = new LoginData(titlescreen.getPlayerName(), titlescreen.getPassword());
@@ -36,20 +34,12 @@ public class TitlescreenControl implements ActionListener
     	
     	//CardLayout cardLayout = (CardLayout)container.getLayout();
         //cardLayout.show(container, "2");
-        
-    	
-  }
-    /*NewAccount Button Action Handler
-    if (command.equals("New Account"))
-   {
+        }
+    
+    //NewAccount Button Action Handler
+    if (command.equals("New Account")){
     	CardLayout cardLayout = (CardLayout)container.getLayout();
         cardLayout.show(container, "3");
-        try {
-			new CreateAccountData();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-      
-  }
+        }
+    }
 }

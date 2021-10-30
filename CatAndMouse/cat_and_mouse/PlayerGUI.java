@@ -11,25 +11,23 @@ public class PlayerGUI extends JFrame{
 	String title;
 	static CardLayout cl; //declare cardLayout;
 	
-	//static IDandPasswords id_map;
 	
-	static BasePanel bp;
-	static Titlescreen ts;
-	static Gameroom gr;
-	static CreateAccount ca;
-	static TitlescreenControl tc;
-	
+	//Declare Panels To Build GUIs
+	static BasePanel bp; //extends JPanel
+	static Titlescreen ts; //extends JPanel
+	static Gameroom gr; //extends JPanel
+	static CreateAccount ca; //extends JPanel
+	static TitlescreenControl tc; //extends actionlistener
+	static CreateAccountControl cac; //extends actionlistener
 	
 	
 	public PlayerGUI(){
+		
+		//set JFrame Parameters
 		title = "Cat and Mouse";
 		this.setTitle(title);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(800, 900);
-		//this.getContentPane().add(new BufferPanel());
-		//this.getContentPane().add(bp);
-		//this.getContentPane().add(ls);
-		//this.pack();
 		this.setVisible(true);
 		this.setResizable(false);
 		
@@ -38,12 +36,13 @@ public class PlayerGUI extends JFrame{
 		
 		bp = new BasePanel(cl);
 		tc = new TitlescreenControl(bp);
-		ts = new Titlescreen(tc);//
+		ts = new Titlescreen(tc);
 		gr = new Gameroom();
-	
+		cac = new CreateAccountControl(bp);
+		ca = new CreateAccount(cac);
 		//id_map = new IDandPasswords();
 		//hm = id_map.getLoginInfo();
-		ca = new CreateAccount();
+		
 		
 		
 		bp.add(ts, "1");

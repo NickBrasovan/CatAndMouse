@@ -1,41 +1,52 @@
 package cat_and_mouse;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class CreateAccount extends JPanel {
 
-	JLabel welcomeLbl;
-	JLabel instruction1;
-	JLabel instruction2;
-	JLabel instruction3;
-	JLabel userIDLabel;
-	JTextField userIDField;
-	JLabel userPasswordLabel1;
-	JTextField userPasswordField1;
-	JLabel userPasswordLabel2;
-	JTextField userPasswordField2;
-	JButton btnSubmit;
+	private JLabel welcomeLbl;
+	private JLabel instructLbl;
+	private JLabel playerNameLabel;
+	private JTextField playerNameField;
+	private JLabel passwordLabel;
+	private JTextField passwordField;
+	private JLabel passwordMatchLabel;
+	private JTextField passwordMatchField;
+	private JButton btnSubmit;
+	 
+
 	
-	public CreateAccount() {
+
+	//Getter for Player Name
+	public String getPlayerName() {
+		return playerNameField.getText();
+		}
+		
+	// Getter for the text in the password field. 
+	public String getPassword() {
+		return new String(passwordField.getText()); //todo fix "getText" to "getPassword"
+	}
+	
+	// Getter for the text in the password field. 
+	public String getPasswordMatch() {
+		return new String(passwordMatchField.getText()); //todo fix "getText" to "getPassword"
+	}
+	
+	
+	//Constructor
+	public CreateAccount(CreateAccountControl cac) {
 	
 		this.setBackground(Color.BLACK);
-		
-		
-		//this.setLayout(new BorderLayout());
 		
 		this.setPreferredSize(new Dimension(800, 800));
 		setLayout(null);
 		this.setVisible(true);
-		
-		//this.setVisible(true);
 		
 		//Screen Title
 		welcomeLbl = new JLabel();
@@ -46,58 +57,48 @@ public class CreateAccount extends JPanel {
 		add(welcomeLbl);
 		welcomeLbl.setVisible(true);
 		
+		//Screen Instructions
+		instructLbl = new JLabel();
+		instructLbl.setForeground(Color.green);
+		instructLbl.setBackground(Color.GRAY);
+		instructLbl.setText("Submit new name and password to create new account");
+		instructLbl.setBounds(200, 80, 500, 28);
+		add(instructLbl);
+		instructLbl.setVisible(true);		
 		
 		// Main Panel Buttons
 	
-		userIDLabel = new JLabel("  userID:");
-		userIDLabel.setBounds(200, 500, 75, 25);
-		userIDLabel.setOpaque(true);
-		this.add(userIDLabel);
+		playerNameLabel = new JLabel("  userID:");
+		playerNameLabel.setBounds(200, 500, 75, 25);
+		playerNameLabel.setOpaque(true);
+		this.add(playerNameLabel);
 		
-		userIDField = new JTextField();
-		userIDField.setBounds(275, 500, 200, 25);
-		this.add(userIDField);
+		playerNameField = new JTextField();
+		playerNameField.setBounds(275, 500, 200, 25);
+		this.add(playerNameField);
 	
+		passwordLabel = new JLabel("  password:");
+		passwordLabel.setOpaque(true);
+		passwordLabel.setBounds(200, 530, 75, 25);
+		this.add(passwordLabel);
 	
-		userPasswordLabel1 = new JLabel("  password:");
-		userPasswordLabel1.setOpaque(true);
-		userPasswordLabel1.setBounds(200, 530, 75, 25);
-		this.add(userPasswordLabel1);
-	
-		userPasswordLabel2 = new JLabel("re-enter password:");
-		userPasswordLabel2.setOpaque(true);
-		userPasswordLabel2.setBounds(200, 560, 75, 25);
-		this.add(userPasswordLabel2);
+		passwordMatchLabel = new JLabel("re-enter password:");
+		passwordMatchLabel.setOpaque(true);
+		passwordMatchLabel.setBounds(200, 560, 75, 25);
+		this.add(passwordMatchLabel);
 		
-		userPasswordField1 = new JTextField();
-		userPasswordField1.setBounds(275, 530, 200, 25);
-		this.add(userPasswordField1);
+		passwordField = new JTextField();
+		passwordField.setBounds(275, 530, 200, 25);
+		this.add(passwordField);
 		
-		userPasswordField2 = new JTextField();
-		userPasswordField2.setBounds(275, 560, 200, 25);
-		this.add(userPasswordField2);
+		passwordMatchField = new JTextField();
+		passwordMatchField.setBounds(275, 560, 200, 25);
+		this.add(passwordMatchField);
 	
 		btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(300, 625, 122, 33);
 		this.add(btnSubmit);
-		
-	//btnLogin.addActionListener(new loginListener());
-
-
-	//this.add(login_screen);
-	
-	//loginButton.setBounds(125, 200, 100, 25);
-	//loginButton.addActionListener(this);
-	
-	//resetButton.setBounds(225, 200, 100, 25);
-	//resetButton.addActionListener(this);
-	
-	/*
-	this.add(userIDField);
-	this.add(userPasswordField);
-	this.add(userIDLabel);
-	this.add(userPasswordLabel);*/
-	
+		btnSubmit.addActionListener(cac);
 	
 	}
 	
