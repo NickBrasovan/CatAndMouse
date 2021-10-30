@@ -5,8 +5,6 @@ import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-//import cat_and_mouse_3.CLayout;
-
 public class PlayerGUI extends JFrame{
 	String title;
 	static CardLayout cl; //declare cardLayout;
@@ -20,9 +18,8 @@ public class PlayerGUI extends JFrame{
 	static TitlescreenControl tc; //extends actionlistener
 	static CreateAccountControl cac; //extends actionlistener
 	
-	
+	//Constructor for Player GUI sets card layout
 	public PlayerGUI(){
-		
 		//set JFrame Parameters
 		title = "Cat and Mouse";
 		this.setTitle(title);
@@ -34,30 +31,28 @@ public class PlayerGUI extends JFrame{
 		
 		cl = new CardLayout(); //instantiate new CardLayout Object
 		
+		//instantiate panel objects
 		bp = new BasePanel(cl);
 		tc = new TitlescreenControl(bp);
 		ts = new Titlescreen(tc);
 		gr = new Gameroom();
 		cac = new CreateAccountControl(bp);
 		ca = new CreateAccount(cac);
-		//id_map = new IDandPasswords();
-		//hm = id_map.getLoginInfo();
-		
-		
-		
+
+		//add panel layers to card layout
 		bp.add(ts, "1");
 		bp.add(gr, "2");
 		bp.add(ca, "3");
 		
+		//show title screen on top of base panel
 		cl.show(bp, "1");
 		
-		
+		//add base panel and cardlayout to JFrame
 		this.add(bp);
 		this.pack();
-		
-	}
+	}//end constructor
 	
-	/*Main Driver of PlayerClient Side*/
+	/**Main Driver of PlayerClient Side**/
 	public static void main(String[] args) {
 	
 	SwingUtilities.invokeLater(new Runnable() {
