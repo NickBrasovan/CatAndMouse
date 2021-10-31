@@ -10,3 +10,11 @@
 /CreateAccountData$CreatAccountData.class
 /CreateAccountControl.class
 /GameroomPanel.class
+/PlayerClient.class
+/GameServer.class
+/GameServerGUI.class
+/GameServerGUI$EventHandler.class
+/DatabaseFile.class
+/Database.class
+/DatabaseControl.class
+/GameServerGUI$1.class

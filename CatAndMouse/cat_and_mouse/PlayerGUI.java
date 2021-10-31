@@ -24,10 +24,9 @@ public class PlayerGUI extends JFrame{
 		title = "Cat and Mouse";
 		this.setTitle(title);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(800, 900);
+		//this.setSize(800, 900);
 		this.setVisible(true);
 		this.setResizable(false);
-		
 		
 		cl = new CardLayout(); //instantiate new CardLayout Object
 		
@@ -58,7 +57,6 @@ public class PlayerGUI extends JFrame{
 	SwingUtilities.invokeLater(new Runnable() {
 		public void run() {
 			new PlayerGUI();
-		}
-	});
-}
+		}});
+	}
 }
