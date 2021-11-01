@@ -210,13 +210,10 @@ public class GameServerGUI extends JFrame {
 	}
 		
 
-		//Main Driver of ServerClient Side
+		//Main Driver of Server Side
 		public static void main (String[] args) {
-		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				new GameServerGUI();
-			}
-		});
+
+		new GameServerGUI();
+
 	}
 }

@@ -1,6 +1,7 @@
 package cat_and_mouse;
 
 import java.awt.CardLayout;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -49,14 +50,15 @@ public class PlayerGUI extends JFrame{
 		//add base panel and cardlayout to JFrame
 		this.add(bp);
 		this.pack();
+		
+
+		
 	}//end constructor
 	
 	/**Main Driver of PlayerClient Side**/
 	public static void main(String[] args) {
 	
-	SwingUtilities.invokeLater(new Runnable() {
-		public void run() {
-			new PlayerGUI();
-		}});
+	new PlayerGUI();
+			
 	}
 }

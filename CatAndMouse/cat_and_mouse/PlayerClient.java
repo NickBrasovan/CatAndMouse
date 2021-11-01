@@ -13,7 +13,7 @@ public class PlayerClient extends AbstractClient {
 		  super("localhost", 8300);
 		}
 	
-	
+	  
 	@Override
 	protected void handleMessageFromServer(Object arg0)
 	{

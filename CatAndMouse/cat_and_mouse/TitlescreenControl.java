@@ -27,6 +27,9 @@ public class TitlescreenControl implements ActionListener
     	//get data from titlescreen object
     	Titlescreen titlescreen = (Titlescreen)container.getComponent(0);
     	LoginData data = new LoginData(titlescreen.getPlayerName(), titlescreen.getPassword());
+    	//Data integrity check
+    	//System.out.print("Player Name in LoginData Object is " + data.getPlayerName());
+    	//System.out.print("\nPassword in LoginData Object is " + data.getPassword());
     	PlayerClient player = new PlayerClient();
     	
     	try {
@@ -37,18 +40,15 @@ public class TitlescreenControl implements ActionListener
 		}
     	
     	try {
-			player.sendToServer(data);
-			System.out.print("From Client: Object sent to server");
+    		player.sendToServer(data);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	//Data integrity check
-    	//System.out.print("Player Name in LoginData Object is " + data.getPlayerName());
-    	//System.out.print("\nPassword in LoginData Object is " + data.getPassword());
+
     	
 
-        }
+     }
     
     //NewAccount Button Action Handler
     if (command.equals("New Account")){
