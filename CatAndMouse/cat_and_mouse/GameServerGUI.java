@@ -107,11 +107,6 @@ public class GameServerGUI extends JFrame {
 	    server.setStatus(status);
 		}
 		
-		// Main function that creates a server GUI when the program is started.
-		//public static void main(String[] args)
-		//{
-		//	new GameServerGUI();
-		//}
 		
 		// Getters for the important components.
 		public JTextField getTextFieldAt(int index)
