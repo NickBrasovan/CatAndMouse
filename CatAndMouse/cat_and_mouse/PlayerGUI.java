@@ -51,8 +51,6 @@ public class PlayerGUI extends JFrame{
 		this.add(bp);
 		this.pack();
 		
-
-		
 	}//end constructor
 	
 	/**Main Driver of PlayerClient Side**/

@@ -15,25 +15,39 @@ public class GameServerGUI extends JFrame {
 	  private JButton close;
 	  private JButton stop;
 	  private JButton quit;
-	  private GameServer server;
+	  private GameServer server;	/*SERVER OBJECT*/
+	  private Database database;   /*DATABASE OBJECT*/
 
-	  // Constructor for the server GUI.
+	  	/*Constructor for the server GUI.*/
 		public GameServerGUI()
 		{	
-		  // Create the main variables that will be used.
-	    JPanel north = new JPanel();
-	    JPanel center = new JPanel(new BorderLayout());
-	    JPanel south = new JPanel();
-	    EventHandler handler = new EventHandler();
-	    int i = 0;
-	    
-	    // Set the title and default close operation.
+		//Set the title and default close operation.
 	    this.setTitle("Game Server");
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
-	    //instantiate server
+	    /*INSTANTIATE SERVER*/
 	    server = new GameServer();
 	    
+	    /*INSTANTIATE DATABASE*/
+	    try {
+			database = new Database();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.print("Can't instantiate database \n StackTrace:");
+			e.printStackTrace();
+		}
+	    /*PASS DATABASE OBJECT TO SERVER VIA SERVER SETDATABASE METHOD*/
+	    server.setDatabase(database);  
+		
+	    
+	    
+	    /*PANEL CONSTRUCTION*/
+	    JPanel north = new JPanel();
+	    JPanel center = new JPanel(new BorderLayout());
+	    JPanel south = new JPanel();
+	    
+	    
+	    int i = 0;
 	    
 	    // Create the status label.
 	    JLabel statusText = new JLabel("Status:");
@@ -52,7 +66,7 @@ public class GameServerGUI extends JFrame {
 	      centerNorth.add(textFields[i]);
 	    }
 
-	    // Set some default values for the server.
+	    // Set default values for the server.
 	    textFields[0].setText("8300");
 	    textFields[1].setText("500");
 
@@ -61,7 +75,7 @@ public class GameServerGUI extends JFrame {
 	    centerNorthBuffer.add(centerNorth);
 	    center.add(centerNorthBuffer, BorderLayout.NORTH);
 	    
-	    // Create the server log panel.
+	    /*SERVER LOG PANEL*/
 	    JPanel serverLogPanel = new JPanel(new BorderLayout());
 	    JLabel serverLabel = new JLabel("Server Log", JLabel.CENTER);
 	    JPanel serverLabelBuffer = new JPanel();
@@ -73,13 +87,13 @@ public class GameServerGUI extends JFrame {
 	    JPanel serverLogPaneBuffer = new JPanel();
 	    serverLogPaneBuffer.add(serverLogPane);
 	    serverLogPanel.add(serverLogPaneBuffer, BorderLayout.SOUTH);
-
-	    // Add the server log panel to the south part of the center.
+	    //Add the server log panel to the south part of the center.
 	    JPanel centerSouth = new JPanel();
 	    centerSouth.add(serverLogPanel);
 	    center.add(centerSouth, BorderLayout.SOUTH);
 
-	    // Create the buttons.
+	    /*SERVER GUI BUTTONS*/
+	    EventHandler handler = new EventHandler();
 	    listen = new JButton("Listen");
 	    listen.addActionListener(handler);
 	    south.add(listen);

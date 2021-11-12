@@ -16,13 +16,19 @@ public class GameServer extends AbstractServer {
 	  private JTextArea log;
 	  private JLabel status;
 	  private boolean running = false;
-	  //private Database database = new Database();
+	  private Database database;
 
 	  // Constructor for initializing the server with default settings.
 	  public GameServer( )
 	  {
 	    super(8300);
 	    this.setTimeout(500);
+	  }
+	  
+	  /*SETTER FOR DATABASE*/
+	  public void setDatabase(Database database)
+	  {
+		  this.database = database;
 	  }
 
 	  // Getter that returns whether the server is currently running.

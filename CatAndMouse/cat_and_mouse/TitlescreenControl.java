@@ -14,7 +14,6 @@ public class TitlescreenControl implements ActionListener
   public TitlescreenControl(JPanel container)
   {
     this.container = container;
-   
   }
   
   // Handle button clicks.
