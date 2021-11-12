@@ -1,17 +1,18 @@
 package cat_and_mouse;
 
-//This Database is modelled on Lab7in template.
-
-
 import java.util.*;
 import java.io.*;
 import java.sql.*;
 import com.mysql.jdbc.Connection;
 
 
+@SuppressWarnings("unused")
+
+
 public class Database {
-	private java.sql.Connection con;
-	  //Add any other data fields you like – at least a Connection object is mandatory
+	
+	private java.sql.Connection con;  //connection object comes from driver manager class
+	//connection can be shared among multiple classes
 	 
     private Statement stmt;
     private ResultSet rs;
@@ -22,70 +23,95 @@ public class Database {
     private String pass;
 	
 	
-	public Database() throws IOException, SQLException  //
+	public Database() throws IOException
 	  {
-		  
-		//Create a properties object, Read properties file
-		//Use a fileInputStream as input to the Properties object for reading the db.properties file
-		//Get the username, password, and url
-		//Set the conn object.
-	    Properties prop = new Properties();
-	    FileInputStream fis = new FileInputStream("mySQL/db.properties");
-	    prop.load(fis);
-	    String url = prop.getProperty("url");
-	    String user = prop.getProperty("user");
-	    String pass = prop.getProperty("password");    
-	    con = DriverManager.getConnection(url,user,pass);
-	  }
-	
-	  public ArrayList<String> query(String query) throws SQLException
-	  {
-		 //Using the Con object create a statement
-		 //using the statment object executeQuery using the input query (return the result set)
-		 //use a while loop to proce3ss the rows - create , delimed rcor from field
-		 //add each, delimited record to Arraylist
-		 //If no data found-> return null.
-		  
-		//Create a statement, enables SQL coding
-		stmt=con.createStatement();  
-		      
-		//Execute a DML statement
-		stmt.execute("INSERT into CatAndMouseDB VALUES('exampleUser','examplePassword')");
-		    
-		//Execute a query
-		rs=stmt.executeQuery("select * from CatAndMouseDB");  
-		      
-		//Get metadata about the query
-		rmd = rs.getMetaData();
-		      
-		//Get the # of columns
-		int no_columns = rmd.getColumnCount();
-		    
-		//Get a column name
-		String name = rmd.getColumnName(1);
-		      
-		//Fetch each row (use numeric numbering
-		while(rs.next()) 
-		{
-		   System.out.println(rs.getString(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
-		}
-		      
-		con.close();  
-		    
-		System.out.println("Success");  
+		//Properties Object to read and parse files (set up to be key-value pairs)
+		Properties prop = new Properties();
 		
-	    return null;  
+		//Use a fileInputStream as input to the Properties object for reading the db.properties file
+	    FileInputStream fis = new FileInputStream("CatAndMouse/db.properties");  //create file input stream object; drag file into package; b/c it's in the package, you have to specify package(project) name slaxh
+	    prop.load(fis);
+	    
+	    /*db.properties files has the following content:
+	      user=student
+	      password=hello
+	      url=jdbc\:mysql\://localhost\:3306/student_space*/
+	    
+	    //Get the username, password, and url  ; these three pieces of info. are required for JDBC to connect to any database
+	    url = prop.getProperty("url");         //define url
+	    user = prop.getProperty("user");      //define user
+	    pass = prop.getProperty("password"); //define pass
+	    
+	    //Peform connection and Set the con object; needed to execute an sql; used to create all sql constructs
+	    try {
+			
+	    	con = DriverManager.getConnection(url,user,pass);
+			//Create a statement, enables SQL coding, statement object used for all sql, any sql command from SQL prompts executed by Statement.
+			stmt=con.createStatement();  
+			
+			//execute a test dml statement to see if values are entered into SQL database
+			//stmt.execute("INSERT INTO user VALUES('PLAYER1','PLAYER1PW')");
+			
+			//Execute a query, result set is an iterable result set; the only way to extract data from result set is iteration
+			//rs = stmt.executeQuery("select * from user");
+			
+			//display the contents of result set
+			/*while(rs.next()) 
+			{
+			   System.out.println(rs.getString(1)+"  "+rs.getString(2));
+			}*/
+			      
+			//con.close();  
+			    
+			//System.out.println("Success");
+			
+		} catch (SQLException e) {
+			// TODO CA: Username already in use and LI: Incorrect Username or Password
+			System.out.print("SQL Error");
+			e.printStackTrace();
+		}
 	  }
-	  
-	  public void executeDML(String dml) throws SQLException //The exception here pertains to SQL dadatabase constraints
-	  {
-	    //Add your code here
-		  //Using the Con object create a statement
-		  //run dml on the execute method statement
-		  
-	  }
-	  
-
-	
-	
+	    public boolean verifyAccount(LoginData data)
+	    {
+	    boolean verification_value = false;	
+	    
+	    String sql = "SELECT * FROM user WHERE username='"+data.getPlayerName()+"'and password='"+data.getPassword()+"'";
+	    //String sql = "SELECT * FROM user WHERE username='"+data.getUsername()+"'and password='cast(aes_decrypt("+data.getPassword()+"'";
+	    //String sql = "SELECT * FROM user WHERE username=" + data.getUsername() + "and password=cast(aes_decrypt(" + data.getPassword() +", 'keyvalue')";
+	    //String sql = "SELECT username, password, CAST(AES_DECRYPT('"+data.getPassword()+"', 'keyvalue') AS CHAR(16)) FROM user";
+	    //String sql = "SELECT * FROM user WHERE username = ('" + data.getUsername() + "'and password= aes_decrypt('" + data.getPassword() + "', 'key')";
+	    
+	    try {
+		rs = stmt.executeQuery(sql);
+		if(rs.next())
+		{
+			return true;	
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    return verification_value;
+	    }
+		
+	    //Handle CreateAccountData
+	    public boolean CreateAccount(CreateAccountData data)
+	    {
+	    boolean verify_newAcct_value = false;
+	    try {
+	    stmt.executeUpdate("INSERT INTO user (username, password) "
+                + "VALUES ('" + data.getPlayerName() + "', '" + data.getPassword());
+	    verify_newAcct_value = true;
+	    return verify_newAcct_value;
+	    
+	    } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.print("Create Account Error");
+			e.printStackTrace();
+		}
+	    
+	    return verify_newAcct_value;
+	    }
+		
 }

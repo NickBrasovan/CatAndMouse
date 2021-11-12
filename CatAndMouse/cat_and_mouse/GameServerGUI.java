@@ -28,7 +28,7 @@ public class GameServerGUI extends JFrame {
 	    int i = 0;
 	    
 	    // Set the title and default close operation.
-	    this.setTitle("Chat Server");
+	    this.setTitle("Game Server");
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
 	    //instantiate server
