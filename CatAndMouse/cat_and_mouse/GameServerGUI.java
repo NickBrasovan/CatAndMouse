@@ -46,19 +46,17 @@ public class GameServerGUI extends JFrame {
 	    JPanel center = new JPanel(new BorderLayout());
 	    JPanel south = new JPanel();
 	    
-	    
-	    int i = 0;
-	    
-	    // Create the status label.
+	
+	    //Status Label. Default status: "not connected"
 	    JLabel statusText = new JLabel("Status:");
 	    north.add(statusText);
 	    status = new JLabel("Not Connected");
 	    status.setForeground(Color.RED);
 	    north.add(status);
 	    
-	    // Create the grid of text fields.
+	    //Create the grid of text fields.
 	    JPanel centerNorth = new JPanel(new GridLayout(labels.length, 2, 5, 5));
-	    for (i = 0; i < textFields.length; i++)
+	    for (int i = 0; i < textFields.length; i++)
 	    {
 	      JLabel label = new JLabel(labels[i], JLabel.RIGHT);
 	      centerNorth.add(label);
@@ -66,11 +64,11 @@ public class GameServerGUI extends JFrame {
 	      centerNorth.add(textFields[i]);
 	    }
 
-	    // Set default values for the server.
+	    //Set default values for the server.
 	    textFields[0].setText("8300");
 	    textFields[1].setText("500");
 
-	    // Buffer the grid of text fields and add it to the north part of the center.
+	    //Buffer the grid of text fields and add it to the north part of the center.
 	    JPanel centerNorthBuffer = new JPanel();
 	    centerNorthBuffer.add(centerNorth);
 	    center.add(centerNorthBuffer, BorderLayout.NORTH);

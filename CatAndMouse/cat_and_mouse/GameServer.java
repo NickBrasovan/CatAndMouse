@@ -1,12 +1,10 @@
 package cat_and_mouse;
 
-
 import java.awt.*;
 import javax.swing.*;
 import java.io.IOException;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
-
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 
@@ -79,14 +77,6 @@ public class GameServer extends AbstractServer {
 	    log.append("Client " + client.getId() + " connected\n");
 	  }
 	
-	  	//Helper function to check type of Object Passed In
-		public String CheckObject (Object arg0) {
-			String return_type;
-			return_type = (arg0.getClass().getSimpleName());
-			return return_type;
-			}
-	  
-
 	  // Method that handles listening exceptions by displaying exception information.
 	  public void listeningException(Throwable exception) 
 	  {
@@ -98,12 +88,66 @@ public class GameServer extends AbstractServer {
 	  }
 
 	@Override
+	/*HANDLE MESSAGE FROM CLIENT*/
 	protected void handleMessageFromClient(Object arg0, ConnectionToClient arg1) {
-		// TODO Auto-generated method stub
-		  //String object_type = CheckObject(arg0);
-			//if (object_type == "LoginData")
-				//System.out.println("LoginData object received from Client")
-		log.append("LoginData object received from Client");
+		//log.append("LoginData object received from Client");
+		
+		//RECEIVE AND VERIFY LOGINDATA
+	    if (arg0 instanceof LoginData)
+	    {
+	      // Check the username and password with the database.
+	      LoginData data = (LoginData)arg0;
+	      Object result;
+	      if (database.verifyAccount(data))
+	      {
+	        result = "LoginSuccessful";
+	        log.append("Client " + arg1.getId() + " successfully logged in as " + data.getPlayerName() + "\n");
+	      }
+	      else
+	      {
+	        result = new Error("The username and password are incorrect.", "Login");
+	        log.append("Client " + arg1.getId() + " failed to log in\n");
+	      }
+	      
+	      // Send the result to the client.
+	      try
+	      {
+	        arg1.sendToClient(result);
+	      }
+	      catch (IOException e)
+	      {
+	        return;
+	      }
+	    }
+		
+	    if (arg0 instanceof CreateAccountData)
+	    {
+	      // Check the username and password with the database.
+	    	CreateAccountData data = (CreateAccountData)arg0;
+	      Object result;
+	      if (database.CreateAccount(data))
+	      {
+	        result = "LoginSuccessful";
+	        log.append("Client " + arg1.getId() + " successfully logged in as " + data.getPlayerName() + "\n");
+	      }
+	      else
+	      {
+	        result = new Error("The username has already been selected.", "Login");
+	        log.append("Client " + arg1.getId() + " failed to log in\nUsername has already been selected");
+	      }
+	      
+	      // Send the result to the client.
+	      try
+	      {
+	        arg1.sendToClient(result);
+	      }
+	      catch (IOException e)
+	      {
+	        return;
+	      }
+	    }
+		
+		
 	}
 	
 }
