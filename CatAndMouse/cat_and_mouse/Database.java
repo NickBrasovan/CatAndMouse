@@ -37,7 +37,7 @@ public class Database {
 	      password=hello
 	      url=jdbc\:mysql\://localhost\:3306/student_space*/
 	    
-	    //Get the username, password, and url  ; these three pieces of info. are required for JDBC to connect to any database
+	    //Set SQL Domain and Workspace with username, password, and url. Required for JDBC to connect to database.
 	    url = prop.getProperty("url");         //define url
 	    user = prop.getProperty("user");      //define user
 	    pass = prop.getProperty("password"); //define pass
@@ -49,21 +49,6 @@ public class Database {
 			//Create a statement, enables SQL coding, statement object used for all sql, any sql command from SQL prompts executed by Statement.
 			stmt=con.createStatement();  
 			
-			//execute a test dml statement to see if values are entered into SQL database
-			//stmt.execute("INSERT INTO user VALUES('PLAYER1','PLAYER1PW')");
-			
-			//Execute a query, result set is an iterable result set; the only way to extract data from result set is iteration
-			//rs = stmt.executeQuery("select * from user");
-			
-			//display the contents of result set
-			/*while(rs.next()) 
-			{
-			   System.out.println(rs.getString(1)+"  "+rs.getString(2));
-			}*/
-			      
-			//con.close();  
-			    
-			//System.out.println("Success");
 			
 		} catch (SQLException e) {
 			// TODO CA: Username already in use and LI: Incorrect Username or Password
