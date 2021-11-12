@@ -39,20 +39,18 @@ public class GameServerGUI extends JFrame {
 	    /*PASS DATABASE OBJECT TO SERVER VIA SERVER SETDATABASE METHOD*/
 	    server.setDatabase(database);  
 		
-	    
-	    
 	    /*PANEL CONSTRUCTION*/
 	    JPanel north = new JPanel();
 	    JPanel center = new JPanel(new BorderLayout());
 	    JPanel south = new JPanel();
 	    
-	
 	    //Status Label. Default status: "not connected"
 	    JLabel statusText = new JLabel("Status:");
 	    north.add(statusText);
 	    status = new JLabel("Not Connected");
 	    status.setForeground(Color.RED);
 	    north.add(status);
+	    server.setStatus(status);
 	    
 	    //Create the grid of text fields.
 	    JPanel centerNorth = new JPanel(new GridLayout(labels.length, 2, 5, 5));
@@ -85,6 +83,8 @@ public class GameServerGUI extends JFrame {
 	    JPanel serverLogPaneBuffer = new JPanel();
 	    serverLogPaneBuffer.add(serverLogPane);
 	    serverLogPanel.add(serverLogPaneBuffer, BorderLayout.SOUTH);
+	    server.setLog(log);
+	    
 	    //Add the server log panel to the south part of the center.
 	    JPanel centerSouth = new JPanel();
 	    centerSouth.add(serverLogPanel);
@@ -113,10 +113,6 @@ public class GameServerGUI extends JFrame {
 	    // Display the window.
 	    this.setSize(450, 450);
 	    this.setVisible(true);
-	    
-
-	    server.setLog(log);
-	    server.setStatus(status);
 		}
 		
 		

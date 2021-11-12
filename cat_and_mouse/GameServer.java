@@ -92,7 +92,7 @@ public class GameServer extends AbstractServer {
 	protected void handleMessageFromClient(Object arg0, ConnectionToClient arg1) {
 		//log.append("LoginData object received from Client");
 		
-		//RECEIVE AND VERIFY LOGINDATA
+		//HANDLE LOGINDATA
 	    if (arg0 instanceof LoginData)
 	    {
 	      // Check the username and password with the database.

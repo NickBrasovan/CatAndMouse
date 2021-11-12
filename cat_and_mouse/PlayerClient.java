@@ -13,7 +13,7 @@ public class PlayerClient extends AbstractClient {
 		  super("localhost", 8300);
 		}
 	
-	  
+	/*HANDLE MESSAGE FROM SERVER*/  
 	@Override
 	protected void handleMessageFromServer(Object arg0)
 	{
@@ -23,12 +23,12 @@ public class PlayerClient extends AbstractClient {
 	      // Get the text of the message.
 	      String message = (String)arg0;
 	      
+	      
 	      // If we successfully logged in, tell the login controller.
 	      if (message.equals("LoginSuccessful"))
 	      {
 	        loginControl.loginSuccess();
 	      }
-	      
 	      // If we successfully created an account, tell the create account controller.
 	      else if (message.equals("CreateAccountSuccessful"))
 	      {
@@ -36,7 +36,7 @@ public class PlayerClient extends AbstractClient {
 	      }
 	    }
 	    
-	   /* TODO // If we received an Error, figure out where to display it.
+	   //If we received an Error, figure out where to display it.
 	    else if (arg0 instanceof Error)
 	    {
 	      // Get the Error object.
@@ -49,11 +49,11 @@ public class PlayerClient extends AbstractClient {
 	      }
 	      
 	      // Display account creation errors using the create account controller.
-	      else if (error.getType().equals("CreateAccount"))
-	      {
-	        createAccountControl.displayError(error.getMessage());
-	      }
-	    } */
+	      //else if (error.getType().equals("CreateAccount"))
+	      //{
+	      //  createAccountControl.displayError(error.getMessage());
+	      //}
+	    } 
 		
 	}
 

@@ -2,6 +2,7 @@ package cat_and_mouse;
 
 import java.awt.*;
 import javax.swing.*;
+
 import java.awt.event.*;
 import java.io.IOException;
 
@@ -64,4 +65,12 @@ public class TitlescreenControl implements ActionListener
 	cardLayout.show(container, "2"); //container 2 is Gameroom.	
 	
   }
-}
+
+	  // Method that displays a message in the error label.
+	  public void displayError(String error)
+	  {
+	    //LoginPanel loginPanel = (LoginPanel)container.getComponent(1);
+	    Titlescreen.setError(error);
+	  }
+	
+  }

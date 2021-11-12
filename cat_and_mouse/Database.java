@@ -29,7 +29,7 @@ public class Database {
 		Properties prop = new Properties();
 		
 		//Use a fileInputStream as input to the Properties object for reading the db.properties file
-	    FileInputStream fis = new FileInputStream("CatAndMouse/db.properties");  //create file input stream object; drag file into package; b/c it's in the package, you have to specify package(project) name slaxh
+	    FileInputStream fis = new FileInputStream("db.properties");  //create file input stream object; drag file into package; b/c it's in the package, you have to specify package(project) name slaxh
 	    prop.load(fis);
 	    
 	    /*db.properties files has the following content:

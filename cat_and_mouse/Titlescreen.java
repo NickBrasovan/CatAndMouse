@@ -3,6 +3,7 @@ package cat_and_mouse;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -21,17 +22,18 @@ public class Titlescreen extends JPanel {
 	
 	//Titlescreen Labels
 	private JLabel welcomeLbl;
-	JLabel playerNameLabel;
-	JLabel passwordLabel;
-	JLabel messageLabel;
-	JLabel enterPasswordLabel;
-	JLabel instruction1;
-	JLabel instruction2;
-	JLabel instruction3;
+	private static JLabel errorLabel;
+	private JLabel playerNameLabel;
+	private JLabel passwordLabel;
+	private JLabel messageLabel;
+	private JLabel enterPasswordLabel;
+	private JLabel instruction1;
+	private JLabel instruction2;
+	private JLabel instruction3;
 	
 	//Titlescreen Buttons
-	JButton btnNewAcct;
-	JButton btnLogin;
+	private JButton btnNewAcct;
+	private JButton btnLogin;
 	
 	//Getter for Player Name
 	public String getPlayerName() {
@@ -46,8 +48,6 @@ public class Titlescreen extends JPanel {
 			
 	//Construct Titlescreen		
 		public Titlescreen(TitlescreenControl tc) {
-			
-			//logininfo = id_password_map.getLoginInfo();
 			
 			
 			this.setBackground(Color.BLUE);
@@ -90,6 +90,15 @@ public class Titlescreen extends JPanel {
 			add(instruction3);
 			
 			
+			// Create a panel for the labels at the top of the GUI.
+		    JPanel labelPanel = new JPanel(new GridLayout(2, 1, 5, 5));
+		    errorLabel = new JLabel("", JLabel.CENTER);
+		    errorLabel.setForeground(Color.RED);
+		    JLabel instructionLabel = new JLabel("Enter your username and password to log in.", JLabel.CENTER);
+		    labelPanel.add(errorLabel);
+		    //labelPanel.add(instructionLabel);
+			
+			
 			// Main Panel Buttons
 			
 			playerNameLabel = new JLabel("  Player Name:");
@@ -112,6 +121,7 @@ public class Titlescreen extends JPanel {
 			add(btnNewAcct);
 			btnNewAcct.addActionListener(tc);
 			
+			
 		
 			//this.add(login_screen);
 			
@@ -132,7 +142,11 @@ public class Titlescreen extends JPanel {
 	
 		
 		
-			
+		 // Setter for the error text.
+		  public static void setError(String error)
+		  {
+		    errorLabel.setText(error);
+		  }	
 				
 				
 				
