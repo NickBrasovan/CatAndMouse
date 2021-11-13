@@ -56,7 +56,10 @@ public class Database {
 			e.printStackTrace();
 		}
 	  }
-	    public boolean verifyAccount(LoginData data)
+	    
+	
+		/*HANDLE LOGINDATA*/
+		public boolean verifyAccount(LoginData data)
 	    {
 	    boolean verification_value = false;	
 	    
@@ -70,7 +73,7 @@ public class Database {
 		rs = stmt.executeQuery(sql);
 		if(rs.next())
 		{
-			return true;	
+			verification_value = true;	
 		}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

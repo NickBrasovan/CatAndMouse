@@ -11,21 +11,27 @@ public class PlayerGUI extends JFrame{
 	String title;
 	static CardLayout cl; //declare cardLayout;
 	
-	/*INSTANTIATE PLAYER OBJECT*/
-	PlayerClient player = new PlayerClient();
+	/*DECLARE PLAYERCLIENT OBJECT*/
+	PlayerClient player; 
 	
-	//Declare Panels To Build GUIs
-	private BasePanel bp; //extends JPanel
-	private Titlescreen ts; //extends JPanel
-	private Gameroom gr; //extends JPanel
+	/*Panels and Controlers*/
+	private BasePanel bp;        //extends JPanel
+	private Titlescreen ts;     //extends JPanel
+	private Gameroom gr;       //extends JPanel
 	private CreateAccount ca; //extends JPanel
 	
-	private TitlescreenControl tc; //extends actionlistener
+	private TitlescreenControl tc;     //extends actionlistener
 	private CreateAccountControl cac; //extends actionlistener
 	
-	//Constructor for Player GUI sets card layout
+	/*Constructor for Player GUI*/
 	public PlayerGUI(){
-		//set JFrame Parameters
+		
+		/*INSTANTIATE PLAYERCLIENT OBJECT*/
+		player = new PlayerClient();
+		
+		player.setLoginControl(tc);
+		
+		//SET JFRAME Parameters
 		title = "Cat and Mouse";
 		this.setTitle(title);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,6 +44,7 @@ public class PlayerGUI extends JFrame{
 		bp = new BasePanel(cl);
 
 		tc = new TitlescreenControl(bp, player);
+		player.setLoginControl(tc);
 		ts = new Titlescreen(tc);
 		
 		gr = new Gameroom();

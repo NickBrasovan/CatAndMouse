@@ -113,7 +113,7 @@ public class GameServerGUI extends JFrame {
 	    // Display the window.
 	    this.setSize(450, 450);
 	    this.setVisible(true);
-		}
+		}//end constructor
 		
 		
 		// Getters for the important components.
