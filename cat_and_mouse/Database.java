@@ -3,7 +3,7 @@ package cat_and_mouse;
 import java.util.*;
 import java.io.*;
 import java.sql.*;
-import com.mysql.jdbc.Connection;
+//import com.mysql.jdbc.Connection;
 
 
 @SuppressWarnings("unused")
@@ -14,9 +14,10 @@ public class Database {
 	private java.sql.Connection con;  //connection object comes from driver manager class
 	//connection can be shared among multiple classes
 	 
+	private Connection conn;
     private Statement stmt;
     private ResultSet rs;
-    private ResultSetMetaData rmd;
+    //private ResultSetMetaData rmd;
     
     private String url; 
     private String user; 
@@ -45,9 +46,9 @@ public class Database {
 	    //Peform connection and Set the con object; needed to execute an sql; used to create all sql constructs
 	    try {
 			
-	    	con = DriverManager.getConnection(url,user,pass);
+	    	conn = DriverManager.getConnection(url,user,pass);
 			//Create a statement, enables SQL coding, statement object used for all sql, any sql command from SQL prompts executed by Statement.
-			stmt=con.createStatement();  
+			stmt=conn.createStatement();  
 			
 			
 		} catch (SQLException e) {
@@ -56,47 +57,83 @@ public class Database {
 			e.printStackTrace();
 		}
 	  }
-	    public boolean verifyAccount(LoginData data)
-	    {
-	    boolean verification_value = false;	
-	    
-	    String sql = "SELECT * FROM user WHERE username='"+data.getPlayerName()+"'and password='"+data.getPassword()+"'";
+	
+	public ArrayList<String> query(String query){
+		ArrayList<String> list = new ArrayList<String>();
+		
+		try {
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(query);
+			
+			if(rs == null) {
+				return null;
+			}
+			
+			while(rs.next()) {
+				list.add(rs.getString(1) + "," + rs.getString(2));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	public void executeDML(String dml) throws SQLException{
+		
+		try {
+			stmt = conn.createStatement();
+		
+			stmt.execute(dml);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean verifyAccount(LoginData data) {	    
+		ArrayList<String> list = query("SELECT username, aes_decrypt(password, 'key') from user");
+		
+	    //String sql = "SELECT * FROM user WHERE username='"+data.getPlayerName()+"'and password='"+data.getPassword()+"'";
 	    //String sql = "SELECT * FROM user WHERE username='"+data.getUsername()+"'and password='cast(aes_decrypt("+data.getPassword()+"'";
 	    //String sql = "SELECT * FROM user WHERE username=" + data.getUsername() + "and password=cast(aes_decrypt(" + data.getPassword() +", 'keyvalue')";
 	    //String sql = "SELECT username, password, CAST(AES_DECRYPT('"+data.getPassword()+"', 'keyvalue') AS CHAR(16)) FROM user";
 	    //String sql = "SELECT * FROM user WHERE username = ('" + data.getUsername() + "'and password= aes_decrypt('" + data.getPassword() + "', 'key')";
 	    
-	    try {
-		rs = stmt.executeQuery(sql);
-		if(rs.next())
-		{
-			return true;	
+		if(list.contains(data.getPlayerName() + "," + data.getPassword())) {
+			return true;
 		}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		return false;
+	}
+	
+	public boolean verifyCreateInfo(String username, String password) {
+		ArrayList<String> userList = query("SELECT username FROM user");
+		ArrayList<String> passList = query("SELECT aes_decrypt(passsowrd, 'key') FROM user");
+		
+		if(userList.contains(username) || passList.contains(password)) {
+			return true;
 		}
-	    
-	    return verification_value;
-	    }
+		
+		return false;
+	}
 		
 	    //Handle CreateAccountData
-	    public boolean CreateAccount(CreateAccountData data)
-	    {
-	    boolean verify_newAcct_value = false;
-	    try {
-	    stmt.executeUpdate("INSERT INTO user (username, password) "
-                + "VALUES ('" + data.getPlayerName() + "', '" + data.getPassword());
-	    verify_newAcct_value = true;
-	    return verify_newAcct_value;
-	    
-	    } catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.print("Create Account Error");
-			e.printStackTrace();
-		}
-	    
-	    return verify_newAcct_value;
+	public boolean CreateAccount(CreateAccountData data) {
+		if(verifyCreateInfo(data.getPlayerName(), data.getPassword()) == false) {
+		    try {
+				stmt = conn.createStatement();
+				
+			    stmt.execute("insert into user values ('" + data.getPlayerName() + "'aes_encrypt('" + data.getPassword() + "'key'));");
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    return true;
 	    }
+		return false;
 		
+	}
+	
 }

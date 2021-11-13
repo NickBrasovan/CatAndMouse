@@ -132,8 +132,8 @@ public class GameServer extends AbstractServer {
 	      }
 	      else
 	      {
-	        result = new Error("The username has already been selected.", "Login");
-	        log.append("Client " + arg1.getId() + " failed to log in\nUsername has already been selected");
+	        result = new Error("The username or password has already been selected.", "Login");
+	        log.append("Client " + arg1.getId() + " failed to log in\nUsername or password has already been selected");
 	      }
 	      
 	      // Send the result to the client.

@@ -19,6 +19,8 @@ public class CreateAccount extends JPanel {
 	private JLabel passwordMatchLabel;
 	private JTextField passwordMatchField;
 	private JButton btnSubmit;
+	private JButton btnExit;
+	private JLabel errorLabel;
 
 	//Getter for Player Name
 	public String getPlayerName() {
@@ -27,12 +29,16 @@ public class CreateAccount extends JPanel {
 		
 	// Getter for the text in the password field. 
 	public String getPassword() {
-		return new String(passwordField.getText()); //TODO fix "getText" to "getPassword"
+		return passwordField.getText(); //TODO fix "getText" to "getPassword"
 	}
 	
 	// Getter for the text in the password field. 
 	public String getPasswordMatch() {
-		return new String(passwordMatchField.getText()); //TODO fix "getText" to "getPassword"
+		return passwordMatchField.getText(); //TODO fix "getText" to "getPassword"
+	}
+	
+	public void setError(String error) {
+		errorLabel.setText(error);
 	}
 	
 	//CreateAccount Constructor. Constructor takes CreateAccountControl Object (cac) as an argument.  
@@ -58,10 +64,16 @@ public class CreateAccount extends JPanel {
 		instructLbl.setText("Submit new name and password to create new account");
 		instructLbl.setBounds(200, 80, 500, 28);
 		add(instructLbl);
-		instructLbl.setVisible(true);		
+		instructLbl.setVisible(true);	
+		
+		// Create Error label
+		errorLabel = new JLabel("");
+		errorLabel.setBounds(200, 450, 75, 25);
+		errorLabel.setForeground(Color.RED);
+		this.add(errorLabel);
 		
 		//Create Account Panel Buttons
-		playerNameLabel = new JLabel("//Player Name:");
+		playerNameLabel = new JLabel("Player Name:");
 		playerNameLabel.setBounds(200, 500, 75, 25);
 		playerNameLabel.setOpaque(true);
 		this.add(playerNameLabel);
@@ -70,12 +82,12 @@ public class CreateAccount extends JPanel {
 		playerNameField.setBounds(275, 500, 200, 25);
 		this.add(playerNameField);
 	
-		passwordLabel = new JLabel("  password:");
+		passwordLabel = new JLabel("Password:");
 		passwordLabel.setOpaque(true);
 		passwordLabel.setBounds(200, 530, 75, 25);
 		this.add(passwordLabel);
 	
-		passwordMatchLabel = new JLabel("re-enter password:");
+		passwordMatchLabel = new JLabel("Re-Enter Password:");
 		passwordMatchLabel.setOpaque(true);
 		passwordMatchLabel.setBounds(200, 560, 75, 25);
 		this.add(passwordMatchLabel);
@@ -90,8 +102,13 @@ public class CreateAccount extends JPanel {
 	
 		btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(300, 625, 122, 33);
-		this.add(btnSubmit);
 		btnSubmit.addActionListener(cac); //button action listener receives a CreateAccountControl Object.
+		this.add(btnSubmit);
+		
+		btnExit = new JButton("Exit");
+		btnExit.setBounds(300, 675, 122, 33);
+		btnSubmit.addActionListener(cac); //button action listener receives a CreateAccountControl Object.
+		this.add(btnExit);
 	
 	}
 	
