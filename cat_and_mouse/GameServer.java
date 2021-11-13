@@ -98,10 +98,13 @@ public class GameServer extends AbstractServer {
 	      // Check the username and password with the database.
 	      LoginData data = (LoginData)arg0;
 	      Object result;
+	      
+	      /*IF Username and Password are Valid, then Display Successful Login Message in Serer Log*/
 	      if (database.verifyAccount(data))
 	      {
 	        result = "LoginSuccessful";
 	        log.append("Client " + arg1.getId() + " successfully logged in as " + data.getPlayerName() + "\n");
+	        
 	      }
 	      else
 	      {
@@ -114,6 +117,7 @@ public class GameServer extends AbstractServer {
 	      {
 	        arg1.sendToClient(result);
 	      }
+	      
 	      catch (IOException e)
 	      {
 	        return;

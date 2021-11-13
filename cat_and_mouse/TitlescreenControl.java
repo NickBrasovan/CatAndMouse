@@ -10,11 +10,13 @@ public class TitlescreenControl implements ActionListener
 {
   // Private data field for storing the container.
   private JPanel container;
+  private PlayerClient player;
  
   // Constructor for the initial controller.
-  public TitlescreenControl(JPanel container)
+  public TitlescreenControl(JPanel container, PlayerClient player)
   {
     this.container = container;
+    this.player = player;
   }
   
   // Handle button clicks.
@@ -30,7 +32,9 @@ public class TitlescreenControl implements ActionListener
     	//Data integrity check
     	//System.out.print("Player Name in LoginData Object is " + data.getPlayerName());
     	//System.out.print("\nPassword in LoginData Object is " + data.getPassword());
-    	PlayerClient player = new PlayerClient();
+    	
+    	
+    	//PlayerClient player = new PlayerClient();
     	
     	try {
 			player.openConnection();
@@ -45,9 +49,6 @@ public class TitlescreenControl implements ActionListener
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-    	
-
      }
     
     //NewAccount Button Action Handler
@@ -61,6 +62,7 @@ public class TitlescreenControl implements ActionListener
   public void loginSuccess() {
   	
 	//Successful Login results in Showing Gameroom JPanel
+	Titlescreen loginPanel = (Titlescreen)container.getComponent(1);
 	CardLayout cardLayout = (CardLayout)container.getLayout();
 	cardLayout.show(container, "2"); //container 2 is Gameroom.	
 	

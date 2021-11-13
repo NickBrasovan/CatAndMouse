@@ -4,20 +4,24 @@ import java.awt.CardLayout;
 import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class PlayerGUI extends JFrame{
 	String title;
 	static CardLayout cl; //declare cardLayout;
 	
+	/*INSTANTIATE PLAYER OBJECT*/
+	PlayerClient player = new PlayerClient();
 	
 	//Declare Panels To Build GUIs
-	static BasePanel bp; //extends JPanel
-	static Titlescreen ts; //extends JPanel
-	static Gameroom gr; //extends JPanel
-	static CreateAccount ca; //extends JPanel
-	static TitlescreenControl tc; //extends actionlistener
-	static CreateAccountControl cac; //extends actionlistener
+	private BasePanel bp; //extends JPanel
+	private Titlescreen ts; //extends JPanel
+	private Gameroom gr; //extends JPanel
+	private CreateAccount ca; //extends JPanel
+	
+	private TitlescreenControl tc; //extends actionlistener
+	private CreateAccountControl cac; //extends actionlistener
 	
 	//Constructor for Player GUI sets card layout
 	public PlayerGUI(){
@@ -29,13 +33,15 @@ public class PlayerGUI extends JFrame{
 		this.setVisible(true);
 		this.setResizable(false);
 		
-		cl = new CardLayout(); //instantiate new CardLayout Object
-		
 		//instantiate panel objects
+		cl = new CardLayout(); //instantiate new CardLayout Object
 		bp = new BasePanel(cl);
-		tc = new TitlescreenControl(bp);
+
+		tc = new TitlescreenControl(bp, player);
 		ts = new Titlescreen(tc);
+		
 		gr = new Gameroom();
+		
 		cac = new CreateAccountControl(bp);
 		ca = new CreateAccount(cac);
 

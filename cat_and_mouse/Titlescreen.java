@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 public class Titlescreen extends JPanel {
 		
+	private TitlescreenControl tc;
 	//Titlescreen Text Fields
 	private JTextField playerNameField = new JTextField();
 	private JPasswordField passwordField = new JPasswordField();
@@ -49,7 +50,7 @@ public class Titlescreen extends JPanel {
 	//Construct Titlescreen		
 		public Titlescreen(TitlescreenControl tc) {
 			
-			
+			this.tc = tc;
 			this.setBackground(Color.BLUE);
 			//this.setPreferredSize(new Dimension(800, 900));
 			this.setVisible(true);
