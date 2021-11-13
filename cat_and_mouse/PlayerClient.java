@@ -4,7 +4,7 @@ import ocsf.client.AbstractClient;
 
 public class PlayerClient extends AbstractClient {
 
-		// Private data fields for storing the GUI controllers.
+	  //Private data fields for storing the GUI controllers.
 	  private TitlescreenControl loginControl;
 	  private CreateAccountControl createAccountControl;
 
@@ -13,6 +13,7 @@ public class PlayerClient extends AbstractClient {
 	  {
 	    this.loginControl = loginControl;
 	  }
+	  
 	  //Constructor calls Constructor of AbstractClient
 	  public PlayerClient() {
 		  super("localhost", 8300);
@@ -34,9 +35,6 @@ public class PlayerClient extends AbstractClient {
 	      {
 	        loginControl.loginSuccess();
 	      }
-	      
-	      
-	      
 	      
 	      // If we successfully created an account, tell the create account controller.
 	      else if (message.equals("CreateAccountSuccessful"))
