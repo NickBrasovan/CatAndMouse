@@ -26,7 +26,7 @@ public class CreateAccountControl implements ActionListener{
 	    //get data from titlescreen object
 		if(command == "Submit") {
 			CreateAccount create_account = (CreateAccount)container.getComponent(2);  //Component 2 must refer to the 3rd element in the CardLayout array of Japanels
-			String username = create_account.getName();
+			String username = create_account.getName();						// Comment to see change 
 			String password = create_account.getPassword();
 			String verifyPassword = create_account.getPasswordMatch();
 			
