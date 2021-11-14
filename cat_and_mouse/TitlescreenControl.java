@@ -39,7 +39,7 @@ public class TitlescreenControl implements ActionListener
     	//Data integrity check
     	//System.out.print("Player Name in LoginData Object is " + data.getPlayerName());
     	//System.out.print("\nPassword in LoginData Object is " + data.getPassword());
-    	
+
     	try {
 			player.openConnection();
 		} catch (IOException e1) {
@@ -53,9 +53,6 @@ public class TitlescreenControl implements ActionListener
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-    	
-
      }
     
     //NewAccount Button Action Handler
@@ -69,6 +66,7 @@ public class TitlescreenControl implements ActionListener
   public void loginSuccess() {
   	
 	//Successful Login results in Showing Gameroom JPanel
+	//Titlescreen loginPanel = (Titlescreen)container.getComponent(1);
 	CardLayout cardLayout = (CardLayout)container.getLayout();
 	cardLayout.show(container, "2"); //container 2 is Gameroom.	
 	
