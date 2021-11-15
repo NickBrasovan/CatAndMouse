@@ -20,13 +20,13 @@ public class CreateAccountControl implements ActionListener{
 	  }
 	  
 	// Handle button clicks.
-	@SuppressWarnings("unused")
+	//@SuppressWarnings("unused")
 	public void actionPerformed(ActionEvent ae){
 		String command = ae.getActionCommand();
 	    //get data from titlescreen object
 		if(command == "Submit") {
 			CreateAccount create_account = (CreateAccount)container.getComponent(2);  //Component 2 must refer to the 3rd element in the CardLayout array of Japanels
-			String username = create_account.getName();						// Comment to see change 
+			String username = create_account.getPlayerName();					// Comment to see change 
 			String password = create_account.getPassword();
 			String verifyPassword = create_account.getPasswordMatch();
 			

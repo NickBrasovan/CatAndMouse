@@ -131,13 +131,13 @@ public class GameServer extends AbstractServer {
 	      Object result;
 	      if (database.CreateAccount(data))
 	      {
-	        result = "LoginSuccessful";
-	        log.append("Client " + arg1.getId() + " successfully logged in as " + data.getPlayerName() + "\n");
+	        result = "CreateAccountSuccessful";
+	        log.append("Client " + arg1.getId() + " created a new account called " + data.getPlayerName() + "\n");
 	      }
 	      else
 	      {
-	        result = new Error("The username or password has already been selected.", "Login");
-	        log.append("Client " + arg1.getId() + " failed to log in\nUsername or password has already been selected");
+	        result = new Error("The username or password has already been selected.", "CreateAccount");
+	        log.append("Client " + arg1.getId() + " failed to log in:\nUsername or password has already been selected");
 	      }
 	      
 	      // Send the result to the client.
