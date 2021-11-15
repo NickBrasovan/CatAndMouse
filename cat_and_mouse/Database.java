@@ -108,10 +108,17 @@ public class Database {
 	}
 	
 	public boolean verifyCreateInfo(String username, String password) {
-		ArrayList<String> userList = query("SELECT username FROM user");
-		ArrayList<String> passList = query("SELECT aes_decrypt(passsowrd, 'key') FROM user");
+		ArrayList<String> list = query("SELECT * FROM user");
+		ArrayList<String> user = new ArrayList<String>();
+		ArrayList<String> pass = new ArrayList<String>();
 		
-		if(userList.contains(username) || passList.contains(password)) {
+		for(int i = 0; i < list.size(); i++) {
+			user.add(list.get(i).split(",")[0]);
+			pass.add(list.get(i).split(",")[1]);
+		}
+		
+		
+		if(user.contains(username) || pass.contains(password)) {
 			return true;
 		}
 		
@@ -124,8 +131,7 @@ public class Database {
 		    try {
 				stmt = conn.createStatement();
 				
-			    stmt.execute("insert into user values ('" + data.getPlayerName() + "'aes_encrypt('" + data.getPassword() + "'key'));");
-
+				stmt.execute("insert into user values ('" + data.getPlayerName() + "',aes_encrypt('" + data.getPassword() + "','key'));");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

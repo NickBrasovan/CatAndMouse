@@ -56,6 +56,9 @@ public class PlayerClient extends AbstractClient {
 	        titleScreenControl.displayError(error.getMessage());
 	      }
 	      
+	      else if (error.getType().equals("CreateAccount")) {
+	    	  createAccountControl.displayError(error.getMessage());
+	      }
 	      // Display account creation errors using the create account controller.
 	      //else if (error.getType().equals("CreateAccount"))
 	      //{

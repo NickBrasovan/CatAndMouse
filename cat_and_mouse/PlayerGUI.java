@@ -25,6 +25,13 @@ public class PlayerGUI extends JFrame{
 		player.setHost("localhost");
 		player.setPort(8300);
 		
+		try {
+			player.openConnection();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		//title = "Cat and Mouse";
 		this.setTitle("Cat and Mouse");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

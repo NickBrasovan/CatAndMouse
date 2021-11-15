@@ -9,7 +9,8 @@ import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class CreateAccount extends JPanel {
-
+	
+	private CreateAccountControl cac;
 	private JLabel panelTitleLbl;
 	private JLabel instructLbl;
 	private JLabel playerNameLabel;
@@ -44,6 +45,7 @@ public class CreateAccount extends JPanel {
 	//CreateAccount Constructor. Constructor takes CreateAccountControl Object (cac) as an argument.  
 	public CreateAccount(CreateAccountControl cac) {
 	
+		this.cac = cac;
 		this.setBackground(Color.BLACK);
 		setLayout(null);
 		this.setVisible(true);
@@ -74,41 +76,41 @@ public class CreateAccount extends JPanel {
 		
 		//Create Account Panel Buttons
 		playerNameLabel = new JLabel("Player Name:");
-		playerNameLabel.setBounds(200, 500, 75, 25);
+		playerNameLabel.setBounds(150, 500, 250, 25);
 		playerNameLabel.setOpaque(true);
 		this.add(playerNameLabel);
 		
 		playerNameField = new JTextField();
-		playerNameField.setBounds(275, 500, 200, 25);
+		playerNameField.setBounds(275, 500, 250, 25);
 		this.add(playerNameField);
 	
 		passwordLabel = new JLabel("Password:");
 		passwordLabel.setOpaque(true);
-		passwordLabel.setBounds(200, 530, 75, 25);
+		passwordLabel.setBounds(150, 530, 250, 25);
 		this.add(passwordLabel);
 	
 		passwordMatchLabel = new JLabel("Re-Enter Password:");
 		passwordMatchLabel.setOpaque(true);
-		passwordMatchLabel.setBounds(200, 560, 75, 25);
+		passwordMatchLabel.setBounds(150, 560, 250, 25);
 		this.add(passwordMatchLabel);
 		
 		passwordField = new JTextField();
-		passwordField.setBounds(275, 530, 200, 25);
+		passwordField.setBounds(275, 530, 250, 25);
 		this.add(passwordField);
 		
 		passwordMatchField = new JTextField();
-		passwordMatchField.setBounds(275, 560, 200, 25);
+		passwordMatchField.setBounds(275, 560, 250, 25);
 		this.add(passwordMatchField);
 	
 		btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(300, 625, 122, 33);
-		btnSubmit.addActionListener(cac); //button action listener receives a CreateAccountControl Object.
 		this.add(btnSubmit);
+		btnSubmit.addActionListener(cac); //button action listener receives a CreateAccountControl Object.
 		
 		btnExit = new JButton("Exit");
 		btnExit.setBounds(300, 675, 122, 33);
-		btnSubmit.addActionListener(cac); //button action listener receives a CreateAccountControl Object.
 		this.add(btnExit);
+		btnSubmit.addActionListener(cac); //button action listener receives a CreateAccountControl Object.
 	
 	}
 	
