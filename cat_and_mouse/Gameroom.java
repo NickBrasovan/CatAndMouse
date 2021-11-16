@@ -19,14 +19,20 @@ public class Gameroom extends JPanel {
 	//Widget Declarations
 	private JLabel titleLabel;
 	private JButton inviteBtn;      
-	private JButton acceptBtn;      //TODO the accept button should only appear if player has active invitation
+	//private JButton acceptBtn;      //TODO the accept button should only appear if player has active invitation
 	private JLabel instructLbl1;   //invite friend label
 	private JLabel instructLbl2;  //friends text area label
+	private GameroomControl gc;
 	
 	private JTextArea friends_area; //displays list of player_users currently logged into Gameroom. 
 	
-	public Gameroom () {
+	public String getOpponent() {
+		return friends_area.getSelectedText();
+	}
 	
+	public Gameroom (GameroomControl gc) {
+	
+		this.gc = gc;
 		this.setBackground(Color.BLACK);
 		setLayout(null);
 		this.setVisible(true);
@@ -66,14 +72,16 @@ public class Gameroom extends JPanel {
 		scrollPane.setVisible(true);
 		
 		//InviteFriend Button
-		inviteBtn = new JButton("Invite a Friend");
-		inviteBtn.setBounds(470, 825, 300, 33);
-		this.add(inviteBtn);
+		JButton logoutBtn = new JButton("Log Out");
+		logoutBtn.setBounds(470, 825, 300, 33);
+		this.add(logoutBtn);
+		logoutBtn.addActionListener(gc);
 		
 		//Accept Button: TODO a more robust gui for accept/decline invitation
-		acceptBtn = new JButton("Accept an Invitation");
-		acceptBtn.setBounds(30, 825, 300, 33);
-		this.add(acceptBtn);
+		inviteBtn = new JButton("Invite A Friend");
+		inviteBtn.setBounds(30, 825, 300, 33);
+		this.add(inviteBtn);
+		inviteBtn.addActionListener(gc);
 		//btnLogin.addActionListener(new loginListener());
 
 		/*seeScoresBtn = new JButton("See Scores");

@@ -45,8 +45,15 @@ public class Titlescreen extends JPanel {
 	public String getPassword(){
 	    return new String(passwordField.getPassword());
 	  }
-	  
-			
+	
+	public void replaceUsername() {
+		this.playerNameField.setText("");
+	}
+	
+	public void replacePassword() {
+		this.passwordField.setText("");
+	}
+	
 	//Construct Titlescreen		
 		public Titlescreen(TitlescreenControl tc) {
 			
@@ -92,22 +99,24 @@ public class Titlescreen extends JPanel {
 			
 			
 			// Create a panel for the labels at the top of the GUI.
-		    JPanel labelPanel = new JPanel(new GridLayout(2, 1, 5, 5));
+		    //JPanel labelPanel = new JPanel(new GridLayout(2, 1, 5, 5));
 		    errorLabel = new JLabel("", JLabel.CENTER);
 		    errorLabel.setForeground(Color.RED);
-		    JLabel instructionLabel = new JLabel("Enter your username and password to log in.", JLabel.CENTER);
-		    labelPanel.add(errorLabel);
+		    errorLabel.setBounds(175, 470, 300, 25);
+		    this.add(errorLabel);
+		    //JLabel instructionLabel = new JLabel("Enter your username and password to log in.", JLabel.CENTER);
+		    //labelPanel.add(errorLabel);
 		    //labelPanel.add(instructionLabel);
 			
 			
 			// Main Panel Buttons
 			
-			playerNameLabel = new JLabel("  Player Name:");
+			playerNameLabel = new JLabel("Player Name:");
 			playerNameLabel.setBounds(200, 500, 75, 25);
 			playerNameLabel.setOpaque(true);
 			playerNameField.setBounds(275, 500, 200, 25);
 			
-			passwordLabel = new JLabel("  Password:");
+			passwordLabel = new JLabel("Password:");
 			passwordLabel.setOpaque(true);
 			passwordLabel.setBounds(200, 530, 75, 25);
 			passwordField.setBounds(275, 530, 200, 25);

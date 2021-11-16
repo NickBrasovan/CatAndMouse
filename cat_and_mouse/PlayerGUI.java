@@ -42,10 +42,11 @@ public class PlayerGUI extends JFrame{
 		//instantiate panel objects
 		TitlescreenControl tc = new TitlescreenControl (container, player);
 		CreateAccountControl cac = new CreateAccountControl(container, player);
+		GameroomControl gc = new GameroomControl(container, player);
 		
 		//JPanel bp = new BasePanel(cL);
 		JPanel ts = new Titlescreen(tc);
-		JPanel gr = new Gameroom();
+		JPanel gr = new Gameroom(gc);
 		JPanel ca = new CreateAccount(cac);
 		
 		player.setTitlescreenControl(tc);

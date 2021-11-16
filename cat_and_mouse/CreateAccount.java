@@ -38,6 +38,18 @@ public class CreateAccount extends JPanel {
 		return passwordMatchField.getText(); //TODO fix "getText" to "getPassword"
 	}
 	
+	public void replaceUsername() {
+		this.playerNameField.setText("");
+	}
+	
+	public void replacePassword() {
+		this.passwordField.setText("");
+	}
+	
+	public void replaceVerify() {
+		this.passwordMatchField.setText("");
+	}
+	
 	public void setError(String error) {
 		errorLabel.setText(error);
 	}
@@ -110,7 +122,7 @@ public class CreateAccount extends JPanel {
 		btnExit = new JButton("Exit");
 		btnExit.setBounds(300, 675, 122, 33);
 		this.add(btnExit);
-		btnSubmit.addActionListener(cac); //button action listener receives a CreateAccountControl Object.
+		btnExit.addActionListener(cac); //button action listener receives a CreateAccountControl Object.
 	
 	}
 	

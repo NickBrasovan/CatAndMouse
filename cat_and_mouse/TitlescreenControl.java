@@ -51,6 +51,10 @@ public class TitlescreenControl implements ActionListener
     //NewAccount Button Action Handler
     if (command.equals("New Account")){
     	CardLayout cardLayout = (CardLayout)container.getLayout();
+    	CreateAccount cA = (CreateAccount)container.getComponent(2);
+    	cA.replaceUsername();
+    	cA.replacePassword();
+    	cA.replaceVerify();
         cardLayout.show(container, "3");
         }
     }

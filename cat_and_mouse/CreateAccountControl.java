@@ -50,7 +50,10 @@ public class CreateAccountControl implements ActionListener{
 		}
 		else if (command == "Exit") {
 			CardLayout cL = (CardLayout)container.getLayout();
-			cL.show(container, "0");
+			Titlescreen titleScreen = (Titlescreen)container.getComponent(0);
+			titleScreen.replaceUsername();
+			titleScreen.replacePassword();
+			cL.show(container, "1");
 		}
 		/*//Data integrity check
 	    System.out.print("Player Name in CreateAccountData is " + data.getPlayerName());
