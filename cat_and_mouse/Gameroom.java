@@ -3,6 +3,8 @@ package cat_and_mouse;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.*;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,6 +30,13 @@ public class Gameroom extends JPanel {
 	
 	public String getOpponent() {
 		return friends_area.getSelectedText();
+	}
+	
+	public void setArea(ArrayList<String> players) {
+		for(int i = 0; i < players.size(); i++) {
+			friends_area.append(players.get(i) + "\n");
+		}
+		
 	}
 	
 	public Gameroom (GameroomControl gc) {
@@ -70,6 +79,11 @@ public class Gameroom extends JPanel {
 		scrollPane.setBounds(200,200,400,500);
 		this.add(scrollPane);
 		scrollPane.setVisible(true);
+		
+		JButton refreshButton = new JButton("Refresh");
+		refreshButton.setBounds(500, 710, 100, 20);
+		this.add(refreshButton);
+		refreshButton.addActionListener(gc);
 		
 		//InviteFriend Button
 		JButton logoutBtn = new JButton("Log Out");

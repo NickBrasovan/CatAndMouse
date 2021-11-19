@@ -2,7 +2,12 @@ package cat_and_mouse;
 
 import java.awt.*;
 import javax.swing.*;
+
+import com.mysql.fabric.Server;
+
 import java.io.IOException;
+import java.util.*;
+
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 import ocsf.server.AbstractServer;
@@ -15,12 +20,16 @@ public class GameServer extends AbstractServer {
 	  private JLabel status;
 	  private boolean running = false;
 	  private Database database;
+	  private ArrayList<String> playersLoggedIn;
+	  private ArrayList<ConnectionToClient> connectedPlayers;
 
 	  // Constructor for initializing the server with default settings.
-	  public GameServer( )
+	  public GameServer()
 	  {
 	    super(8300);
 	    this.setTimeout(500);
+	    playersLoggedIn = new ArrayList<String>();
+	    connectedPlayers = new ArrayList<ConnectionToClient>();
 	  }
 	  
 	  /*SETTER FOR DATABASE*/
@@ -75,6 +84,7 @@ public class GameServer extends AbstractServer {
 	  public void clientConnected(ConnectionToClient client)
 	  {
 	    log.append("Client " + client.getId() + " connected\n");
+	    connectedPlayers.add(client);
 	  }
 	
 	  // Method that handles listening exceptions by displaying exception information.
@@ -104,6 +114,7 @@ public class GameServer extends AbstractServer {
 	      {
 	        result = "LoginSuccessful";
 	        log.append("Client " + arg1.getId() + " successfully logged in as " + data.getPlayerName() + "\n");
+	        playersLoggedIn.add(data.getPlayerName());
 	        
 	      }
 	      else
@@ -116,12 +127,34 @@ public class GameServer extends AbstractServer {
 	      try
 	      {
 	        arg1.sendToClient(result);
-	      }
-	      
+	        arg1.sendToClient(playersLoggedIn);
+	      }	      
 	      catch (IOException e)
 	      {
 	        return;
 	      }
+	      /*
+	      Thread updateLog = new Thread(new Runnable() {
+		    	public void run() {
+		    		while(true) {
+			    		try {
+							arg1.sendToClient(playersLoggedIn);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			    		try {
+							wait(5000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		    		}
+		    	}
+		    });
+		    
+		    updateLog.run();
+		    */
 	    }
 		
 	    if (arg0 instanceof CreateAccountData)
@@ -151,6 +184,44 @@ public class GameServer extends AbstractServer {
 	      }
 	    }
 		
+		if(arg0 instanceof GameroomData) {
+			GameroomData data = (GameroomData)arg0;
+		    Object result;
+		    
+		    if(playersLoggedIn.contains(data.getOpponent()))
+		    {			
+		    	result = "PlayerInviteSuccessful";
+		    	log.append("Client " + data.getPlayerName() + " invited " + data.getOpponent() + " to a game.\n");
+		    }
+		    else {
+		    	result = new Error("The opponent is not logged in.", "Gameroom");
+		    	log.append("Client " + data.getPlayerName() + " failed to invite " + data.getOpponent() + ".\n");
+		    }
+		    
+		}
+		
+		if(arg0 instanceof String) {
+			String[] message = ((String) arg0).split(",");			
+			
+			if(message[0].equals("Log Out")) {
+				playersLoggedIn.remove(message[1]);
+				log.append("Client " + message[1] + " has logged out.\n");
+			}
+			try {
+				arg1.sendToClient(playersLoggedIn);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(message[0].equals("Refresh")) {
+				try {
+					arg1.sendToClient(playersLoggedIn);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		
 	}
 	

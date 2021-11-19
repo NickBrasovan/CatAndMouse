@@ -51,6 +51,7 @@ public class PlayerGUI extends JFrame{
 		
 		player.setTitlescreenControl(tc);
 		player.setCreateAccountControl(cac);
+		player.setGameroomControl(gc);
 		
 		//add panel layers to card layout
 		container.add(ts, "1");
