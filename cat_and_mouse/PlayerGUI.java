@@ -43,14 +43,8 @@ public class PlayerGUI extends JFrame{
 		JPanel ts = new Titlescreen(tc);
 		JPanel gr = new Gameroom(gc);
 		JPanel ca = new CreateAccount(cac);
-<<<<<<< HEAD
 		JPanel gs = new Gamescreen(gsc);
-=======
-		
-		player.setTitlescreenControl(tc);
-		player.setCreateAccountControl(cac);
-		player.setGameroomControl(gc);
->>>>>>> refs/remotes/origin/master
+
 		
 		//add panel layers to card layout
 		container.add(ts, "1");

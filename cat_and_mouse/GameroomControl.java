@@ -45,6 +45,7 @@ public class GameroomControl implements ActionListener{
 			}
 			
 		}
+		
 		else if (command.equals("Log Out")) {
 			CardLayout cardLayout = (CardLayout)container.getLayout();
 			Titlescreen titleScreen = (Titlescreen)container.getComponent(0);
@@ -61,13 +62,10 @@ public class GameroomControl implements ActionListener{
 			
 	        cardLayout.show(container, "1");
 		}
-<<<<<<< HEAD
 		
-		if(command.equals("Play Game")) {
+		else if(command.equals("Play Game")) {
 		
-			//TESTER
 			GamescreenData gsdata = new GamescreenData();
-			
 			
 			try {
 				player.sendToServer(gsdata);
@@ -75,7 +73,10 @@ public class GameroomControl implements ActionListener{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-=======
+			
+		
+		}
+		/*	
 		else if (command.equals("Refresh")) {
 			try {
 				player.sendToServer("Refresh");
@@ -84,31 +85,13 @@ public class GameroomControl implements ActionListener{
 				e.printStackTrace();
 			}
 			
-		}
+		}*/
 	}
 	
 	public void setLog(ArrayList<String> players) {
 		Gameroom gameroom = (Gameroom)container.getComponent(2);
-		
-		gameroom.setArea(players);
-		
+		gameroom.setArea(players);		
 	}
->>>>>>> refs/remotes/origin/master
 
-		/*Tester for Play Game tied to playGameBtn on Gameroom Panel
-		else if (command.equals("Play Game")) {
-			CardLayout cardLayout = (CardLayout)container.getLayout();
-			Gamescreen gamescreen = (Gamescreen)container.getComponent(3);
-			
-			try {
-				player.sendToServer("Play Game");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-	        cardLayout.show(container, "4");
-		}*/
-	}
-	}
+	
 }

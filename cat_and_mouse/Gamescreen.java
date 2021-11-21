@@ -30,10 +30,11 @@ public class Gamescreen extends JPanel implements ActionListener {
 
     private GamescreenControl gsc;
     
+    
     /*Level Data for Constructing Maze: Input into DrawMaze Method
      * This array stores data for drawing the maze. 
      * It is input into the draw maze function.*/
-    private final short levelData[] = {
+   private final short levelData[] = {
     	19, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 22,
         17, 16, 16, 16, 16, 24, 16, 16, 16, 16, 16, 16, 16, 16, 20,
         25, 24, 24, 24, 28, 0, 17, 16, 16, 16, 16, 16, 16, 16, 20,

@@ -26,10 +26,14 @@ public class GamescreenControl extends KeyAdapter{
     private final int mouse_SPEED = 6;
     boolean inGame = true;            //Boolean inGame is true while game is playing
     
+    GamescreenData gsd;
+    
     /*CONSTRUCTOR for GamescreenControl. container is Gamescreen object, passed fr. PlayerGUI*/
     public GamescreenControl(JPanel container, PlayerClient player){
     	this.container = container;   //set this container to Gamescreen
     	this.player = player;  //set player
+    	
+    	gsd = new GamescreenData();
     	
     }
     

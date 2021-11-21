@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.io.IOException;
 
+@SuppressWarnings("serial")
 public class GameServerGUI extends JFrame {
 	 // Data fields.
 	  private JLabel status;

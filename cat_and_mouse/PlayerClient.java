@@ -51,6 +51,7 @@ public class PlayerClient extends AbstractClient {
 	      {
 	        titleScreenControl.loginSuccess();
 	      }
+	      
 	      // If we successfully created an account, tell the create account controller.
 	      else if (message.equals("CreateAccountSuccessful"))
 	      {
@@ -63,7 +64,7 @@ public class PlayerClient extends AbstractClient {
 	      {
 	        gameroomControl.playGameSuccess();
 	      }
-	    }
+	    
 	    
 	   //If we received an Error, figure out where to display it.
 	    else if (arg0 instanceof Error)
@@ -86,7 +87,7 @@ public class PlayerClient extends AbstractClient {
 	      //  createAccountControl.displayError(error.getMessage());
 	      //}
 	    } 
-	    
+	    }
 	    else if (arg0 instanceof ArrayList<?>) {
 	    	ArrayList<String> playersLoggedIn = (ArrayList<String>)arg0;
 	    	

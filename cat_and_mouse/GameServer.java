@@ -6,11 +6,11 @@ import javax.swing.*;
 import com.mysql.fabric.Server;
 
 import java.io.IOException;
-<<<<<<< HEAD
+
 import java.util.ArrayList;
-=======
+
 import java.util.*;
->>>>>>> refs/remotes/origin/master
+
 
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
@@ -89,10 +89,7 @@ public class GameServer extends AbstractServer {
 	  {
 	    log.append("Client " + client.getId() + " connected\n");
 	    connectedPlayers.add(client);
-<<<<<<< HEAD
-	    
-=======
->>>>>>> refs/remotes/origin/master
+
 	  }
 	
 	  // Method that handles listening exceptions by displaying exception information.
@@ -108,7 +105,6 @@ public class GameServer extends AbstractServer {
 	@Override
 	/*HANDLE MESSAGE FROM CLIENT*/
 	protected void handleMessageFromClient(Object arg0, ConnectionToClient arg1) {
-		//log.append("LoginData object received from Client");
 		
 		//HANDLE LOGINDATA
 	    if (arg0 instanceof LoginData)
@@ -123,10 +119,7 @@ public class GameServer extends AbstractServer {
 	        result = "LoginSuccessful";
 	        log.append("Client " + arg1.getId() + " successfully logged in as " + data.getPlayerName() + "\n");
 	        playersLoggedIn.add(data.getPlayerName());
-<<<<<<< HEAD
-=======
-	        
->>>>>>> refs/remotes/origin/master
+
 	      }
 	      else
 	      {
@@ -139,20 +132,13 @@ public class GameServer extends AbstractServer {
 	      {
 	        arg1.sendToClient(result);
 	        arg1.sendToClient(playersLoggedIn);
-<<<<<<< HEAD
+
 	      }
-	      
-=======
-	      }	      
->>>>>>> refs/remotes/origin/master
 	      catch (IOException e)
 	      {
 	        return;
-	      }
-<<<<<<< HEAD
-	      
-=======
->>>>>>> refs/remotes/origin/master
+	      }//end logindata
+
 	      /*
 	      Thread updateLog = new Thread(new Runnable() {
 		    	public void run() {
@@ -203,9 +189,9 @@ public class GameServer extends AbstractServer {
 	      {
 	        return;
 	      }
-	    }
+	    }//end createaccountdata
 	    
-	    
+	    //HANDLE GAMEROOMDATA
 	    if(arg0 instanceof GameroomData) {
 			GameroomData data = (GameroomData)arg0;
 		    Object result;
@@ -221,7 +207,7 @@ public class GameServer extends AbstractServer {
 		    }
 		    
 		}
-		
+	/*
 		if(arg0 instanceof String) {
 			String[] message = ((String) arg0).split(",");			
 			
@@ -243,7 +229,7 @@ public class GameServer extends AbstractServer {
 					e.printStackTrace();
 				}
 			}
-		} 
+		} */
 	    
 	    
 		//HANDLE GAMESCREEN DATA
@@ -264,44 +250,7 @@ public class GameServer extends AbstractServer {
 	      }
 	    }
 		
-		if(arg0 instanceof GameroomData) {
-			GameroomData data = (GameroomData)arg0;
-		    Object result;
-		    
-		    if(playersLoggedIn.contains(data.getOpponent()))
-		    {			
-		    	result = "PlayerInviteSuccessful";
-		    	log.append("Client " + data.getPlayerName() + " invited " + data.getOpponent() + " to a game.\n");
-		    }
-		    else {
-		    	result = new Error("The opponent is not logged in.", "Gameroom");
-		    	log.append("Client " + data.getPlayerName() + " failed to invite " + data.getOpponent() + ".\n");
-		    }
-		    
-		}
 		
-		if(arg0 instanceof String) {
-			String[] message = ((String) arg0).split(",");			
-			
-			if(message[0].equals("Log Out")) {
-				playersLoggedIn.remove(message[1]);
-				log.append("Client " + message[1] + " has logged out.\n");
-			}
-			try {
-				arg1.sendToClient(playersLoggedIn);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if(message[0].equals("Refresh")) {
-				try {
-					arg1.sendToClient(playersLoggedIn);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
 		
 	}
 	
