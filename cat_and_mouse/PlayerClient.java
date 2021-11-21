@@ -88,10 +88,10 @@ public class PlayerClient extends AbstractClient {
 	      //}
 	    } 
 	    }
-	    else if (arg0 instanceof ArrayList<?>) {
+	   /* else if (arg0 instanceof ArrayList<?>) {
 	    	ArrayList<String> playersLoggedIn = (ArrayList<String>)arg0;
 	    	
 	    	gameroomControl.setLog(playersLoggedIn);
-	    }
+	    }*/
 	}
 }

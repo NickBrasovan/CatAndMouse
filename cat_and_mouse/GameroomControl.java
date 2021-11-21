@@ -3,7 +3,6 @@ package cat_and_mouse;
 import java.awt.CardLayout;
 import java.awt.event.*;
 import java.io.IOException;
-import java.util.*;
 
 import javax.swing.*;
 
@@ -45,16 +44,14 @@ public class GameroomControl implements ActionListener{
 			}
 			
 		}
-		
 		else if (command.equals("Log Out")) {
 			CardLayout cardLayout = (CardLayout)container.getLayout();
 			Titlescreen titleScreen = (Titlescreen)container.getComponent(0);
-			String user = titleScreen.getPlayerName();
 			titleScreen.replaceUsername();
 			titleScreen.replacePassword();
 			
 			try {
-				player.sendToServer("Log Out" + "," + user);
+				player.sendToServer("Log Out");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -63,9 +60,11 @@ public class GameroomControl implements ActionListener{
 	        cardLayout.show(container, "1");
 		}
 		
-		else if(command.equals("Play Game")) {
+		if(command.equals("Play Game")) {
 		
+			//TESTER
 			GamescreenData gsdata = new GamescreenData();
+			
 			
 			try {
 				player.sendToServer(gsdata);
@@ -73,25 +72,21 @@ public class GameroomControl implements ActionListener{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
+		/*Tester for Play Game tied to playGameBtn on Gameroom Panel
+		else if (command.equals("Play Game")) {
+			CardLayout cardLayout = (CardLayout)container.getLayout();
+			Gamescreen gamescreen = (Gamescreen)container.getComponent(3);
 			
-		
-		}
-		/*	
-		else if (command.equals("Refresh")) {
 			try {
-				player.sendToServer("Refresh");
+				player.sendToServer("Play Game");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
+	        cardLayout.show(container, "4");
 		}*/
 	}
-	
-	public void setLog(ArrayList<String> players) {
-		Gameroom gameroom = (Gameroom)container.getComponent(2);
-		gameroom.setArea(players);		
 	}
-
-	
 }
