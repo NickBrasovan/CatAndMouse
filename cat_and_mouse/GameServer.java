@@ -150,6 +150,23 @@ public class GameServer extends AbstractServer {
 	        return;
 	      }
 	    }
+	    
+	    if (arg0 instanceof GamescreenData)
+	    {
+	      //GameroomData data = (GameroomData)arg0;
+	      Object result = "Play Game";
+	      log.append("Client " + arg1.getId() + " pressed play game " + "\n");
+	      // Send the result to the client.
+	      try
+	      {
+	        arg1.sendToClient(result);
+	      }
+	      catch (IOException e)
+	      {
+	    	log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
+	        return;
+	      }
+	    }
 		
 		
 	}

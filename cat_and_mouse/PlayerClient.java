@@ -7,6 +7,9 @@ public class PlayerClient extends AbstractClient {
 	// Private data fields for storing the GUI controllers.
 	  private TitlescreenControl titleScreenControl;
 	  private CreateAccountControl createAccountControl;
+	  private GameroomControl gameroomControl;
+	  
+	  private GamescreenControl gamescreenControl;
 
 	  public void setTitlescreenControl(TitlescreenControl titleScreenControl) {
 			this.titleScreenControl = titleScreenControl;
@@ -15,6 +18,15 @@ public class PlayerClient extends AbstractClient {
 		public void setCreateAccountControl(CreateAccountControl createAccountControl) {
 			this.createAccountControl = createAccountControl;
 		}
+		
+		public void setGameroomControl(GameroomControl gameroomControl) {
+			this.gameroomControl = gameroomControl;
+		}
+		
+		public void setGamescreenControl(GamescreenControl gamescreenControl) {
+			this.gamescreenControl = gamescreenControl;
+		}
+		
 		
 	  //Constructor calls Constructor of AbstractClient
 	  public PlayerClient() {
@@ -41,6 +53,13 @@ public class PlayerClient extends AbstractClient {
 	      else if (message.equals("CreateAccountSuccessful"))
 	      {
 	        createAccountControl.createAccountSuccess();
+	      }
+	      
+	      
+	      //Play Game
+	      else if (message.equals("Play Game"))
+	      {
+	        gameroomControl.playGameSuccess();
 	      }
 	    }
 	    

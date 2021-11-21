@@ -20,8 +20,8 @@ public class Gameroom extends JPanel {
 	private JLabel titleLabel;
 	private JButton inviteBtn;      
 	//private JButton acceptBtn;      //TODO the accept button should only appear if player has active invitation
-	private JLabel instructLbl1;   //invite friend label
-	private JLabel instructLbl2;  //friends text area label
+	private JLabel instructLbl1;     //invite friend label
+	private JLabel instructLbl2;    //friends text area label
 	private GameroomControl gc;
 	
 	private JTextArea friends_area; //displays list of player_users currently logged into Gameroom. 
@@ -82,12 +82,12 @@ public class Gameroom extends JPanel {
 		inviteBtn.setBounds(30, 825, 300, 33);
 		this.add(inviteBtn);
 		inviteBtn.addActionListener(gc);
-		//btnLogin.addActionListener(new loginListener());
-
-		/*seeScoresBtn = new JButton("See Scores");
-		acceptBtn.setBounds(150, 625, 122, 33);
-		add(acceptBtn); */
-	
+		
+		//Play Game Button
+		JButton playGameBtn = new JButton("Play Game");
+		playGameBtn.setBounds(325, 725, 122, 33);
+		this.add(playGameBtn);
+		playGameBtn.addActionListener(gc);
 	}
 
 }

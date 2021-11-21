@@ -12,7 +12,7 @@ public class TitlescreenControl implements ActionListener
   private JPanel container;
   private PlayerClient player;
  
-  // Constructor for the initial controller.
+  /* Constructor for the Titlescreen Controller.*/
   public TitlescreenControl(JPanel container, PlayerClient player)
   {
     this.container = container;
