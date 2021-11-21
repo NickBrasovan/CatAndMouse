@@ -5,10 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+@SuppressWarnings("serial")
 public class Gamescreen extends JPanel implements ActionListener {
 	
 	private Dimension d; //height and width of gameplay area
@@ -68,14 +71,16 @@ public class Gamescreen extends JPanel implements ActionListener {
     private short[] screenData; //takes all data from level data to redraw the game
     private Timer timer;
 
+	
+
 
     /*CONSTRUCTOR for GAMESCREEN*/
     public Gamescreen(GamescreenControl gsc) {
         this.gsc =gsc;
         loadImages();
         initVariables();
-        this.addKeyListener(gsc);  //KeyListener is needed to move mouse
         
+        this.addKeyListener(gsc); //KeyListener is needed to move mouse
         setFocusable(true);
         inGame = true;
         initGame();

@@ -11,7 +11,7 @@ import javax.swing.Timer;
 
 //import pacman.GameScreen.TAdapter;
 
-public class GamescreenControl extends KeyAdapter implements ActionListener{
+public class GamescreenControl extends KeyAdapter{
 	 
 	/*INIT VARIABLES for GamescreenControl*/
 	private int mouse_x, mouse_y, moused_x, moused_y; //mouse player coordinates. 
@@ -27,9 +27,10 @@ public class GamescreenControl extends KeyAdapter implements ActionListener{
     boolean inGame = true;            //Boolean inGame is true while game is playing
     
     /*CONSTRUCTOR for GamescreenControl. container is Gamescreen object, passed fr. PlayerGUI*/
-    GamescreenControl(JPanel container, PlayerClient player){
+    public GamescreenControl(JPanel container, PlayerClient player){
     	this.container = container;   //set this container to Gamescreen
     	this.player = player;  //set player
+    	
     }
     
     /*Setters & Getters for Mouse Coordinates (getters invoked by Gamescreen)*/
@@ -85,7 +86,7 @@ public class GamescreenControl extends KeyAdapter implements ActionListener{
 	        mouse_y = mouse_y + mouse_SPEED * moused_y;
 	    }
 	
-	 @Override
+	 
 	 public void keyPressed(KeyEvent e) {
 
 	        int key = e.getKeyCode();
@@ -106,13 +107,7 @@ public class GamescreenControl extends KeyAdapter implements ActionListener{
 	            } 
 	        }
 	    }
-    
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+
 	
 }
 		

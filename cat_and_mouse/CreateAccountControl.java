@@ -8,12 +8,12 @@ import java.io.IOException;
 import javax.swing.JPanel;
 
 public class CreateAccountControl implements ActionListener{
-	  // Private data field for storing the container.
-	  private JPanel container;
-	  private PlayerClient player;
+	// Private data field for storing the container.
+	private JPanel container;
+	private PlayerClient player;
 	 
-	  // Constructor for the controller.
-	  public CreateAccountControl(JPanel container, PlayerClient player)
+	// Constructor for the controller.
+	public CreateAccountControl(JPanel container, PlayerClient player)
 	  {
 	    this.container = container;
 	    this.player = player;
@@ -46,7 +46,7 @@ public class CreateAccountControl implements ActionListener{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//CreateAccountData data = new CreateAccountData(create_account.getPlayerName(), create_account.getPassword(), create_account.getPasswordMatch()); 
+			
 		}
 		else if (command == "Exit") {
 			CardLayout cL = (CardLayout)container.getLayout();
