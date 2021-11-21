@@ -1,6 +1,10 @@
 /GameroomControl.class
 /GameroomData.class
+<<<<<<< HEAD
 /Gamescreen.class
 /GamescreenControl.class
 /GamescreenData.class
 /GamescreenControl$TAdapter.class
+=======
+/GameServer$1.class
+>>>>>>> refs/remotes/origin/master

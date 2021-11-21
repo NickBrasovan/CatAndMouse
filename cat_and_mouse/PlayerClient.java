@@ -1,5 +1,7 @@
 package cat_and_mouse;
 
+import java.util.*;
+
 import ocsf.client.AbstractClient;
 
 public class PlayerClient extends AbstractClient {
@@ -7,9 +9,9 @@ public class PlayerClient extends AbstractClient {
 	// Private data fields for storing the GUI controllers.
 	  private TitlescreenControl titleScreenControl;
 	  private CreateAccountControl createAccountControl;
-	  private GameroomControl gameroomControl;
-	  
+	  private GameroomControl gameroomControl;	  
 	  private GamescreenControl gamescreenControl;
+
 
 	  public void setTitlescreenControl(TitlescreenControl titleScreenControl) {
 			this.titleScreenControl = titleScreenControl;
@@ -27,7 +29,7 @@ public class PlayerClient extends AbstractClient {
 			this.gamescreenControl = gamescreenControl;
 		}
 		
-		
+
 	  //Constructor calls Constructor of AbstractClient
 	  public PlayerClient() {
 		  super("localhost", 8300);
@@ -84,7 +86,11 @@ public class PlayerClient extends AbstractClient {
 	      //  createAccountControl.displayError(error.getMessage());
 	      //}
 	    } 
-		
+	    
+	    else if (arg0 instanceof ArrayList<?>) {
+	    	ArrayList<String> playersLoggedIn = (ArrayList<String>)arg0;
+	    	
+	    	gameroomControl.setLog(playersLoggedIn);
+	    }
 	}
-
 }
