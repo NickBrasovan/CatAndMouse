@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-@SuppressWarnings("serial")
 public class GameServerGUI extends JFrame {
 	 // Data fields.
 	  private JLabel status;
@@ -36,6 +35,7 @@ public class GameServerGUI extends JFrame {
 			// TODO Auto-generated catch block
 			System.out.print("Can't instantiate database \n StackTrace:");
 			e.printStackTrace();
+			
 		}
 	    /*PASS DATABASE OBJECT TO SERVER VIA SERVER SETDATABASE METHOD*/
 	    server.setDatabase(database);  

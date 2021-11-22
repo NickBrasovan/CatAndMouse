@@ -43,6 +43,9 @@ public class PlayerGUI extends JFrame{
 		JPanel ts = new Titlescreen(tc);
 		JPanel gr = new Gameroom(gc);
 		JPanel ca = new CreateAccount(cac);
+		
+		
+		
 		JPanel gs = new Gamescreen(gsc);
 
 		

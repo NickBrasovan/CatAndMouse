@@ -30,6 +30,8 @@ public class Gamescreen extends JPanel implements ActionListener {
 
     private GamescreenControl gsc;
     
+    //private GamescreenData gsd = new GamescreenData();
+    //private final short levelData[] = gsd.getLevelData();
     
     /*Level Data for Constructing Maze: Input into DrawMaze Method
      * This array stores data for drawing the maze. 
@@ -71,8 +73,6 @@ public class Gamescreen extends JPanel implements ActionListener {
     private int currentSpeed = 3;
     private short[] screenData; //takes all data from level data to redraw the game
     private Timer timer;
-
-	
 
 
     /*CONSTRUCTOR for GAMESCREEN*/
