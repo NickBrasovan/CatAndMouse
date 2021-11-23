@@ -20,7 +20,7 @@ public class CreateAccountControl implements ActionListener{
 	  }
 	  
 	// Handle button clicks.
-	//@SuppressWarnings("unused")
+	@Override
 	public void actionPerformed(ActionEvent ae){
 		String command = ae.getActionCommand();
 	    //get data from titlescreen object
@@ -46,6 +46,12 @@ public class CreateAccountControl implements ActionListener{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			CardLayout cL = (CardLayout)container.getLayout();
+			Titlescreen titleScreen = (Titlescreen)container.getComponent(0);
+			titleScreen.replaceUsername();
+			titleScreen.replacePassword();
+			cL.show(container, "1");
 			//CreateAccountData data = new CreateAccountData(create_account.getPlayerName(), create_account.getPassword(), create_account.getPasswordMatch()); 
 		}
 		else if (command == "Exit") {

@@ -22,7 +22,7 @@ public class GameroomControl implements ActionListener{
 		// TODO Auto-generated method stub
 		String command = arg0.getActionCommand();
 		
-		if(command.equals("Invite a Friend")) {
+		if(command.equals("Invite A Friend")) {
 			Titlescreen user = (Titlescreen)container.getComponent(0);
 			String username = user.getPlayerName();
 			
@@ -32,7 +32,7 @@ public class GameroomControl implements ActionListener{
 			GameroomData data = new GameroomData(username, opponentUsername);
 			
 			try {
-				player.sendToServer(data);
+				this.player.sendToServer(data);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -43,6 +43,7 @@ public class GameroomControl implements ActionListener{
 			CardLayout cardLayout = (CardLayout)container.getLayout();
 			Titlescreen titleScreen = (Titlescreen)container.getComponent(0);
 			String user = titleScreen.getPlayerName();
+			Titlescreen.setError("");
 			titleScreen.replaceUsername();
 			titleScreen.replacePassword();
 			
@@ -67,7 +68,7 @@ public class GameroomControl implements ActionListener{
 	}
 	
 	public void setLog(ArrayList<String> players) {
-		Gameroom gameroom = (Gameroom)container.getComponent(2);
+		Gameroom gameroom = (Gameroom)container.getComponent(1);
 		
 		gameroom.setArea(players);
 		

@@ -127,7 +127,7 @@ public class GameServer extends AbstractServer {
 	      try
 	      {
 	        arg1.sendToClient(result);
-	        arg1.sendToClient(playersLoggedIn);
+	        //arg1.sendToClient(playersLoggedIn);
 	      }	      
 	      catch (IOException e)
 	      {
@@ -206,12 +206,11 @@ public class GameServer extends AbstractServer {
 			if(message[0].equals("Log Out")) {
 				playersLoggedIn.remove(message[1]);
 				log.append("Client " + message[1] + " has logged out.\n");
-			}
-			try {
-				arg1.sendToClient(playersLoggedIn);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
+				try {
+					arg1.sendToClient(playersLoggedIn);
+				} catch (IOException e) {
+				}
 			}
 			if(message[0].equals("Refresh")) {
 				try {
