@@ -33,6 +33,8 @@ public class Gameroom extends JPanel {
 	}
 	
 	public void setArea(ArrayList<String> players) {
+		friends_area.setText("");
+		
 		for(int i = 0; i < players.size(); i++) {
 			friends_area.append(players.get(i) + "\n");
 		}

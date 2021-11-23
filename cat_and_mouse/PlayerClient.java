@@ -72,12 +72,12 @@ public class PlayerClient extends AbstractClient {
 	      //  createAccountControl.displayError(error.getMessage());
 	      //}
 	    } 
-	    /*
+	    
 	    else if (arg0 instanceof ArrayList<?>) {
 	    	ArrayList<String> playersLoggedIn = (ArrayList<String>)arg0;
 	    	
 	    	gameroomControl.setLog(playersLoggedIn);
 	    }
-	    */
+	    
 	}
 }
