@@ -203,7 +203,6 @@ public class GameServer extends AbstractServer {
 		}
 		
 		
-		
 		/*Handle String Messages*/
 		if(arg0 instanceof String) {
 			String[] message = ((String) arg0).split(",");			
@@ -228,24 +227,23 @@ public class GameServer extends AbstractServer {
 					e.printStackTrace();
 				}
 			}
-			
+			/**
 			//handle PlayGame
 			if(message[0].equals("PlayGame")) {
-				GameScreenControl gsc = new GameScreenControl();
-			    Gamescreen serverGameScreen = new Gamescreen(gsc);
+				
 			    
 			    log.append("Client " + arg1.getId() + " pressed play game " + "\n");
 			    // Send the result to the client.
 			    try
 			    {
-			      arg1.sendToClient(serverGameScreen);
+			      arg1.sendToClient(GamescreenData);
 			    }
 			    catch (IOException e)
 			    {
 			     log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
 			     return;
 			    }
-			}
+			}**/
 		}
 	}
 	

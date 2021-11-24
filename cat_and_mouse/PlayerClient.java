@@ -10,6 +10,7 @@ public class PlayerClient extends AbstractClient {
 	  private TitlescreenControl titleScreenControl;
 	  private CreateAccountControl createAccountControl;
 	  private GameroomControl gameroomControl;
+	  private GameScreenControl gamescreenControl;
 
 	  public void setTitlescreenControl(TitlescreenControl titleScreenControl) {
 			this.titleScreenControl = titleScreenControl;
@@ -21,6 +22,10 @@ public class PlayerClient extends AbstractClient {
 		
 		public void setGameroomControl(GameroomControl gameroomControl) {
 			this.gameroomControl = gameroomControl;
+		}
+		
+		public void setGamescreenControl(GameScreenControl gamescreenControl) {
+			this.gamescreenControl = gamescreenControl;
 		}
 		
 	  //Constructor calls Constructor of AbstractClient
