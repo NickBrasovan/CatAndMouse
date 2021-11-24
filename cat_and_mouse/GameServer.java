@@ -157,6 +157,7 @@ public class GameServer extends AbstractServer {
 		    */
 	    }
 		
+	    /*Handle CreateAccountData Object*/
 	    if (arg0 instanceof CreateAccountData)
 	    {
 	      // Check the username and password with the database.
@@ -184,6 +185,7 @@ public class GameServer extends AbstractServer {
 	      }
 	    }
 		
+	    /*Handle GameroomData Object*/
 		if(arg0 instanceof GameroomData) {
 			GameroomData data = (GameroomData)arg0;
 		    Object result;
@@ -200,18 +202,24 @@ public class GameServer extends AbstractServer {
 		    
 		}
 		
+		
+		
+		/*Handle String Messages*/
 		if(arg0 instanceof String) {
 			String[] message = ((String) arg0).split(",");			
 			
+			//handle logout
 			if(message[0].equals("Log Out")) {
 				playersLoggedIn.remove(message[1]);
 				log.append("Client " + message[1] + " has logged out.\n");
 				
+				//send arraylist of playersLoggedIn to client
 				try {
 					arg1.sendToClient(playersLoggedIn);
 				} catch (IOException e) {
 				}
 			}
+			//handle refresh
 			if(message[0].equals("Refresh")) {
 				try {
 					arg1.sendToClient(playersLoggedIn);

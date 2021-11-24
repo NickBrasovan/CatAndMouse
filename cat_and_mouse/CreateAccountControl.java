@@ -40,6 +40,7 @@ public class CreateAccountControl implements ActionListener{
 			}
 			
 			CreateAccountData data = new CreateAccountData(username, password, verifyPassword);
+			
 			try {
 				player.sendToServer(data);
 			} catch (IOException e) {

@@ -77,7 +77,7 @@ public class GameroomControl implements ActionListener{
 			
 			
 			try {
-				player.sendToServer(gsdata);
+				player.sendToServer(gsdata);  
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
