@@ -17,6 +17,10 @@ import ocsf.server.ConnectionToClient;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 
+import java.net.ServerSocket;
+import java.net.Socket;
+
+
 public class GameServer extends AbstractServer {
 	 
 	// Data fields for this chat server.
@@ -26,6 +30,9 @@ public class GameServer extends AbstractServer {
 	  private Database database;
 	  private ArrayList<String> playersLoggedIn;
 	  private ArrayList<ConnectionToClient> connectedPlayers;
+	  
+	  
+	  
 
 	  // Constructor for initializing the server with default settings.
 	  public GameServer()
@@ -34,7 +41,11 @@ public class GameServer extends AbstractServer {
 	    this.setTimeout(500);
 	    playersLoggedIn = new ArrayList<String>();
 	    connectedPlayers = new ArrayList<ConnectionToClient>();
+	    
+	    
+	    
 	  }
+	 
 	  
 	  /*SETTER FOR DATABASE*/
 	  public void setDatabase(Database database)
@@ -249,8 +260,7 @@ public class GameServer extends AbstractServer {
 	        return;
 	      }
 	    }
-		
-		
+
 		
 	}
 	

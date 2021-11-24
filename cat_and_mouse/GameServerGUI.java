@@ -17,6 +17,9 @@ public class GameServerGUI extends JFrame {
 	  private JButton quit;
 	  private GameServer server;	/*SERVER OBJECT*/
 	  private Database database;   /*DATABASE OBJECT*/
+	  private GamescreenControl gsc;
+	  private Gamescreen gs;
+	  
 
 	  	/*Constructor for the server GUI.*/
 		public GameServerGUI()
@@ -25,8 +28,12 @@ public class GameServerGUI extends JFrame {
 	    this.setTitle("Game Server");
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
+	    
 	    /*INSTANTIATE SERVER*/
 	    server = new GameServer();
+	    
+	    /*new gamescreen and control*/
+	    
 	    
 	    /*INSTANTIATE DATABASE*/
 	    try {
