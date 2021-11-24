@@ -43,8 +43,8 @@ public class PlayerGUI extends JFrame{
 		TitlescreenControl tc = new TitlescreenControl (container, player);
 		CreateAccountControl cac = new CreateAccountControl(container, player);
 		GameroomControl gc = new GameroomControl(container, player);
+		GameScreenControl gsc;
 		
-		//JPanel bp = new BasePanel(cL);
 		JPanel ts = new Titlescreen(tc);
 		JPanel gr = new Gameroom(gc);
 		JPanel ca = new CreateAccount(cac);
@@ -57,6 +57,7 @@ public class PlayerGUI extends JFrame{
 		container.add(ts, "1");
 		container.add(gr, "2");
 		container.add(ca, "3");
+		
 		
 		//show title screen on top of base panel
 		cL.show(container, "1");

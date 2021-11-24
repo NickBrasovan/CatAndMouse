@@ -51,6 +51,15 @@ public class PlayerClient extends AbstractClient {
 	      }
 	    }
 	    
+	    //If receive gamescreen, then gameroom.create account success.  and the latter shows screen
+	    if (arg0 instanceof Gamescreen)
+	    {
+	    	Gamescreen gs = (Gamescreen)arg0;
+	    	gameroomControl.playGameSuccess(gs);
+	    }
+	    
+	    
+	    
 	   //If we received an Error, figure out where to display it.
 	    else if (arg0 instanceof Error)
 	    {

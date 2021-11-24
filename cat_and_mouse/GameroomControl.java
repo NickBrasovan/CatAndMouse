@@ -17,6 +17,18 @@ public class GameroomControl implements ActionListener{
 		this.player = player;
 	}
 	
+	public void playGameSuccess(Gamescreen gs) {
+	  	
+		//Successful Login results in Showing Gameroom JPanel
+		//Titlescreen loginPanel = (Titlescreen)container.getComponent(1);
+		CardLayout cardLayout = (CardLayout)container.getLayout();
+		Gamescreen gsl = gs;
+		container.add(gsl, "4"); //container 2 is Gameroom.	
+		cardLayout.show(container, "4");
+		
+	
+	}
+		
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
@@ -70,7 +82,7 @@ public class GameroomControl implements ActionListener{
 		
 		
 		// Play Game Tester
-		if(command.equals("Play Game")) {
+		if(command.equals("PlayGame")) {
 			
 			//TESTER
 			GamescreenData gsdata = new GamescreenData();

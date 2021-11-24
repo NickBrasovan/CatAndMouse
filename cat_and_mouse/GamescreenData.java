@@ -1,5 +1,8 @@
 package cat_and_mouse;
 
-public class GamescreenData {
+import java.io.Serializable;
+
+
+public class GamescreenData implements Serializable {
 
 }
