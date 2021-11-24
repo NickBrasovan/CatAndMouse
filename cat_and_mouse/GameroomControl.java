@@ -85,11 +85,11 @@ public class GameroomControl implements ActionListener{
 		if(command.equals("PlayGame")) {
 			
 			//TESTER
-			GamescreenData gsdata = new GamescreenData();
+			//GamescreenData gsdata = new GamescreenData();
 			
 			
 			try {
-				player.sendToServer(gsdata);  
+				player.sendToServer("PlayGame");  
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
