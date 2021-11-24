@@ -103,6 +103,12 @@ public class Gameroom extends JPanel {
 		/*seeScoresBtn = new JButton("See Scores");
 		acceptBtn.setBounds(150, 625, 122, 33);
 		add(acceptBtn); */
+		
+		//Play Game Button
+		JButton playGameBtn = new JButton("Play Game");
+		playGameBtn.setBounds(325, 725, 122, 33);
+		this.add(playGameBtn);
+		playGameBtn.addActionListener(gc);
 	
 	}
 

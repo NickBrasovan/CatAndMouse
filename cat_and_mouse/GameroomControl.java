@@ -56,6 +56,8 @@ public class GameroomControl implements ActionListener{
 			
 	        cardLayout.show(container, "1");
 		}
+		
+		/*Refresh Button Handler*/
 		else if (command.equals("Refresh")) {
 			try {
 				player.sendToServer("Refresh");
@@ -65,6 +67,23 @@ public class GameroomControl implements ActionListener{
 			}
 			
 		}
+		
+		
+		// Play Game Tester
+		if(command.equals("Play Game")) {
+			
+			//TESTER
+			GamescreenData gsdata = new GamescreenData();
+			
+			
+			try {
+				player.sendToServer(gsdata);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+		
+		} 
 	}
 	
 	public void setLog(ArrayList<String> players) {
@@ -73,5 +92,7 @@ public class GameroomControl implements ActionListener{
 		gameroom.setArea(players);
 		
 	}
+	
+	
 
 }
