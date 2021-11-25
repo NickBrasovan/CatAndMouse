@@ -3,16 +3,14 @@ package cat_and_mouse;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 @SuppressWarnings("serial")
-public class Gamescreen extends JPanel implements ActionListener {
+public class Gamescreen extends JPanel implements ActionListener, Serializable {
 	
 	private Dimension d; //height and width of gameplay area
    
@@ -202,6 +200,7 @@ public class Gamescreen extends JPanel implements ActionListener {
     //TODO ANNOTATE
     private void initLevel() {
 
+    	//Write levelDataArray to screenDataAray
         int i;
         for (i = 0; i < N_BLOCKS * N_BLOCKS; i++) {
             screenData[i] = levelData[i];
@@ -213,7 +212,7 @@ public class Gamescreen extends JPanel implements ActionListener {
     private void continueLevel() {
 
         mouse_x = 7 * BLOCK_SIZE;  //start position of mouse
-        mouse_y = 11 * BLOCK_SIZE;
+        mouse_y = 11 * BLOCK_SIZE; //start position of mouse
         moused_x = 0;	//reset direction move
         moused_y = 0;
         req_dx = 0;		// reset direction controls, controlled with cursor keys

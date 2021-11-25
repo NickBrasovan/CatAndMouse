@@ -18,24 +18,15 @@ public class GamescreenControl extends KeyAdapter{
     private int req_dx, req_dy;	                     //required for moving player
     private final int N_BLOCKS = 15;                // determines size of gamescreen
     private final int BLOCK_SIZE = 24;             //determines size of gamescreen component blocks or tiles
-    private final int SCREEN_SIZE = N_BLOCKS * BLOCK_SIZE; //define gamescreen size
-    private short[] screenData;            //array of elements to create maze with create maze algorithm.
-    private JPanel container;             //JPanel object for receiving Gamescreen object in constructor.
-    private PlayerClient player;         //Player object for receiveing player object in constructor.
+    
     int score;                          //TODO: ADD SCORE IMPLEMENTATION LATER
     private final int mouse_SPEED = 6;
     boolean inGame = true;            //Boolean inGame is true while game is playing
     
-    GamescreenData gsd;
     
     /*CONSTRUCTOR for GamescreenControl. container is Gamescreen object, passed fr. PlayerGUI*/
-    public GamescreenControl(JPanel container, PlayerClient player){
-    	this.container = container;   //set this container to Gamescreen
-    	this.player = player;  //set player
-    	
-    	gsd = new GamescreenData();
-    	
-    }
+    
+    
     
     /*Setters & Getters for Mouse Coordinates (getters invoked by Gamescreen)*/
     public void setmouseY(int my) {this.mouse_y = my;}
@@ -54,7 +45,6 @@ public class GamescreenControl extends KeyAdapter{
     
     /*MOVEMOUSE METHOD. INPUT ARRAY OF SCREENDATA*/
 	public void movemouse(short[] screenData) {
-			this.screenData = screenData;
 	        int pos;
 	        short ch;
 
@@ -88,13 +78,19 @@ public class GamescreenControl extends KeyAdapter{
 	        } 
 	        mouse_x = mouse_x + mouse_SPEED * moused_x;
 	        mouse_y = mouse_y + mouse_SPEED * moused_y;
+	        
+	        
 	    }
 	
 	 
-	 public void keyPressed(KeyEvent e) {
 
+	/*MousePlayer Cursor Controler
+	 * Note that GamescreenControl extends KeyAdapter for this function*/
+	 public void keyPressed(KeyEvent e) {
 	        int key = e.getKeyCode();
 
+	        //req_dx and req_dy are used to control the change in x and y
+	        //dy -1 is up; dy 1 is down; dx -1 is left; dx 1 is right; set the value to 0 when inactive
 	        if (inGame) {
 	            if (key == KeyEvent.VK_LEFT) {
 	                req_dx = -1;
@@ -111,7 +107,8 @@ public class GamescreenControl extends KeyAdapter{
 	            } 
 	        }
 	    }
-
+		/*code adapted from gaspar coding "Pacman in Java" TAdapter class.  
+		See https://www.youtube.com/watch?v=ATz7bIqOjiA @ 12:41*/
 	
 }
 		
