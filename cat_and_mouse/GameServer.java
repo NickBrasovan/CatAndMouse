@@ -195,14 +195,14 @@ public class GameServer extends AbstractServer {
 		    	log.append("Client " + data.getPlayerName() + " failed to invite " + data.getOpponent() + ".\n");
 		    }
 		    
-		}
+		}    
 	   
 	    if (arg0 instanceof String)
 	    {
 	      // Get the text of the message.
 	      String message = (String)arg0;
 	      
-	      /*//Handle PlayGame
+	      //Handle PlayGame
 	      if (message.equals("PlayGame"))
 	      {
 	    	  Object result = "PlayGame";
@@ -216,10 +216,10 @@ public class GameServer extends AbstractServer {
 		      {
 		    	log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
 		        return;
-		      }*/
+		      }
+	      }
 	      
-	      
-	      //Handle PlayGame
+	     /* //Handle PlayGame
 	      if (message.equals("PlayGame"))
 	      {
 	    	  
@@ -236,31 +236,25 @@ public class GameServer extends AbstractServer {
 		        return;
 		      }
 	      
-	      }
+	      }*/
 	    }
 		
-	    /*
+	    
 	    //HANDLE GAMESCREEN DATA
 	    if (arg0 instanceof GamescreenData)
 	    {
 	   
-	      Object result = "PlayGame";
-	      log.append("Client " + arg1.getId() + " pressed play game " + "\n");
-	      // Send the result to the client.
 	      try
 	      {
-	        arg1.sendToClient(result);
+	        arg1.sendToClient(arg0);
 	      }
 	      catch (IOException e)
 	      {
 	    	log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
 	        return;
 	      }
-	    }*/
-
-		
-	    
-	    
+	    }
+  
 	    
 	}
 	

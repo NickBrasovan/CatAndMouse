@@ -16,8 +16,20 @@ public class GameroomControl implements ActionListener{
 		this.player = player;
 	}
 	
+	/*
 	//playGameSuccess
 	public void playGameSuccess(GamescreenControl gsc) {
+		Gamescreen gs = new Gamescreen(gsc);		
+		CardLayout cardLayout = (CardLayout)container.getLayout();
+		player.setGamescreenControl(gsc);
+	    container.add(gs,"4");
+		cardLayout.show(container, "4"); // 
+	}*/
+	
+	//playGameSuccess
+	public void playGameSuccess() {
+		GamescreenControl gsc = new GamescreenControl(container, player);
+		GamescreenData gsd = new GamescreenData();
 		Gamescreen gs = new Gamescreen(gsc);		
 		CardLayout cardLayout = (CardLayout)container.getLayout();
 		player.setGamescreenControl(gsc);

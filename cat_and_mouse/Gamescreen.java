@@ -27,9 +27,7 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     private int req_dx, req_dy;  //determined in TAdapter extends KeyAdapter{}, variables determined by cursor keys
 
     private GamescreenControl gsc;
-    
-    private GamescreenData gsd = new GamescreenData();
-    //private final short levelData[] = gsd.getLevelData();
+    private GamescreenData gsd;
     
     /*Level Data for Constructing Maze: Input into DrawMaze Method
      * This array stores data for drawing the maze. 
@@ -76,6 +74,7 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     /*CONSTRUCTOR for GAMESCREEN*/
     public Gamescreen(GamescreenControl gsc) {
         this.gsc =gsc;
+        
         loadImages();
         initVariables();
         
@@ -111,10 +110,12 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
         }
     
     private void drawmouse(Graphics2D g2d) {
+    	
+    	
     	this.mouse_x = gsc.getmouseX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
     	this.mouse_y = gsc.getmouseY();
-    	this.moused_x = gsc.getmousedX();
-    	this.moused_y = gsc.getmousedY();
+    	//this.moused_x = gsc.getmousedX();
+    	//this.moused_y = gsc.getmousedY();
     	this.req_dx = gsc.getreq_dx();
     	this.req_dy = gsc.getreq_dy();
     	
@@ -196,12 +197,13 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
         moused_y = 0;
         req_dx = 0;		// reset direction controls, controlled with cursor keys
         req_dy = 0;
+        /*
         gsc.setmouseX(mouse_x);
         gsc.setmouseY(mouse_y);
         gsc.setmousedX(moused_x);
         gsc.setmousedY(moused_y);
         gsc.setreq_dx(req_dx);
-        gsc.setreq_dy(req_dy);
+        gsc.setreq_dy(req_dy);*/
     }
 
  

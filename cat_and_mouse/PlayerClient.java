@@ -40,11 +40,12 @@ public class PlayerClient extends AbstractClient {
 	protected void handleMessageFromServer(Object arg0)
 	{
 		
-		//**//
-		if (arg0 instanceof GamescreenControl)
+		/*Handle Updated Coordinates*/
+		if (arg0 instanceof GamescreenData)
 		{
-			
-			gameroomControl.playGameSuccess((GamescreenControl) arg0);
+		/*
+		We'll need to update player coordinates with gamescreen data.
+		*/
 		}
 		
 		
@@ -64,12 +65,12 @@ public class PlayerClient extends AbstractClient {
 	        createAccountControl.createAccountSuccess();
 	      }
 	     
-	      /*
+	      
 	      //Play Game
 	      else if (message.equals("PlayGame"))
 	      {
 	        gameroomControl.playGameSuccess();
-	      }*/
+	      }
 	      
 	    }
 	    

@@ -1,7 +1,10 @@
 package cat_and_mouse;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.io.Serializable;
+
+import javax.swing.JPanel;
 
 
 //import pacman.GameScreen.TAdapter;
@@ -18,7 +21,23 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
     private final int mouse_SPEED = 6;
     boolean inGame = true;            //Boolean inGame is true while game is playing  
     
+    private JPanel container;             //JPanel object for receiving Gamescreen object in constructor.
+    private PlayerClient player;         //Player object for receiveing player object in constructor.
+    
+    GamescreenData gsd;  //GAMESCREENDATA OBJECT
+    
     /*CONSTRUCTOR for GamescreenControl. container is Gamescreen object, passed fr. PlayerGUI*/
+    /*CONSTRUCTOR for GamescreenControl. container is Gamescreen object, passed fr. PlayerGUI*/
+    
+    public GamescreenControl(JPanel container, PlayerClient player){
+    	this.container = container;   //set this container to Gamescreen
+    	this.player = player;  //set player
+    	
+    	gsd = new GamescreenData();
+    	
+    }
+    
+    
  
     /*Setters & Getters for Mouse Coordinates (getters invoked by Gamescreen)*/
     public void setmouseY(int my) {this.mouse_y = my;}
@@ -93,6 +112,19 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
 	                
 	            //set data and send to server
 	            } 
+	            
+	            //GamescreenData gsd = new GamescreenData();
+	            gsd.setReqDX(req_dx);
+	            gsd.setReqDy(req_dy);
+	            gsd.setMouseX(mouse_x);
+	            gsd.setMouseY(mouse_y);
+	            
+	            try {
+					player.sendToServer(gsd);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	        }
 	    }
 		/*code adapted from gaspar coding "Pacman in Java" TAdapter class.  
