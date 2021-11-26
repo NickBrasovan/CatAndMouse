@@ -3,22 +3,20 @@ package cat_and_mouse;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
+import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-@SuppressWarnings("serial")
-public class Gamescreen extends JPanel implements ActionListener {
+
+public class Gamescreen extends JPanel implements Serializable, ActionListener {
 	
 	private Dimension d; //height and width of gameplay area
    
     private boolean inGame = false;  //boolean is true when game is in play
     
-
     private final int N_BLOCKS = 15;                         // determines size of gamescreen row and column
     private final int BLOCK_SIZE = 24;                      //determines size of gamescreen component blocks or tiles
     private final int SCREEN_SIZE = N_BLOCKS * BLOCK_SIZE; //define gamescreen size
@@ -28,10 +26,8 @@ public class Gamescreen extends JPanel implements ActionListener {
     private int mouse_x, mouse_y, moused_x, moused_y; //mouse_x and mouse_y store coordinates of sprite; moused_x and moused_store coordinates of mouse changes
     private int req_dx, req_dy;  //determined in TAdapter extends KeyAdapter{}, variables determined by cursor keys
 
-    private GameScreenControl gsc;
-    
-    //private GamescreenData gsd = new GamescreenData();
-    //private final short levelData[] = gsd.getLevelData();
+    private GamescreenControl gsc;
+    private GamescreenData gsd;
     
     /*Level Data for Constructing Maze: Input into DrawMaze Method
      * This array stores data for drawing the maze. 
@@ -76,8 +72,9 @@ public class Gamescreen extends JPanel implements ActionListener {
 
 
     /*CONSTRUCTOR for GAMESCREEN*/
-    public Gamescreen(GameScreenControl gsc) {
+    public Gamescreen(GamescreenControl gsc) {
         this.gsc =gsc;
+        
         loadImages();
         initVariables();
         
@@ -86,6 +83,7 @@ public class Gamescreen extends JPanel implements ActionListener {
         inGame = true;
         initGame();
     }
+    
     
     private void initVariables() {
     	screenData = new short[N_BLOCKS * N_BLOCKS]; //ArrayContainer for LevelData
@@ -112,7 +110,7 @@ public class Gamescreen extends JPanel implements ActionListener {
            checkMaze();
         }
     
-    //TODO. ANNOTATE CHECKMAZE
+  //TODO. ANNOTATE CHECKMAZE
     private void checkMaze() {
         int i = 0;
         boolean finished = true;
@@ -131,12 +129,14 @@ public class Gamescreen extends JPanel implements ActionListener {
             initLevel();
         }
     }
-
+    
     private void drawmouse(Graphics2D g2d) {
+    	
+    	
     	this.mouse_x = gsc.getmouseX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
     	this.mouse_y = gsc.getmouseY();
-    	this.moused_x = gsc.getmousedX();
-    	this.moused_y = gsc.getmousedY();
+    	//this.moused_x = gsc.getmousedX();
+    	//this.moused_y = gsc.getmousedY();
     	this.req_dx = gsc.getreq_dx();
     	this.req_dy = gsc.getreq_dy();
     	
@@ -152,7 +152,7 @@ public class Gamescreen extends JPanel implements ActionListener {
     }
 
     /*DRAW MAZE ALGORITHM FROM GASPAR CODING "PACMAN" IN JAVA*/
-    private void drawMaze(Graphics2D g2d) {
+   private void drawMaze(Graphics2D g2d) {
         short i = 0;
         int x, y;
 
@@ -200,7 +200,7 @@ public class Gamescreen extends JPanel implements ActionListener {
     }
 
     //TODO ANNOTATE
-    private void initLevel() {
+   private void initLevel() {
 
         int i;
         for (i = 0; i < N_BLOCKS * N_BLOCKS; i++) {
@@ -218,6 +218,8 @@ public class Gamescreen extends JPanel implements ActionListener {
         moused_y = 0;
         req_dx = 0;		// reset direction controls, controlled with cursor keys
         req_dy = 0;
+        
+        //initial seting for mouse
         gsc.setmouseX(mouse_x);
         gsc.setmouseY(mouse_y);
         gsc.setmousedX(moused_x);
@@ -227,7 +229,7 @@ public class Gamescreen extends JPanel implements ActionListener {
     }
 
  
-    public void paintComponent(Graphics g) {
+   public void paintComponent(Graphics g) {
         super.paintComponent(g); //constructor from parent class
 
         Graphics2D g2d = (Graphics2D) g;

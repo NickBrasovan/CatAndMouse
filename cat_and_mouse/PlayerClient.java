@@ -10,7 +10,7 @@ public class PlayerClient extends AbstractClient {
 	  private TitlescreenControl titleScreenControl;
 	  private CreateAccountControl createAccountControl;
 	  private GameroomControl gameroomControl;
-	  private GameScreenControl gamescreenControl;
+	  private GamescreenControl gamescreenControl;
 
 	  public void setTitlescreenControl(TitlescreenControl titleScreenControl) {
 			this.titleScreenControl = titleScreenControl;
@@ -24,7 +24,7 @@ public class PlayerClient extends AbstractClient {
 			this.gameroomControl = gameroomControl;
 		}
 		
-		public void setGamescreenControl(GameScreenControl gamescreenControl) {
+		public void setGamescreenControl(GamescreenControl gamescreenControl) {
 			this.gamescreenControl = gamescreenControl;
 		}
 		
@@ -54,14 +54,22 @@ public class PlayerClient extends AbstractClient {
 	      {
 	        createAccountControl.createAccountSuccess();
 	      }
+	      
+	    //Play Game
+	      else if (message.equals("PlayGame"))
+	      {
+	        gameroomControl.playGameSuccess();
+	      }
 	    }
 	    
-	    //If receive gamescreen, then gameroom.create account success.  and the latter shows screen
-	    if (arg0 instanceof Gamescreen)
-	    {
-	    	Gamescreen gs = (Gamescreen)arg0;
-	    	gameroomControl.playGameSuccess(gs);
-	    }
+	    
+	    /*Handle Updated Coordinates*/
+		if (arg0 instanceof GamescreenData)
+		{
+		/*
+		We'll need to update player coordinates with gamescreen data.
+		*/
+		}
 	    
 	    
 	    

@@ -227,24 +227,61 @@ public class GameServer extends AbstractServer {
 					e.printStackTrace();
 				}
 			}
-			/**
-			//handle PlayGame
-			if(message[0].equals("PlayGame")) {
-				
-			    
+			
+			
+			//Handle PlayGame
+		    if (message[0].equals("PlayGame"))
+		    {
+		    	Object result = "PlayGame";
 			    log.append("Client " + arg1.getId() + " pressed play game " + "\n");
-			    // Send the result to the client.
-			    try
-			    {
-			      arg1.sendToClient(GamescreenData);
-			    }
-			    catch (IOException e)
-			    {
-			     log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
-			     return;
-			    }
-			}**/
-		}
+			     // Send the result to the client.
+			      try
+			      {
+			        arg1.sendToClient(result);
+			      }
+			      catch (IOException e)
+			      {
+			    	log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
+			        return;
+			      }
+		      }
+		      
+		     /* //Handle PlayGame
+		      if (message.equals("PlayGame"))
+		      {
+		    	  
+		    	  GamescreenControl gsc = new GamescreenControl();
+		    	  
+			      // Send the result to the client.
+			      try
+			      {
+			        arg1.sendToClient(gsc);
+			      }
+			      catch (IOException e)
+			      {
+			    	log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
+			        return;
+			      }
+		      
+		      }*/
+		    }
+			
+		    
+		    //HANDLE GAMESCREEN DATA
+		    if (arg0 instanceof GamescreenData)
+		    {
+		   
+		      try
+		      {
+		        arg1.sendToClient(arg0);
+		      }
+		      catch (IOException e)
+		      {
+		    	log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
+		        return;
+		      }
+		    }
+	  
 	}
 	
 }
