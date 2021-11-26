@@ -3,20 +3,20 @@ package cat_and_mouse;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-@SuppressWarnings("serial")
-public class Gamescreen extends JPanel implements ActionListener, Serializable {
+
+public class Gamescreen extends JPanel implements Serializable, ActionListener {
 	
 	private Dimension d; //height and width of gameplay area
    
     private boolean inGame = false;  //boolean is true when game is in play
     
-
     private final int N_BLOCKS = 15;                         // determines size of gamescreen row and column
     private final int BLOCK_SIZE = 24;                      //determines size of gamescreen component blocks or tiles
     private final int SCREEN_SIZE = N_BLOCKS * BLOCK_SIZE; //define gamescreen size
@@ -28,7 +28,7 @@ public class Gamescreen extends JPanel implements ActionListener, Serializable {
 
     private GamescreenControl gsc;
     
-    //private GamescreenData gsd = new GamescreenData();
+    private GamescreenData gsd = new GamescreenData();
     //private final short levelData[] = gsd.getLevelData();
     
     /*Level Data for Constructing Maze: Input into DrawMaze Method
@@ -85,6 +85,7 @@ public class Gamescreen extends JPanel implements ActionListener, Serializable {
         initGame();
     }
     
+    
     private void initVariables() {
     	screenData = new short[N_BLOCKS * N_BLOCKS]; //ArrayContainer for LevelData
     	d = new Dimension(400, 400);                //dimension of gamescreen
@@ -107,29 +108,8 @@ public class Gamescreen extends JPanel implements ActionListener, Serializable {
     private void playGame(Graphics2D g2d) {
            gsc.movemouse(screenData);
            drawmouse(g2d);
-           checkMaze();
         }
     
-    //TODO. ANNOTATE CHECKMAZE
-    private void checkMaze() {
-        int i = 0;
-        boolean finished = true;
-
-        while (i < N_BLOCKS * N_BLOCKS && finished) {
-
-            if ((screenData[i]) != 0) {
-                finished = false;
-            }
-            i++;
-         }
-        if (finished) {
-            if (currentSpeed < maxSpeed) {
-                currentSpeed++;
-            }
-            initLevel();
-        }
-    }
-
     private void drawmouse(Graphics2D g2d) {
     	this.mouse_x = gsc.getmouseX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
     	this.mouse_y = gsc.getmouseY();
@@ -150,7 +130,7 @@ public class Gamescreen extends JPanel implements ActionListener, Serializable {
     }
 
     /*DRAW MAZE ALGORITHM FROM GASPAR CODING "PACMAN" IN JAVA*/
-    private void drawMaze(Graphics2D g2d) {
+   private void drawMaze(Graphics2D g2d) {
         short i = 0;
         int x, y;
 
@@ -198,9 +178,8 @@ public class Gamescreen extends JPanel implements ActionListener, Serializable {
     }
 
     //TODO ANNOTATE
-    private void initLevel() {
+   private void initLevel() {
 
-    	//Write levelDataArray to screenDataAray
         int i;
         for (i = 0; i < N_BLOCKS * N_BLOCKS; i++) {
             screenData[i] = levelData[i];
@@ -212,7 +191,7 @@ public class Gamescreen extends JPanel implements ActionListener, Serializable {
     private void continueLevel() {
 
         mouse_x = 7 * BLOCK_SIZE;  //start position of mouse
-        mouse_y = 11 * BLOCK_SIZE; //start position of mouse
+        mouse_y = 11 * BLOCK_SIZE;
         moused_x = 0;	//reset direction move
         moused_y = 0;
         req_dx = 0;		// reset direction controls, controlled with cursor keys
@@ -226,7 +205,7 @@ public class Gamescreen extends JPanel implements ActionListener, Serializable {
     }
 
  
-    public void paintComponent(Graphics g) {
+   public void paintComponent(Graphics g) {
         super.paintComponent(g); //constructor from parent class
 
         Graphics2D g2d = (Graphics2D) g;

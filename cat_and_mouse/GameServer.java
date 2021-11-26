@@ -41,8 +41,7 @@ public class GameServer extends AbstractServer {
 	    this.setTimeout(500);
 	    playersLoggedIn = new ArrayList<String>();
 	    connectedPlayers = new ArrayList<ConnectionToClient>();
-	    
-	    
+
 	    
 	  }
 	 
@@ -64,6 +63,7 @@ public class GameServer extends AbstractServer {
 	  {
 	    this.log = log;
 	  }
+	  
 	  public void setStatus(JLabel status)
 	  {
 	    this.status = status;
@@ -150,28 +150,6 @@ public class GameServer extends AbstractServer {
 	        return;
 	      }//end logindata
 
-	      /*
-	      Thread updateLog = new Thread(new Runnable() {
-		    	public void run() {
-		    		while(true) {
-			    		try {
-							arg1.sendToClient(playersLoggedIn);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-			    		try {
-							wait(5000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-		    		}
-		    	}
-		    });
-		    
-		    updateLog.run();
-		    */
 	    }
 		
 	    //HANDLE CREATEACCOUNTDATA
@@ -218,36 +196,55 @@ public class GameServer extends AbstractServer {
 		    }
 		    
 		}
-	/*
-		if(arg0 instanceof String) {
-			String[] message = ((String) arg0).split(",");			
-			
-			if(message[0].equals("Log Out")) {
-				playersLoggedIn.remove(message[1]);
-				log.append("Client " + message[1] + " has logged out.\n");
-			}
-			try {
-				arg1.sendToClient(playersLoggedIn);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if(message[0].equals("Refresh")) {
-				try {
-					arg1.sendToClient(playersLoggedIn);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		} */
-	    
-	    
-		//HANDLE GAMESCREEN DATA
+	   
+	    if (arg0 instanceof String)
+	    {
+	      // Get the text of the message.
+	      String message = (String)arg0;
+	      
+	      /*//Handle PlayGame
+	      if (message.equals("PlayGame"))
+	      {
+	    	  Object result = "PlayGame";
+		      log.append("Client " + arg1.getId() + " pressed play game " + "\n");
+		      // Send the result to the client.
+		      try
+		      {
+		        arg1.sendToClient(result);
+		      }
+		      catch (IOException e)
+		      {
+		    	log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
+		        return;
+		      }*/
+	      
+	      
+	      //Handle PlayGame
+	      if (message.equals("PlayGame"))
+	      {
+	    	  
+	    	  GamescreenControl gsc = new GamescreenControl();
+	    	  
+		      // Send the result to the client.
+		      try
+		      {
+		        arg1.sendToClient(gsc);
+		      }
+		      catch (IOException e)
+		      {
+		    	log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
+		        return;
+		      }
+	      
+	      }
+	    }
+		
+	    /*
+	    //HANDLE GAMESCREEN DATA
 	    if (arg0 instanceof GamescreenData)
 	    {
 	   
-	      Object result = "Play Game";
+	      Object result = "PlayGame";
 	      log.append("Client " + arg1.getId() + " pressed play game " + "\n");
 	      // Send the result to the client.
 	      try
@@ -259,9 +256,12 @@ public class GameServer extends AbstractServer {
 	    	log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
 	        return;
 	      }
-	    }
+	    }*/
 
 		
+	    
+	    
+	    
 	}
 	
 }

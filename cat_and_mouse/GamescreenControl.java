@@ -1,17 +1,13 @@
 package cat_and_mouse;
-import java.awt.CardLayout;
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 
-import javax.swing.JPanel;
-import javax.swing.Timer;
 
 //import pacman.GameScreen.TAdapter;
 
-public class GamescreenControl extends KeyAdapter{
+@SuppressWarnings("serial")
+public class GamescreenControl extends KeyAdapter implements Serializable{
 	 
 	/*INIT VARIABLES for GamescreenControl*/
 	private int mouse_x, mouse_y, moused_x, moused_y; //mouse player coordinates. 
@@ -19,15 +15,11 @@ public class GamescreenControl extends KeyAdapter{
     private final int N_BLOCKS = 15;                // determines size of gamescreen
     private final int BLOCK_SIZE = 24;             //determines size of gamescreen component blocks or tiles
     
-    int score;                          //TODO: ADD SCORE IMPLEMENTATION LATER
     private final int mouse_SPEED = 6;
-    boolean inGame = true;            //Boolean inGame is true while game is playing
-    
+    boolean inGame = true;            //Boolean inGame is true while game is playing  
     
     /*CONSTRUCTOR for GamescreenControl. container is Gamescreen object, passed fr. PlayerGUI*/
-    
-    
-    
+ 
     /*Setters & Getters for Mouse Coordinates (getters invoked by Gamescreen)*/
     public void setmouseY(int my) {this.mouse_y = my;}
     public void setmouseX(int mx) {this.mouse_x = mx;}
@@ -48,15 +40,12 @@ public class GamescreenControl extends KeyAdapter{
 	        int pos;
 	        short ch;
 
+	        //position of mouse is determined
 	        if (mouse_x % BLOCK_SIZE == 0 && mouse_y % BLOCK_SIZE == 0) {
 	            pos = mouse_x / BLOCK_SIZE + N_BLOCKS * (int) (mouse_y / BLOCK_SIZE);
 	            ch = screenData[pos];
 
-	            if ((ch & 16) != 0) {
-	                screenData[pos] = (short) (ch & 15);
-	                score++;
-	            }
-
+	            //req_dx and req_dy move mouse
 	            if (req_dx != 0 || req_dy != 0) {
 	                if (!((req_dx == -1 && req_dy == 0 && (ch & 1) != 0)
 	                        || (req_dx == 1 && req_dy == 0 && (ch & 4) != 0)
@@ -79,11 +68,8 @@ public class GamescreenControl extends KeyAdapter{
 	        mouse_x = mouse_x + mouse_SPEED * moused_x;
 	        mouse_y = mouse_y + mouse_SPEED * moused_y;
 	        
-	        
 	    }
 	
-	 
-
 	/*MousePlayer Cursor Controler
 	 * Note that GamescreenControl extends KeyAdapter for this function*/
 	 public void keyPressed(KeyEvent e) {
@@ -104,6 +90,8 @@ public class GamescreenControl extends KeyAdapter{
 	            } else if (key == KeyEvent.VK_DOWN) {
 	                req_dx = 0;
 	                req_dy = 1;
+	                
+	            //set data and send to server
 	            } 
 	        }
 	    }

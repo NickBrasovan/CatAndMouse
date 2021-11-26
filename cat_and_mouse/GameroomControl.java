@@ -16,10 +16,13 @@ public class GameroomControl implements ActionListener{
 		this.player = player;
 	}
 	
-	public void playGameSuccess() {
+	//playGameSuccess
+	public void playGameSuccess(GamescreenControl gsc) {
+		Gamescreen gs = new Gamescreen(gsc);		
 		CardLayout cardLayout = (CardLayout)container.getLayout();
-	    cardLayout.show(container, "4"); // 
-		
+		player.setGamescreenControl(gsc);
+	    container.add(gs,"4");
+		cardLayout.show(container, "4"); // 
 	}
 	
 	@Override
@@ -60,33 +63,25 @@ public class GameroomControl implements ActionListener{
 	        cardLayout.show(container, "1");
 		}
 		
-		if(command.equals("Play Game")) {
+		if(command.equals("PlayGame")) {
 		
+			try {
+				player.sendToServer("PlayGame");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			//TESTER
-			GamescreenData gsdata = new GamescreenData();
-			
-			
+			//GamescreenData gsdata = new GamescreenData();
+			/*
 			try {
 				player.sendToServer(gsdata);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 
-		/*Tester for Play Game tied to playGameBtn on Gameroom Panel
-		else if (command.equals("Play Game")) {
-			CardLayout cardLayout = (CardLayout)container.getLayout();
-			Gamescreen gamescreen = (Gamescreen)container.getComponent(3);
-			
-			try {
-				player.sendToServer("Play Game");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-	        cardLayout.show(container, "4");
-		}*/
-	}
+		}
 	}
 }

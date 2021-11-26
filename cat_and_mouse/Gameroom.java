@@ -98,7 +98,7 @@ public class Gameroom extends JPanel {
 		inviteBtn.addActionListener(gc);
 		
 		//Play Game Button
-		JButton playGameBtn = new JButton("Play Game");
+		JButton playGameBtn = new JButton("PlayGame");
 		playGameBtn.setBounds(325, 725, 122, 33);
 		this.add(playGameBtn);
 		playGameBtn.addActionListener(gc);
