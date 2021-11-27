@@ -274,6 +274,7 @@ public class GameServer extends AbstractServer {
 		      try
 		      {
 		        arg1.sendToClient(arg0);
+		        //replace with send to all clients
 		      }
 		      catch (IOException e)
 		      {

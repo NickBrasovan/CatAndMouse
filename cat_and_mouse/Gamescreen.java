@@ -84,6 +84,10 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
         initGame();
     }
     
+    public void setGSD(GamescreenData gsd)
+    {
+    	this.gsd = gsd;
+    }
     
     private void initVariables() {
     	screenData = new short[N_BLOCKS * N_BLOCKS]; //ArrayContainer for LevelData
@@ -139,6 +143,14 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     	//this.moused_y = gsc.getmousedY();
     	this.req_dx = gsc.getreq_dx();
     	this.req_dy = gsc.getreq_dy();
+    	
+    	/*
+    	this.mouse_x = gsd.getmouseX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
+    	this.mouse_y = gsd.getmouseY();
+    	//this.moused_x = gsc.getmousedX();
+    	//this.moused_y = gsc.getmousedY();
+    	this.req_dx = gsd.getreq_dx();
+    	this.req_dy = gsd.getreq_dy();*/
     	
         if (req_dx == -1) {
         	g2d.drawImage(left, mouse_x-9, mouse_y - 14, this);

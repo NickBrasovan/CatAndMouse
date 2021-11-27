@@ -27,14 +27,10 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
     GamescreenData gsd;  //GAMESCREENDATA OBJECT
     
     /*CONSTRUCTOR for GamescreenControl. container is Gamescreen object, passed fr. PlayerGUI*/
-    /*CONSTRUCTOR for GamescreenControl. container is Gamescreen object, passed fr. PlayerGUI*/
     
     public GamescreenControl(JPanel container, PlayerClient player){
     	this.container = container;   //set this container to Gamescreen
     	this.player = player;  //set player
-    	
-    	gsd = new GamescreenData();
-    	
     }
     
     /*Setters & Getters for Mouse Coordinates (getters invoked by Gamescreen)*/
@@ -50,7 +46,19 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
 	public int getmousedY() {return this.moused_y;}
 	public int getreq_dx() {return this.req_dx;}
 	public int getreq_dy() {return this.req_dy;}
+	
+	public void setGSD(GamescreenData gsd){
+	/*	this.gsd = gsd;
+		this.setmouseY(gsd.getmouseY());
+		this.setmouseX(gsd.getmouseX());
+		this.setreq_dx(gsd.getreq_dx());
+		this.setreq_dy(gsd.getreq_dy());*/
+
+	}
     
+	
+	
+	
     /*MOVEMOUSE METHOD. INPUT ARRAY OF SCREENDATA*/
 	public void movemouse(short[] screenData) {
 	        int pos;
@@ -79,7 +87,7 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
 	            }
 
 	            // Check for standstill
-	            if ((moused_x == -1 && moused_y == 0 && (ch & 1) != 0)
+	           if ((moused_x == -1 && moused_y == 0 && (ch & 1) != 0)
 	                    || (moused_x == 1 && moused_y == 0 && (ch & 4) != 0)
 	                    || (moused_x == 0 && moused_y == -1 && (ch & 2) != 0)
 	                    || (moused_x == 0 && moused_y == 1 && (ch & 8) != 0)) {
@@ -116,10 +124,12 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
 	            } 
 	            //set data and send to server
 	            //GamescreenData gsd = new GamescreenData();
-	            gsd.setReqDX(req_dx);
-	            gsd.setReqDy(req_dy);
-	            gsd.setMouseX(mouse_x);
-	            gsd.setMouseY(mouse_y);
+	            GamescreenData gsd = new GamescreenData();
+	            
+	            gsd.setreq_dx(req_dx);
+	            gsd.setreq_dy(req_dy);
+	            gsd.setmouseX(mouse_x);
+	            gsd.setmouseY(mouse_y);
 	            
 	            try {
 					player.sendToServer(gsd);
