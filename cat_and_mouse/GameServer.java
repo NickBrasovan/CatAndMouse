@@ -13,6 +13,8 @@ import ocsf.server.ConnectionToClient;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 
+
+
 public class GameServer extends AbstractServer {
 	 
 	// Data fields for this chat server.
@@ -20,6 +22,12 @@ public class GameServer extends AbstractServer {
 	  private JLabel status;
 	  private boolean running = false;
 	  private Database database;
+	  private boolean player1RTP = false;
+	  private boolean player2RTP = false;
+	  private String player1;
+	  private String player2;
+	  private String player1Character;
+	  private String player2Character;
 	  private ArrayList<String> playersLoggedIn;
 	  private ArrayList<ConnectionToClient> connectedPlayers;
 
@@ -133,28 +141,6 @@ public class GameServer extends AbstractServer {
 	      {
 	        return;
 	      }
-	      /*
-	      Thread updateLog = new Thread(new Runnable() {
-		    	public void run() {
-		    		while(true) {
-			    		try {
-							arg1.sendToClient(playersLoggedIn);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-			    		try {
-							wait(5000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-		    		}
-		    	}
-		    });
-		    
-		    updateLog.run();
-		    */
 	    }
 		
 	    /*Handle CreateAccountData Object*/
@@ -232,8 +218,50 @@ public class GameServer extends AbstractServer {
 			//Handle PlayGame
 		    if (message[0].equals("PlayGame"))
 		    {
+		    	log.append("Client " + arg1.getId() + " pressed play game " + "\n");
+		    	
+		    	if(player1RTP == false) {
+		    		player1 = message[1];
+		    		player1RTP = true;
+		    		player1Character = randomAssign();
+		    	}
+		    	else if(player2RTP == false) {
+		    		player2 = message[1];
+		    		player2RTP = true;
+		    		if(player1Character.equals("Mouse"))
+		    			player2Character = "Cat";
+		    		else if(player1Character.equals("Cat"))
+		    			player2Character = "Mouse";
+		    	}
+		    	
+		    	while(!player2RTP) {
+		    		try {
+		    			log.append("Waiting for player2\n");
+						wait(10000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		    	}
+		    	
+		    	if(player1RTP && player2RTP) {
+		    		if(player1.equals(message[1]))
+						try {
+							arg1.sendToClient(player1Character);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		    		else if(player2.equals(message[1]))
+						try {
+							arg1.sendToClient(player2Character);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		    	}
+		    	
 		    	Object result = "PlayGame";
-			    log.append("Client " + arg1.getId() + " pressed play game " + "\n");
 			     // Send the result to the client.
 			      try
 			      {
@@ -245,44 +273,28 @@ public class GameServer extends AbstractServer {
 			        return;
 			      }
 		      }
-		      
-		     /* //Handle PlayGame
-		      if (message.equals("PlayGame"))
-		      {
-		    	  
-		    	  GamescreenControl gsc = new GamescreenControl();
-		    	  
-			      // Send the result to the client.
-			      try
-			      {
-			        arg1.sendToClient(gsc);
-			      }
-			      catch (IOException e)
-			      {
-			    	log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
-			        return;
-			      }
-		      
-		      }*/
 		    }
 			
-		    
 		    //HANDLE GAMESCREEN DATA
 		    if (arg0 instanceof GamescreenData)
 		    {
 		   
-		      try
-		      {
-		        arg1.sendToClient(arg0);
-		        //replace with send to all clients
-		      }
-		      catch (IOException e)
-		      {
-		    	log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
-		        return;
-		      }
+		      sendToAllClients(arg0);
+			//replace with send to all clients
 		    }
-	  
+	}
+	
+	public String randomAssign() {
+		
+		int random = (int)(Math.random()*2);
+		String character = "";
+		
+		if(random==0)
+			character = "Mouse";
+		else if(random==1)
+			character = "Cat";
+		
+		return character;
 	}
 	
 }

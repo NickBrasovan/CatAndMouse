@@ -6,6 +6,8 @@ public class GamescreenData implements Serializable {
 	
 	private int mouse_x;
 	private int mouse_y;
+	private int cat_x;
+	private int cat_y;
 	private int req_dx;
 	private int req_dy;
 	
@@ -48,6 +50,7 @@ public class GamescreenData implements Serializable {
 	{
 		return this.mouse_x;
 	}
+	
 	
 
 }

@@ -68,7 +68,7 @@ public class PlayerClient extends AbstractClient {
 		{
 		/*
 		We'll need to update player coordinates with gamescreen data.*/
-		gamescreenControl.setGSD((GamescreenData) arg0);
+			gamescreenControl.setGSD((GamescreenData) arg0);
 		
 		}
 	    

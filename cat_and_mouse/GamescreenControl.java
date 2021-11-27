@@ -1,4 +1,5 @@
 package cat_and_mouse;
+import java.awt.CardLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -48,12 +49,12 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
 	public int getreq_dy() {return this.req_dy;}
 	
 	public void setGSD(GamescreenData gsd){
-	/*	this.gsd = gsd;
-		this.setmouseY(gsd.getmouseY());
-		this.setmouseX(gsd.getmouseX());
-		this.setreq_dx(gsd.getreq_dx());
-		this.setreq_dy(gsd.getreq_dy());*/
-
+		//this.gsd = gsd;
+		//gsd.setmouseY(gsd.getmouseY());
+		//gsd.setmouseX(gsd.getmouseX());
+		//gsd.setreq_dx(gsd.getreq_dx());
+		//gsd.setreq_dy(gsd.getreq_dy());
+		
 	}
     
 	
@@ -70,11 +71,12 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
 	            pos = mouse_x / BLOCK_SIZE + N_BLOCKS * (int) (mouse_y / BLOCK_SIZE);
 	            ch = screenData[pos];
 	            
+	            /*
 	            //mouse eats pellets 
 	            if ((ch & 16) != 0) {
 	                screenData[pos] = (short) (ch & 15);
 	            }
-
+				*/
 	            //req_dx and req_dy move mouse
 	            if (req_dx != 0 || req_dy != 0) {
 	                if (!((req_dx == -1 && req_dy == 0 && (ch & 1) != 0)

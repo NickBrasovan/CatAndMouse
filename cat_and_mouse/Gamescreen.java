@@ -136,14 +136,12 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     
     private void drawmouse(Graphics2D g2d) {
     	
-    	
     	this.mouse_x = gsc.getmouseX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
     	this.mouse_y = gsc.getmouseY();
     	//this.moused_x = gsc.getmousedX();
     	//this.moused_y = gsc.getmousedY();
     	this.req_dx = gsc.getreq_dx();
     	this.req_dy = gsc.getreq_dy();
-    	
     	/*
     	this.mouse_x = gsd.getmouseX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
     	this.mouse_y = gsd.getmouseY();
@@ -224,8 +222,8 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     //TODO ANNOTATE
     private void continueLevel() {
 
-        mouse_x = 7 * BLOCK_SIZE;  //start position of mouse
-        mouse_y = 11 * BLOCK_SIZE;
+        mouse_x = 1 * BLOCK_SIZE;//7 * BLOCK_SIZE;  //start position of mouse
+        mouse_y = 1 * BLOCK_SIZE;//11 * BLOCK_SIZE;
         moused_x = 0;	//reset direction move
         moused_y = 0;
         req_dx = 0;		// reset direction controls, controlled with cursor keys
@@ -259,7 +257,7 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
         g2d.dispose();
     }
     
-
+   
     @Override
     public void actionPerformed(ActionEvent e) {
         repaint();

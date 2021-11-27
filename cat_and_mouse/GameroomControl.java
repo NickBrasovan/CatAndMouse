@@ -81,9 +81,13 @@ public class GameroomControl implements ActionListener{
 		
 		// Play Game Tester
 		if(command.equals("PlayGame")) {
+			CardLayout cardLayout = (CardLayout)container.getLayout();
+			Titlescreen titleScreen = (Titlescreen)container.getComponent(0);
+			String user = titleScreen.getPlayerName();
+			
 			
 			try {
-				player.sendToServer("PlayGame");
+				player.sendToServer("PlayGame," + user);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
