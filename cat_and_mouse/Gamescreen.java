@@ -111,7 +111,7 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     private void playGame(Graphics2D g2d) {
            gsc.movemouse(screenData);
            drawmouse(g2d);
-           
+          
         }
     
     

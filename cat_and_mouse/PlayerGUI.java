@@ -1,4 +1,3 @@
-//Player 2
 package cat_and_mouse;
 
 import java.awt.*;

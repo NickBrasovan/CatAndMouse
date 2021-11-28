@@ -56,8 +56,8 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
 		this.setmouseX(gsd.getmouseX());
 		this.setreq_dx(gsd.getreq_dx());
 		this.setreq_dy(gsd.getreq_dy());
-		this.setmousedX(gsd.getmoused_x());
-		this.setmousedY(gsd.getmoused_y());
+		//this.setmousedX(gsd.getmoused_x());
+		//this.setmousedY(gsd.getmoused_y());
 
 	}
     
@@ -88,7 +88,7 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
 	                    moused_y = req_dy;
 	                }
 	            }
-
+	            
 	            // Check for standstill
 	           if ((moused_x == -1 && moused_y == 0 && (ch & 1) != 0)
 	                    || (moused_x == 1 && moused_y == 0 && (ch & 4) != 0)
@@ -97,6 +97,7 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
 	                moused_x = 0;
 	                moused_y = 0;
 	            }
+	            
 	        } 
 	        mouse_x = mouse_x + mouse_SPEED * moused_x;
 	        mouse_y = mouse_y + mouse_SPEED * moused_y;     
