@@ -12,6 +12,7 @@ public class GamescreenData implements Serializable {
 	private int req_dy;
 	private int moused_x;
 	private int moused_y;
+	private String character;
 	
 	public int getmoused_x()
 	{
@@ -33,22 +34,22 @@ public class GamescreenData implements Serializable {
 		this.moused_y = mdy;
 	}
 	
-	public int getreq_dx()
+	public int getmousereq_dx()
 	{
 		return this.req_dx;
 	}
 	
-	public void setreq_dx(int rdx)
+	public void setmousereq_dx(int rdx)
 	{
 		this.req_dx = rdx;
 	}
 	
-	public int getreq_dy()
+	public int getmousereq_dy()
 	{
 		return this.req_dy;
 	}
 	
-	public void setreq_dy(int rdy)
+	public void setmousereq_dy(int rdy)
 	{
 		this.req_dy = rdy;
 	}
@@ -73,6 +74,68 @@ public class GamescreenData implements Serializable {
 		return this.mouse_x;
 	}
 	
+	public void setcatY(int y) {
+		this.cat_y = y;
+	}
 	
+	public void setcatX(int x) {
+		this.cat_x = x;
+	}
+	
+	public int getcatY() {
+		return this.cat_y;
+	}
+	
+	public int getcatX() {
+		return this.cat_x;
+	}
+	
+	public int getcatd_x()
+	{
+		return this.moused_x;
+	}
+	
+	public void setcatd_x(int mdx)
+	{
+		this.moused_x = mdx;
+	}
+	
+	public int getcatd_y()
+	{
+		return this.moused_y;
+	}
+	
+	public void setcatd_y(int mdy)
+	{
+		this.moused_y = mdy;
+	}
+	
+	public String getCharacter() {
+		return this.character;
+	}
+	
+	public void setCharacter(String character) {
+		this.character = character;
+	}
+	
+	public int getcatreq_dx()
+	{
+		return this.req_dx;
+	}
+	
+	public void setcatreq_dx(int rdx)
+	{
+		this.req_dx = rdx;
+	}
+	
+	public int getcatreq_dy()
+	{
+		return this.req_dy;
+	}
+	
+	public void setcatreq_dy(int rdy)
+	{
+		this.req_dy = rdy;
+	}
 
 }

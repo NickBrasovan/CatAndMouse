@@ -23,6 +23,7 @@ public class GameServer extends AbstractServer {
 	  private boolean running = false;
 	  private Database database;
 	  private boolean player1RTP = false;
+	  private boolean player1Waiting = true;
 	  private boolean player2RTP = false;
 	  private String player1;
 	  private String player2;
@@ -234,15 +235,15 @@ public class GameServer extends AbstractServer {
 		    			player2Character = "Mouse";
 		    	}
 		    	
-		    	while(!player2RTP) {
-		    		try {
-		    			log.append("Waiting for player2\n");
-						wait(10000);
+			    while(!player2RTP) {
+			    	try {
+			    		log.append("Waiting for player2\n");
+						wait(3000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-		    	}
+			    }
 		    	
 		    	if(player1RTP && player2RTP) {
 		    		if(player1.equals(message[1]))
@@ -260,7 +261,7 @@ public class GameServer extends AbstractServer {
 							e.printStackTrace();
 						}
 		    	}
-		    	
+		    	/*
 		    	Object result = "PlayGame";
 			     // Send the result to the client.
 			      try
@@ -272,13 +273,13 @@ public class GameServer extends AbstractServer {
 			    	log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
 			        return;
 			      }
+			      */
 		      }
 		    }
 			
 		    //HANDLE GAMESCREEN DATA
 		    if (arg0 instanceof GamescreenData)
 		    {
-		   
 		      sendToAllClients(arg0);
 			//send to all clients
 		    }

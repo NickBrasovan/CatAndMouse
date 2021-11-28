@@ -21,10 +21,11 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     private final int BLOCK_SIZE = 24;                      //determines size of gamescreen component blocks or tiles
     private final int SCREEN_SIZE = N_BLOCKS * BLOCK_SIZE; //define gamescreen size
 
-    private Image up, down, left, right; //images for mouse animations
+    private Image up, down, left, right, catdown, catup, catleft, catright; //images for mouse animations
 
     private int mouse_x, mouse_y, moused_x, moused_y; //mouse_x and mouse_y store coordinates of sprite; moused_x and moused_y store coordinates of mouse changes
-    private int req_dx, req_dy;  //determined in TAdapter extends KeyAdapter{}, variables determined by cursor keys
+    private int cat_x, cat_y, catd_x, catd_y;
+    private int m_req_dx, m_req_dy, c_req_dy, c_req_dx;  //determined in TAdapter extends KeyAdapter{}, variables determined by cursor keys
 
     private GamescreenControl gsc;
     private GamescreenData gsd;
@@ -105,12 +106,18 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     	up = new ImageIcon("cat_and_mouse//images/mouseB.gif").getImage();
     	left = new ImageIcon("cat_and_mouse//images/mouseL.gif").getImage();
     	right = new ImageIcon("cat_and_mouse//images/mouseR.gif").getImage();
+    	catdown = new ImageIcon("cat_and_mouse/images/catForward.gif").getImage();
+    	catup = new ImageIcon("cat_and_mouse//images/catBack.gif").getImage();
+    	catleft = new ImageIcon("cat_and_mouse//images/catLeft.gif").getImage();
+    	catright = new ImageIcon("cat_and_mouse//images/catRight.gif").getImage();
     }
        
     /*playGame function is a collection of other functions Called in display of graphics*/
     private void playGame(Graphics2D g2d) {
            gsc.movemouse(screenData);
+           gsc.movecat(screenData);
            drawmouse(g2d);
+           drawcat(g2d);
           
         }
     
@@ -121,8 +128,8 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     	this.mouse_y = gsc.getmouseY();
     	this.moused_x = gsc.getmousedX();
     	this.moused_y = gsc.getmousedY();
-    	this.req_dx = gsc.getreq_dx();
-    	this.req_dy = gsc.getreq_dy();
+    	this.m_req_dx = gsc.getm_req_dx();
+    	this.m_req_dy = gsc.getm_req_dy();
     	
     	/*this.mouse_x = gsd.getmouseX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
     	this.mouse_y = gsd.getmouseY();
@@ -131,14 +138,41 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     	this.req_dx = gsd.getreq_dx();
     	this.req_dy = gsd.getreq_dy();*/
     	
-        if (req_dx == -1) {
+        if (m_req_dx == -1) {
         	g2d.drawImage(left, mouse_x-9, mouse_y - 14, this);
-        } else if (req_dx == 1) {
+        } else if (m_req_dx == 1) {
         	g2d.drawImage(right, mouse_x-9, mouse_y - 14, this);
-        } else if (req_dy == -1) {
+        } else if (m_req_dy == -1) {
         	g2d.drawImage(up, mouse_x-9, mouse_y - 14, this);
         } else {
         	g2d.drawImage(down, mouse_x-9, mouse_y - 14, this);
+        }
+    }
+    
+    private void drawcat(Graphics2D g2d) {
+    	
+    	this.cat_x = gsc.getcatX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
+    	this.cat_y = gsc.getcatY();
+    	this.catd_x = gsc.getcatdX();
+    	this.catd_y = gsc.getcatdY();
+    	this.c_req_dx = gsc.getc_req_dx();
+    	this.c_req_dy = gsc.getc_req_dy();
+    	
+    	/*this.mouse_x = gsd.getmouseX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
+    	this.mouse_y = gsd.getmouseY();
+    	this.moused_x = gsd.getmoused_x();
+    	this.moused_y = gsd.getmoused_y();
+    	this.req_dx = gsd.getreq_dx();
+    	this.req_dy = gsd.getreq_dy();*/
+    	
+        if (c_req_dx == -1) {
+        	g2d.drawImage(catleft, cat_x-9, cat_y - 14, this);
+        } else if (c_req_dx == 1) {
+        	g2d.drawImage(catright, cat_x-9, cat_y - 14, this);
+        } else if (c_req_dy == -1) {
+        	g2d.drawImage(catup, cat_x-9, cat_y - 14, this);
+        } else {
+        	g2d.drawImage(catdown, cat_x-9, cat_y - 14, this);
         }
     }
 
@@ -207,16 +241,29 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
         mouse_y = 1 * BLOCK_SIZE;//11 * BLOCK_SIZE;
         moused_x = 0;	//reset direction move
         moused_y = 0;
-        req_dx = 0;		// reset direction controls, controlled with cursor keys
-        req_dy = 0;
+        m_req_dx = 0;		// reset direction controls, controlled with cursor keys
+        m_req_dy = 0;
+        c_req_dx = 0;
+        c_req_dy = 0;
+        cat_x = 7 * BLOCK_SIZE;
+        cat_y = 11 * BLOCK_SIZE;
+        catd_x = 0;
+        catd_y = 0;
         
         //initial seting for mouse
         gsc.setmouseX(mouse_x);
         gsc.setmouseY(mouse_y);
         gsc.setmousedX(moused_x);
         gsc.setmousedY(moused_y);
-        gsc.setreq_dx(req_dx);
-        gsc.setreq_dy(req_dy);
+        gsc.setm_req_dx(m_req_dx);
+        gsc.setm_req_dy(m_req_dy);
+        
+        gsc.setcatX(cat_x);
+        gsc.setcatY(cat_y);
+        gsc.setcatdX(catd_x);
+        gsc.setcatdY(catd_y);
+        gsc.setc_req_dx(c_req_dx);
+        gsc.setc_req_dy(c_req_dy);
     }
 
  

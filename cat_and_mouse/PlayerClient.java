@@ -55,6 +55,17 @@ public class PlayerClient extends AbstractClient {
 	        createAccountControl.createAccountSuccess();
 	      }
 	      
+	      else if (message.equals("Cat"))
+	      {
+	    	  gameroomControl.playGameSuccess();
+	    	  gamescreenControl.setCharacter("Cat");
+	      }
+	      
+	      else if (message.equals("Mouse")) {
+	    	  gameroomControl.playGameSuccess();
+	    	  gamescreenControl.setCharacter("Mouse");
+	      }
+	      
 	    //Play Game
 	      else if (message.equals("PlayGame"))
 	      {
@@ -66,10 +77,12 @@ public class PlayerClient extends AbstractClient {
 	    /*Handle Updated Coordinates*/
 		if (arg0 instanceof GamescreenData)
 		{
+			if(((GamescreenData) arg0).getCharacter().equals("Mouse"))
 		/*
 		We'll need to update player coordinates with gamescreen data.*/
-			gamescreenControl.setGSD((GamescreenData) arg0);
-		
+				gamescreenControl.setMouseGSD((GamescreenData) arg0);
+			else if(((GamescreenData) arg0).getCharacter().equals("Cat"))
+				gamescreenControl.setCatGSD((GamescreenData) arg0);
 		}
 	    
 	    
