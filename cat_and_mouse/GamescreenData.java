@@ -10,6 +10,28 @@ public class GamescreenData implements Serializable {
 	private int cat_y;
 	private int req_dx;
 	private int req_dy;
+	private int moused_x;
+	private int moused_y;
+	
+	public int getmoused_x()
+	{
+		return this.moused_x;
+	}
+	
+	public void setmoused_x(int mdx)
+	{
+		this.moused_x = mdx;
+	}
+	
+	public int getmoused_y()
+	{
+		return this.moused_y;
+	}
+	
+	public void setmoused_y(int mdy)
+	{
+		this.moused_y = mdy;
+	}
 	
 	public int getreq_dx()
 	{
@@ -28,7 +50,7 @@ public class GamescreenData implements Serializable {
 	
 	public void setreq_dy(int rdy)
 	{
-		this.req_dx = rdy;
+		this.req_dy = rdy;
 	}
 	
 	public void setmouseY(int y)

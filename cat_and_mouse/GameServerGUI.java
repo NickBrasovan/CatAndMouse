@@ -1,3 +1,4 @@
+//Server
 package cat_and_mouse;
 
 import java.awt.*;

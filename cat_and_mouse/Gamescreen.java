@@ -23,7 +23,7 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
 
     private Image up, down, left, right; //images for mouse animations
 
-    private int mouse_x, mouse_y, moused_x, moused_y; //mouse_x and mouse_y store coordinates of sprite; moused_x and moused_store coordinates of mouse changes
+    private int mouse_x, mouse_y, moused_x, moused_y; //mouse_x and mouse_y store coordinates of sprite; moused_x and moused_y store coordinates of mouse changes
     private int req_dx, req_dy;  //determined in TAdapter extends KeyAdapter{}, variables determined by cursor keys
 
     private GamescreenControl gsc;
@@ -111,42 +111,23 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     private void playGame(Graphics2D g2d) {
            gsc.movemouse(screenData);
            drawmouse(g2d);
-           checkMaze();
+           
         }
     
-  //TODO. ANNOTATE CHECKMAZE
-    private void checkMaze() {
-        int i = 0;
-        boolean finished = true;
-
-        while (i < N_BLOCKS * N_BLOCKS && finished) {
-
-            if ((screenData[i]) != 0) {
-                finished = false;
-            }
-            i++;
-         }
-        if (finished) {
-            if (currentSpeed < maxSpeed) {
-                currentSpeed++;
-            }
-            initLevel();
-        }
-    }
     
     private void drawmouse(Graphics2D g2d) {
     	
     	this.mouse_x = gsc.getmouseX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
     	this.mouse_y = gsc.getmouseY();
-    	//this.moused_x = gsc.getmousedX();
-    	//this.moused_y = gsc.getmousedY();
+    	this.moused_x = gsc.getmousedX();
+    	this.moused_y = gsc.getmousedY();
     	this.req_dx = gsc.getreq_dx();
     	this.req_dy = gsc.getreq_dy();
-    	/*
-    	this.mouse_x = gsd.getmouseX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
+    	
+    	/*this.mouse_x = gsd.getmouseX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
     	this.mouse_y = gsd.getmouseY();
-    	//this.moused_x = gsc.getmousedX();
-    	//this.moused_y = gsc.getmousedY();
+    	this.moused_x = gsd.getmoused_x();
+    	this.moused_y = gsd.getmoused_y();
     	this.req_dx = gsd.getreq_dx();
     	this.req_dy = gsd.getreq_dy();*/
     	

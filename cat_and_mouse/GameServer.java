@@ -280,7 +280,7 @@ public class GameServer extends AbstractServer {
 		    {
 		   
 		      sendToAllClients(arg0);
-			//replace with send to all clients
+			//send to all clients
 		    }
 	}
 	
