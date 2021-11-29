@@ -27,7 +27,7 @@ public class GameServerGUI extends JFrame {
 	    
 	    /*INSTANTIATE SERVER*/
 	    server = new GameServer();
-	    
+	    //
 	    /*INSTANTIATE DATABASE*/
 	    try {
 			database = new Database();
