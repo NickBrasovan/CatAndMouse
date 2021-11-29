@@ -16,6 +16,9 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
 	private Dimension d; //height and width of gameplay area
    
     private boolean inGame = false;  //boolean is true when game is in play
+    private boolean dying = false; 
+    
+    
     
     private final int N_BLOCKS = 15;                         // determines size of gamescreen row and column
     private final int BLOCK_SIZE = 24;                      //determines size of gamescreen component blocks or tiles
@@ -26,7 +29,7 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     private int mouse_x, mouse_y, moused_x, moused_y; //mouse_x and mouse_y store coordinates of sprite; moused_x and moused_y store coordinates of mouse changes
     private int cat_x, cat_y, catd_x, catd_y;
     private int m_req_dx, m_req_dy, c_req_dy, c_req_dx;  //determined in TAdapter extends KeyAdapter{}, variables determined by cursor keys
-
+    
     private GamescreenControl gsc;
     private GamescreenData gsd;
     
@@ -66,7 +69,7 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
 
     
     private final int maxSpeed = 6;
-
+    private int lives = 2;
     private int currentSpeed = 3;
     private short[] screenData; //takes all data from level data to redraw the game
     private Timer timer;
@@ -112,15 +115,37 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     	catright = new ImageIcon("cat_and_mouse//images/catRight.gif").getImage();
     }
        
+    public void setDying(Boolean dead) {
+    	this.dying = dead;
+    }
+    
     /*playGame function is a collection of other functions Called in display of graphics*/
     private void playGame(Graphics2D g2d) {
+    
+    	
+    	if (dying) {
+
+            death();
+
+        } else {
+    	
            gsc.movemouse(screenData);
            gsc.movecat(screenData);
            drawmouse(g2d);
            drawcat(g2d);
-          
         }
+    }
     
+    private void death() {
+
+    	lives--;
+
+        if (lives == 0) {
+            inGame = false;
+        }
+
+        continueLevel();
+    }
     
     private void drawmouse(Graphics2D g2d) {
     	
@@ -250,7 +275,7 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
         catd_x = 0;
         catd_y = 0;
         
-        //initial seting for mouse
+        //initial setting for mouse
         gsc.setmouseX(mouse_x);
         gsc.setmouseY(mouse_y);
         gsc.setmousedX(moused_x);

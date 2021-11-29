@@ -161,7 +161,17 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
             
         } 
         cat_x = cat_x + cat_SPEED * catd_x;
-        cat_y = cat_y + cat_SPEED * catd_y;     
+        cat_y = cat_y + cat_SPEED * catd_y;  
+        
+        if (mouse_x > (cat_x- 12) && mouse_x < (cat_x + 12)
+                && mouse_y > (cat_y - 12) && mouse_y < (cat_y + 12)
+                && inGame) {
+
+        	Boolean killmouse = true;
+        	CardLayout cL = (CardLayout)container.getLayout();
+        	Gamescreen gs = (Gamescreen)container.getComponent(3);
+        	gs.setDying(killmouse);
+        }
     }
 	
 	/*MousePlayer Cursor Controller
