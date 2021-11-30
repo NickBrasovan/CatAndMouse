@@ -17,7 +17,12 @@ public class GameServerGUI extends JFrame {
 	  private JButton quit;
 	  private GameServer server;	/*SERVER OBJECT*/
 	  private Database database;   /*DATABASE OBJECT*/
+	  private JButton button;
 
+	  public JButton getButton() {
+		  return listen;
+	  }
+	  
 	  	/*Constructor for the server GUI.*/
 		public GameServerGUI()
 		{	
@@ -94,6 +99,7 @@ public class GameServerGUI extends JFrame {
 	    EventHandler handler = new EventHandler();
 	    listen = new JButton("Listen");
 	    listen.addActionListener(handler);
+	    button = listen;
 	    south.add(listen);
 	    close = new JButton("Close");
 	    close.addActionListener(handler);

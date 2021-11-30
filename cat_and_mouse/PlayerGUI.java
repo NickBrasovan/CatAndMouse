@@ -6,10 +6,30 @@ import javax.swing.*;
 
 public class PlayerGUI extends JFrame{
 
+	private PlayerClient player;
+	private JPanel container;
+		
+	public void setPlayer(PlayerClient player) {
+		this.player = player;
+	}
+	
+	public PlayerClient getPlayer() {
+		return player;
+	}
+	
+	public void setContainer(JPanel container) {
+		this.container = container;
+	}
+	
+	public JPanel getContainer() {
+		return container;
+	}
+	
 	//Constructor for Player GUI sets card layout
 	public PlayerGUI(){
 		//set JFrame Parameters
 		PlayerClient player = new PlayerClient();
+		setPlayer(player);
 		player.setHost("localhost");
 		player.setPort(8300);
 		
@@ -25,6 +45,7 @@ public class PlayerGUI extends JFrame{
 		
 		CardLayout cL = new CardLayout(); //instantiate new CardLayout Object
 		JPanel container = new JPanel(cL);
+		setContainer(container);
 		
 		//instantiate panel objects
 		TitlescreenControl tc = new TitlescreenControl (container, player);

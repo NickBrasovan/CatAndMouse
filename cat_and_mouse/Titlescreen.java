@@ -20,6 +20,7 @@ public class Titlescreen extends JPanel {
 	//Titlescreen Text Fields
 	private JTextField playerNameField = new JTextField();
 	private JPasswordField passwordField = new JPasswordField();
+	private JButton[] array = new JButton[4];
 	
 	//Titlescreen Labels
 	private JLabel welcomeLbl;
@@ -35,6 +36,18 @@ public class Titlescreen extends JPanel {
 	//Titlescreen Buttons
 	private JButton btnNewAcct;
 	private JButton btnLogin;
+	
+	public JButton getArray(int element) {
+		return array[element];
+	}
+	
+	public void setPlayerLabel(String username) {
+		playerNameField.setText(username);
+	}
+	
+	public void setPassLabel(String password) {
+		passwordField.setText(password);
+	}
 	
 	//Getter for Player Name
 	public String getPlayerName() {
@@ -113,16 +126,19 @@ public class Titlescreen extends JPanel {
 			btnLogin.setBounds(500, 625, 122, 33);
 			this.add(btnLogin);
 			btnLogin.addActionListener(tc);
+			array[0] = btnLogin;
 
 			btnNewAcct = new JButton("New Account");
 			btnNewAcct.setBounds(150, 625, 122, 33);
 			add(btnNewAcct);
 			btnNewAcct.addActionListener(tc);
+			array[1] = btnNewAcct;
 			
 			this.add(playerNameField);
 			this.add(passwordField);
 			this.add(playerNameLabel);
 			this.add(passwordLabel);
+			
 			
 			
 		}//end Panel Constructor
