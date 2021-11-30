@@ -265,6 +265,12 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
                 i++;
             }
         }
+        
+        g2d.setColor(new Color(0,72,251));
+        g2d.setStroke(new BasicStroke(5));
+        g2d.fillRect(10, 450, 120, 30);
+        g2d.setColor(Color.WHITE);
+        g2d.drawString("Play Again", 45, 470);
     }
 
     //TODO ANNOTATE
