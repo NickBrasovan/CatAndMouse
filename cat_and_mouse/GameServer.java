@@ -272,6 +272,7 @@ public class GameServer extends AbstractServer {
 		    	}
 		      }
 		    if(message[0].equals("CatWin")) {
+		    	log.append("Cat has won\n");
 		    	player1 = "";
 		    	player2 = "";
 		    	player1Character = "";
@@ -280,10 +281,10 @@ public class GameServer extends AbstractServer {
 		    	player2RTP = false;
 		    	seconds = 30;
 		    	gameTimer.stop();
-		    	sendToAllClients("CatWin");
 		    }
 		    
 		    if(message[0].equals("MouseWin")) {
+		    	log.append("Mouse has won\n");
 		    	player1 = "";
 		    	player2 = "";
 		    	player1Character = "";
@@ -292,7 +293,6 @@ public class GameServer extends AbstractServer {
 		    	player2RTP = false;
 		    	seconds = 30;
 		    	gameTimer.stop();
-		    	sendToAllClients("MouseWin");
 		    }
 		    }
 			

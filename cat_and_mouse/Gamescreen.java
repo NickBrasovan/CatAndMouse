@@ -151,12 +151,12 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     
     private void death() {
 
-    	lives--;
-
-        if (lives == 0) {
-            inGame = false;
-        }
-
+    	inGame = false;
+    	gsc.sendCatWin();
+    	JButton playAgain = new JButton("Play Again");
+    	playAgain.setBounds(10, 450, 120, 30);
+    	this.add(playAgain);
+    	playAgain.addActionListener(gsc);
         continueLevel();
     }
     
@@ -165,7 +165,10 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     		inGame = false;
     		gsc.sendMouseWin();
     	}
-    	
+    	JButton playAgain = new JButton("Play Again");
+    	playAgain.setBounds(10, 450, 120, 30);
+    	this.add(playAgain);
+    	playAgain.addActionListener(gsc);
     }
     
     private void drawmouse(Graphics2D g2d) {
@@ -340,10 +343,6 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
         
         Toolkit.getDefaultToolkit().sync();
         g2d.dispose();
-        JButton playAgain = new JButton("Play Again");
-    	playAgain.setBounds(10, 450, 120, 30);
-    	this.add(playAgain);
-    	playAgain.addActionListener(gsc);
     }
     
    

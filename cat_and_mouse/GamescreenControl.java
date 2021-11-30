@@ -173,12 +173,14 @@ public class GamescreenControl extends KeyAdapter implements Serializable, Actio
         	CardLayout cL = (CardLayout)container.getLayout();
         	Gamescreen gs = (Gamescreen)container.getComponent(3);
         	gs.setDying(killmouse);
+        	/*
         	try {
 				player.sendToServer("CatWin");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			*/
         }
     }
 	
@@ -264,9 +266,19 @@ public class GamescreenControl extends KeyAdapter implements Serializable, Actio
 		}
 	 }
 	 
+	 public void sendCatWin() {
+		 try {
+			player.sendToServer("CatWin");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 }
+	 
 	 public void actionPerformed(ActionEvent arg0) {
 		 
 		 CardLayout cL = (CardLayout)container.getLayout();
+		 container.remove(3);
 		 cL.show(container, "2");
 	 }
 		/*code adapted from gaspar coding "Pacman in Java" TAdapter class.  

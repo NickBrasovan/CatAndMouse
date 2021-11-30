@@ -24,7 +24,7 @@ public class GameroomControl implements ActionListener{
 			CardLayout cardLayout = (CardLayout)container.getLayout();
 			player.setGamescreenControl(gsc);
 		    container.add(gs,"4");
-			cardLayout.show(container, "4"); // 
+			cardLayout.show(container, "4"); //
 		}
 		
 	@Override
