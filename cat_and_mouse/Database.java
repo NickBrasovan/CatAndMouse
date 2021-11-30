@@ -159,7 +159,7 @@ public class Database {
 		
 	}
 	
-	public void updateCatWins(String player, String playerCharacter) {
+	public void updateCatWins(String player) {
 		ArrayList<String> lines = queryWL("SELECT catwins, catlosses, mousewins, mouselosses from catandmouse where username = '" + player + "';");
 		int numberOfCatWins = 0;
 		for(int i = 0; i<lines.size();i++) {
@@ -176,7 +176,7 @@ public class Database {
 		}
 	}
 	
-	public void updateCatLosses(String player, String playerCharacter) {
+	public void updateCatLosses(String player) {
 		ArrayList<String> lines = queryWL("SELECT catwins, catlosses, mousewins, mouselosses from catandmouse where username = '" + player + "';");
 		int numberOfCatLosses = 0;
 		for(int i = 0; i<lines.size();i++) {
@@ -193,7 +193,7 @@ public class Database {
 		}
 	}
 	
-	public void updateMouseWins(String player, String playerCharacter) {
+	public void updateMouseWins(String player) {
 		ArrayList<String> lines = queryWL("SELECT catwins, catlosses, mousewins, mouselosses from catandmouse where username = '" + player + "';");
 		int numberOfMouseWins = 0;
 		for(int i = 0; i<lines.size();i++) {
@@ -210,7 +210,7 @@ public class Database {
 		}
 	}
 	
-	public void updateMouseLosses(String player, String playerCharacter) {
+	public void updateMouseLosses(String player) {
 		ArrayList<String> lines = queryWL("SELECT catwins, catlosses, mousewins, mouselosses from catandmouse where username = '" + player + "';");;
 		int numberOfMouseLosses = 0;
 		for(int i = 0; i<lines.size();i++) {

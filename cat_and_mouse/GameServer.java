@@ -280,12 +280,12 @@ public class GameServer extends AbstractServer {
 		    		resetUpdate();
 			    	log.append("Cat has won\n");
 			    	if(player1Character.equals("Cat")) {
-			    		database.updateCatWins(player1, player1Character);
-			    		database.updateMouseLosses(player2, player2Character);
+			    		database.updateCatWins(player1);
+			    		database.updateMouseLosses(player2);
 			    	}
 			    	else if(player1Character.equals("Mouse")) {
-			    		database.updateMouseLosses(player1, player1Character);
-			    		database.updateCatWins(player2, player2Character);
+			    		database.updateMouseLosses(player1);
+			    		database.updateCatWins(player2);
 			    	}
 			    	
 		    	}
@@ -304,12 +304,12 @@ public class GameServer extends AbstractServer {
 		    		resetUpdate();
 			    	log.append("Mouse has won\n");
 			    	if(player1Character.equals("Mouse")) {
-			    		database.updateMouseWins(player1, player1Character);
-			    		database.updateCatLosses(player2, player2Character);
+			    		database.updateMouseWins(player1);
+			    		database.updateCatLosses(player2);
 			    	}
 			    	else if(player1Character.equals("Cat")) {
-			    		database.updateCatLosses(player1, player1Character);
-			    		database.updateMouseWins(player2, player2Character);
+			    		database.updateCatLosses(player1);
+			    		database.updateMouseWins(player2);
 			    	}
 			    	
 		    	}
