@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.Serializable;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -17,7 +18,7 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
    
     private boolean inGame = false;  //boolean is true when game is in play
     private boolean dying = false; 
-    
+    private int seconds = 0;
     
     
     private final int N_BLOCKS = 15;                         // determines size of gamescreen row and column
@@ -29,6 +30,7 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     private int mouse_x, mouse_y, moused_x, moused_y; //mouse_x and mouse_y store coordinates of sprite; moused_x and moused_y store coordinates of mouse changes
     private int cat_x, cat_y, catd_x, catd_y;
     private int m_req_dx, m_req_dy, c_req_dy, c_req_dx;  //determined in TAdapter extends KeyAdapter{}, variables determined by cursor keys
+    private String printTimer = "Time Left: ";
     
     private GamescreenControl gsc;
     private GamescreenData gsd;
@@ -71,6 +73,7 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     private final int maxSpeed = 6;
     private int lives = 2;
     private int currentSpeed = 3;
+    //private Timer gameTimer;
     private short[] screenData; //takes all data from level data to redraw the game
     private Timer timer;
 
@@ -127,13 +130,23 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
 
             death();
 
-        } else {
+        }
     	
+    	if(seconds < 0) {
+    		mouseWin(g2d);
+    	}
+    	else {
            gsc.movemouse(screenData);
            gsc.movecat(screenData);
+           seconds = gsc.getSeconds();
+           Integer intSeconds = seconds;
+           String printTimer = "Time Left: " + intSeconds.toString();
+           g2d.setColor(Color.WHITE);
+           g2d.drawString(printTimer, 10, 375);
+           
            drawmouse(g2d);
            drawcat(g2d);
-        }
+    	}
     }
     
     private void death() {
@@ -145,6 +158,14 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
         }
 
         continueLevel();
+    }
+    
+    private void mouseWin(Graphics g2d) {
+    	if(lives > 0) {
+    		inGame = false;
+    		gsc.sendMouseWin();
+    	}
+    	
     }
     
     private void drawmouse(Graphics2D g2d) {
@@ -260,7 +281,7 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     }
 
     //TODO ANNOTATE
-    private void continueLevel() {
+    public void continueLevel() {
 
         mouse_x = 1 * BLOCK_SIZE;//7 * BLOCK_SIZE;  //start position of mouse
         mouse_y = 1 * BLOCK_SIZE;//11 * BLOCK_SIZE;
@@ -305,9 +326,24 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
         if (inGame) {
             playGame(g2d);
         } 
-
+        if(seconds < 0) {
+        	g2d.setColor(Color.WHITE);
+        	printTimer = "Mouse Wins";
+        	g2d.drawString(printTimer, 10, 375);
+        }
+        
+        if(dying == true) {
+        	g2d.setColor(Color.WHITE);
+        	printTimer = "Cat Wins";
+        	g2d.drawString(printTimer, 10, 375);
+        }
+        
         Toolkit.getDefaultToolkit().sync();
         g2d.dispose();
+        JButton playAgain = new JButton("Play Again");
+    	playAgain.setBounds(10, 450, 120, 30);
+    	this.add(playAgain);
+    	playAgain.addActionListener(gsc);
     }
     
    

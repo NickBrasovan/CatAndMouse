@@ -1,12 +1,16 @@
 package cat_and_mouse;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 import com.mysql.fabric.Server;
 
 import java.io.IOException;
 import java.util.*;
+import javax.swing.Timer;
 
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
@@ -28,9 +32,10 @@ public class GameServer extends AbstractServer {
 	  private String player2;
 	  private String player1Character;
 	  private String player2Character;
-	  public int timeLeft = 10;
+	  public int seconds = 30;
 	  private ArrayList<String> playersLoggedIn;
 	  private ArrayList<ConnectionToClient> connectedPlayers;
+	  private Timer gameTimer;
 
 	  // Constructor for initializing the server with default settings.
 	  public GameServer()
@@ -40,6 +45,7 @@ public class GameServer extends AbstractServer {
 	    playersLoggedIn = new ArrayList<String>();
 	    connectedPlayers = new ArrayList<ConnectionToClient>();
 	  }
+	 
 	  
 	  /*SETTER FOR DATABASE*/
 	  public void setDatabase(Database database)
@@ -249,6 +255,8 @@ public class GameServer extends AbstractServer {
 		    		if(player1.equals(message[1]))
 						try {
 							arg1.sendToClient(player1Character);
+							this.gameTimer = new Timer(1000, this.timePassed);
+							gameTimer.start();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -270,14 +278,28 @@ public class GameServer extends AbstractServer {
 		    	player2Character = "";
 		    	player1RTP = false;
 		    	player2RTP = false;
+		    	seconds = 30;
+		    	gameTimer.stop();
 		    	sendToAllClients("CatWin");
+		    }
+		    
+		    if(message[0].equals("MouseWin")) {
+		    	player1 = "";
+		    	player2 = "";
+		    	player1Character = "";
+		    	player2Character = "";
+		    	player1RTP = false;
+		    	player2RTP = false;
+		    	seconds = 30;
+		    	gameTimer.stop();
+		    	sendToAllClients("MouseWin");
 		    }
 		    }
 			
 		    //HANDLE GAMESCREEN DATA
 		    if (arg0 instanceof GamescreenData)
 		    {
-		      sendToAllClients(arg0);
+		    		sendToAllClients(arg0);
 			//send to all clients
 		    }
 		   
@@ -296,19 +318,11 @@ public class GameServer extends AbstractServer {
 		return character;
 	}
 	
-	public void startClock() {
-		while(timeLeft > 0) {
-			timeLeft--;
-			log.append("\nTime left: " + timeLeft);
-			sendToAllClients(timeLeft);
-			try {
-				wait(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		sendToAllClients("MouseWins");
-		
-	}
+	private ActionListener timePassed = new ActionListener() {
+		  public void actionPerformed(ActionEvent e) {
+			  seconds--;
+			  sendToAllClients(seconds);
+		  }
+	  };
+	
 }

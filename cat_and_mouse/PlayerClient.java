@@ -65,14 +65,12 @@ public class PlayerClient extends AbstractClient {
 	    	  gameroomControl.playGameSuccess();
 	    	  gamescreenControl.setCharacter("Mouse");
 	      }
+	      /*
 	      else if (message.equals("CatWin")) {
 	    	  gamescreenControl.resetGame();
 	      }
-	      /*
-	    //Play Game
-	      else if (message.equals("PlayGame"))
-	      {
-	        gameroomControl.playGameSuccess();
+	      else if (message.equals("MouseWin")) {
+	    	  gamescreenControl.resetGame();
 	      }
 	      */
 	    }
@@ -89,7 +87,9 @@ public class PlayerClient extends AbstractClient {
 		}
 	    
 	    
-	    
+	    if(arg0 instanceof Integer) {
+	    	gamescreenControl.setSeconds((int) arg0);
+	    }
 	   //If we received an Error, figure out where to display it.
 	    else if (arg0 instanceof Error)
 	    {

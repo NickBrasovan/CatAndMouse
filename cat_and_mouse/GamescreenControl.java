@@ -1,5 +1,7 @@
 package cat_and_mouse;
 import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -11,13 +13,14 @@ import javax.swing.JPanel;
 //import pacman.GameScreen.TAdapter;
 
 @SuppressWarnings("serial")
-public class GamescreenControl extends KeyAdapter implements Serializable{
+public class GamescreenControl extends KeyAdapter implements Serializable, ActionListener{
 	 
 	/*INIT VARIABLES for GamescreenControl*/
 	private String character;
 	private int mouse_x, mouse_y, moused_x, moused_y; //mouse player coordinates.
 	private int cat_x, cat_y, catd_x, catd_y;
-    private int c_req_dx, c_req_dy, m_req_dy, m_req_dx;	                     //required for moving player
+    private int c_req_dx, c_req_dy, m_req_dy, m_req_dx;	 
+    private int seconds;
     private final int N_BLOCKS = 15;                // determines size of gamescreen
     private final int BLOCK_SIZE = 24;             //determines size of gamescreen component blocks or tiles
     
@@ -65,6 +68,9 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
 	public int getc_req_dx() {return this.c_req_dx;}
 	public int getc_req_dy() {return this.c_req_dy;}
 	public String getCharacter() {return this.character;} 
+	public void setSeconds(int secs) {this.seconds = secs;};
+	public int getSeconds() {return this.seconds;}
+	
 	
 	public void setMouseGSD(GamescreenData gsd){
 		this.gsd = gsd;
@@ -134,10 +140,6 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
         if (cat_x % BLOCK_SIZE == 0 && cat_y % BLOCK_SIZE == 0) {
             pos = cat_x / BLOCK_SIZE + N_BLOCKS * (int) (cat_y / BLOCK_SIZE);
             ch = screenData[pos];             
-            //mouse eats pellets 
-            if ((ch & 16) != 0) {
-                screenData[pos] = (short) (ch & 15);
-            }
 			
             //req_dx and req_dy move mouse
             if (c_req_dx != 0 || c_req_dy != 0) {
@@ -253,7 +255,17 @@ public class GamescreenControl extends KeyAdapter implements Serializable{
 	        }
 	    }
 	 
-	 public void resetGame() {
+	 public void sendMouseWin() {
+		 try {
+			player.sendToServer("MouseWin");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 }
+	 
+	 public void actionPerformed(ActionEvent arg0) {
+		 
 		 CardLayout cL = (CardLayout)container.getLayout();
 		 cL.show(container, "2");
 	 }

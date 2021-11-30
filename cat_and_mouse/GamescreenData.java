@@ -13,6 +13,15 @@ public class GamescreenData implements Serializable {
 	private int moused_x;
 	private int moused_y;
 	private String character;
+	private int seconds;
+	
+	public int getSeconds() {
+		return this.seconds;
+	}
+	
+	public void setSeconds(int seconds) {
+		this.seconds = seconds;
+	}
 	
 	public int getmoused_x()
 	{
