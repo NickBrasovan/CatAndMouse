@@ -3,11 +3,28 @@
 ### Use Instructions
 - Download Repository
 - Open up XAMPP, start the MySL server
-- Open up CMD, run bat file for server (make sure it is at the same level as the package folder cat_and_mouse)
-- Click Listen, using pre-filled port and timeout inputs
+- ***
+- Be sure to create a database called student_space and grant all attributes
+- to a user named "student" with the password set as "hello." From there
+- run the source command to create the catandmouse table from the SQL file.
+- The SQL file can be found in the repository, or can be downloaded separately.
+- To create the catandmouse table, run the command "source c:\{file_path}\catandmouse.sql"
+- ***
+- Open up CMD, run bat file for server
+-   The bat files can either be ran from the ones located in the bat_files folder
+-   which are executed by double-clicking or by right clicking and running.
+-   If you choose to run the bat file from the command line, make sure your download
+-   is located in the package folder for CatAndMouse without the cd command being used.
+-   Whichever way you choose, make sure your file path is configured.
+- The server can be ran automatically as the code is. To make sure the Player can
+- connect to the server change the host found in PlayerGUI in the constructor method
+- from "localhost" to the ipconfig address of the server.
 - Open up second CMD, run bat file for client
 - Open Up third CMD, run bat file for client again
+- ***
 - Create an Account (if no login credentials already obtained) for each client
+-   A set of universal login credentials can be found in the SQL file that creates
+-   the catandmouse table.
 - Return back to title screen
 - Log in using the correct credentials for each player client
 - If you wish to see a list of all logged on players, click refresh on the GameRoom Screen
@@ -20,12 +37,3 @@
 - Once the game is over, each user may click the play again button.
 - If both player clients wish to do so, they may both click Play Game again in the game room screen, following the same procedure as before
 - Once the player is finished playing, they may log out of the game using the log out button
-
-
-### Current Tasks:
-- Get remote database working and update db.properties.
-- Update SQL script with accurate database content.
-- Finish working on documentation.
-- Update class and package diagrams.
-- Write JUnit Unit Test (Database)
-- Write JUnit Integration Test (Gameroom)
