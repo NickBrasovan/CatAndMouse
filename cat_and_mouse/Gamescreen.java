@@ -109,8 +109,8 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     	up = new ImageIcon("cat_and_mouse//images/mouseB.gif").getImage();
     	left = new ImageIcon("cat_and_mouse//images/mouseL.gif").getImage();
     	right = new ImageIcon("cat_and_mouse//images/mouseR.gif").getImage();
-    	catdown = new ImageIcon("cat_and_mouse/images/catForward.gif").getImage();
-    	catup = new ImageIcon("cat_and_mouse//images/catBack.gif").getImage();
+    	catdown = new ImageIcon("cat_and_mouse/images/catBack.gif").getImage();
+    	catup = new ImageIcon("cat_and_mouse//images/catForward.gif").getImage();
     	catleft = new ImageIcon("cat_and_mouse//images/catLeft.gif").getImage();
     	catright = new ImageIcon("cat_and_mouse//images/catRight.gif").getImage();
     }

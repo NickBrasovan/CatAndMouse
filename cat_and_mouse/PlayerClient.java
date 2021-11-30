@@ -65,14 +65,17 @@ public class PlayerClient extends AbstractClient {
 	    	  gameroomControl.playGameSuccess();
 	    	  gamescreenControl.setCharacter("Mouse");
 	      }
-	      
+	      else if (message.equals("CatWin")) {
+	    	  gamescreenControl.resetGame();
+	      }
+	      /*
 	    //Play Game
 	      else if (message.equals("PlayGame"))
 	      {
 	        gameroomControl.playGameSuccess();
 	      }
+	      */
 	    }
-	    
 	    
 	    /*Handle Updated Coordinates*/
 		if (arg0 instanceof GamescreenData)

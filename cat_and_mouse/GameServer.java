@@ -23,12 +23,12 @@ public class GameServer extends AbstractServer {
 	  private boolean running = false;
 	  private Database database;
 	  private boolean player1RTP = false;
-	  private boolean player1Waiting = true;
 	  private boolean player2RTP = false;
 	  private String player1;
 	  private String player2;
 	  private String player1Character;
 	  private String player2Character;
+	  public int timeLeft = 10;
 	  private ArrayList<String> playersLoggedIn;
 	  private ArrayList<ConnectionToClient> connectedPlayers;
 
@@ -238,7 +238,7 @@ public class GameServer extends AbstractServer {
 			    while(!player2RTP) {
 			    	try {
 			    		log.append("Waiting for player2\n");
-						wait(3000);
+						wait(1000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -260,21 +260,18 @@ public class GameServer extends AbstractServer {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+		    		//startClock();
 		    	}
-		    	/*
-		    	Object result = "PlayGame";
-			     // Send the result to the client.
-			      try
-			      {
-			        arg1.sendToClient(result);
-			      }
-			      catch (IOException e)
-			      {
-			    	log.append("Client " + arg1.getId() + " server ioexception in sending result " + "\n");
-			        return;
-			      }
-			      */
 		      }
+		    if(message[0].equals("CatWin")) {
+		    	player1 = "";
+		    	player2 = "";
+		    	player1Character = "";
+		    	player2Character = "";
+		    	player1RTP = false;
+		    	player2RTP = false;
+		    	sendToAllClients("CatWin");
+		    }
 		    }
 			
 		    //HANDLE GAMESCREEN DATA
@@ -283,6 +280,7 @@ public class GameServer extends AbstractServer {
 		      sendToAllClients(arg0);
 			//send to all clients
 		    }
+		   
 	}
 	
 	public String randomAssign() {
@@ -298,4 +296,19 @@ public class GameServer extends AbstractServer {
 		return character;
 	}
 	
+	public void startClock() {
+		while(timeLeft > 0) {
+			timeLeft--;
+			log.append("\nTime left: " + timeLeft);
+			sendToAllClients(timeLeft);
+			try {
+				wait(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		sendToAllClients("MouseWins");
+		
+	}
 }
