@@ -30,6 +30,8 @@ public class GameServer extends AbstractServer {
 	  private boolean player2RTP = false;
 	  private String player1;
 	  private String player2;
+	  private boolean mouseUpdated = false;
+	  private boolean catUpdated = false;
 	  private String player1Character;
 	  private String player2Character;
 	  public int seconds = 30;
@@ -252,6 +254,8 @@ public class GameServer extends AbstractServer {
 			    }
 		    	
 		    	if(player1RTP && player2RTP) {
+		    		mouseUpdated = true;
+		    		catUpdated = true;
 		    		if(player1.equals(message[1]))
 						try {
 							arg1.sendToClient(player1Character);
@@ -272,7 +276,19 @@ public class GameServer extends AbstractServer {
 		    	}
 		      }
 		    if(message[0].equals("CatWin")) {
-		    	log.append("Cat has won\n");
+		    	if(mouseUpdated && catUpdated) {
+		    		resetUpdate();
+			    	log.append("Cat has won\n");
+			    	if(player1Character.equals("Cat")) {
+			    		database.updateCatWins(player1, player1Character);
+			    		database.updateMouseLosses(player2, player2Character);
+			    	}
+			    	else if(player1Character.equals("Mouse")) {
+			    		database.updateMouseLosses(player1, player1Character);
+			    		database.updateCatWins(player2, player2Character);
+			    	}
+			    	
+		    	}
 		    	player1 = "";
 		    	player2 = "";
 		    	player1Character = "";
@@ -284,7 +300,19 @@ public class GameServer extends AbstractServer {
 		    }
 		    
 		    if(message[0].equals("MouseWin")) {
-		    	log.append("Mouse has won\n");
+		    	if(mouseUpdated && catUpdated) {
+		    		resetUpdate();
+			    	log.append("Mouse has won\n");
+			    	if(player1Character.equals("Mouse")) {
+			    		database.updateMouseWins(player1, player1Character);
+			    		database.updateCatLosses(player2, player2Character);
+			    	}
+			    	else if(player1Character.equals("Cat")) {
+			    		database.updateCatLosses(player1, player1Character);
+			    		database.updateMouseWins(player2, player2Character);
+			    	}
+			    	
+		    	}
 		    	player1 = "";
 		    	player2 = "";
 		    	player1Character = "";
@@ -302,7 +330,8 @@ public class GameServer extends AbstractServer {
 		    		sendToAllClients(arg0);
 			//send to all clients
 		    }
-		   
+		  
+		    
 	}
 	
 	public String randomAssign() {
@@ -316,6 +345,11 @@ public class GameServer extends AbstractServer {
 			character = "Cat";
 		
 		return character;
+	}
+	
+	public void resetUpdate() {
+		mouseUpdated = false;
+		catUpdated = false;
 	}
 	
 	private ActionListener timePassed = new ActionListener() {

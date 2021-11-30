@@ -81,6 +81,29 @@ public class Database {
 		return list;
 	}
 	
+	public ArrayList<String> queryWL(String query) {
+		ArrayList<String> number = new ArrayList<String>();
+		
+		
+		try {
+			stmt = conn.createStatement();
+			
+			rs = stmt.executeQuery(query);
+			
+			if(rs == null) {
+				return null;
+			}
+			
+			while(rs.next()) {
+				number.add(rs.getString(1) + "," + rs.getString(2) +","+rs.getString(3)+","+rs.getString(4));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return number;
+	}
+	
 	public void executeDML(String dml) throws SQLException{
 		
 		try {
@@ -93,13 +116,7 @@ public class Database {
 	}
 	
 	public boolean verifyAccount(LoginData data) {	    
-		ArrayList<String> list = query("SELECT username, aes_decrypt(password, 'key') from user");
-		
-	    //String sql = "SELECT * FROM user WHERE username='"+data.getPlayerName()+"'and password='"+data.getPassword()+"'";
-	    //String sql = "SELECT * FROM user WHERE username='"+data.getUsername()+"'and password='cast(aes_decrypt("+data.getPassword()+"'";
-	    //String sql = "SELECT * FROM user WHERE username=" + data.getUsername() + "and password=cast(aes_decrypt(" + data.getPassword() +", 'keyvalue')";
-	    //String sql = "SELECT username, password, CAST(AES_DECRYPT('"+data.getPassword()+"', 'keyvalue') AS CHAR(16)) FROM user";
-	    //String sql = "SELECT * FROM user WHERE username = ('" + data.getUsername() + "'and password= aes_decrypt('" + data.getPassword() + "', 'key')";
+		ArrayList<String> list = query("SELECT username, aes_decrypt(password, 'key') from catandmouse");
 	    
 		if(list.contains(data.getPlayerName() + "," + data.getPassword())) {
 			return true;
@@ -108,7 +125,7 @@ public class Database {
 	}
 	
 	public boolean verifyCreateInfo(String username, String password) {
-		ArrayList<String> list = query("SELECT * FROM user");
+		ArrayList<String> list = query("SELECT * FROM catandmouse");
 		ArrayList<String> user = new ArrayList<String>();
 		ArrayList<String> pass = new ArrayList<String>();
 		
@@ -131,7 +148,7 @@ public class Database {
 		    try {
 				stmt = conn.createStatement();
 				
-				stmt.execute("insert into user values ('" + data.getPlayerName() + "',aes_encrypt('" + data.getPassword() + "','key'));");
+				stmt.execute("insert into catandmouse values ('" + data.getPlayerName() + "',aes_encrypt('" + data.getPassword() + "','key'), 0, 0, 0, 0);");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -142,4 +159,71 @@ public class Database {
 		
 	}
 	
+	public void updateCatWins(String player, String playerCharacter) {
+		ArrayList<String> lines = queryWL("SELECT catwins, catlosses, mousewins, mouselosses from catandmouse where username = '" + player + "';");
+		int numberOfCatWins = 0;
+		for(int i = 0; i<lines.size();i++) {
+			numberOfCatWins = Integer.parseInt(lines.get(i).split(",")[0]);
+		}
+		
+		numberOfCatWins = numberOfCatWins + 1;
+		try {
+			stmt = conn.createStatement();
+			stmt.execute("UPDATE catandmouse set catwins = " + numberOfCatWins + " where username = '" + player + "';");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateCatLosses(String player, String playerCharacter) {
+		ArrayList<String> lines = queryWL("SELECT catwins, catlosses, mousewins, mouselosses from catandmouse where username = '" + player + "';");
+		int numberOfCatLosses = 0;
+		for(int i = 0; i<lines.size();i++) {
+			numberOfCatLosses = Integer.parseInt(lines.get(i).split(",")[1]);
+		}
+		
+		numberOfCatLosses = numberOfCatLosses + 1;
+		try {
+			stmt = conn.createStatement();
+			stmt.execute("UPDATE catandmouse set catlosses = " + numberOfCatLosses + " where username = '" + player + "';");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateMouseWins(String player, String playerCharacter) {
+		ArrayList<String> lines = queryWL("SELECT catwins, catlosses, mousewins, mouselosses from catandmouse where username = '" + player + "';");
+		int numberOfMouseWins = 0;
+		for(int i = 0; i<lines.size();i++) {
+			numberOfMouseWins = Integer.parseInt(lines.get(i).split(",")[2]);
+		}
+		
+		numberOfMouseWins = numberOfMouseWins + 1;
+		try {
+			stmt = conn.createStatement();
+			stmt.execute("UPDATE catandmouse set mousewins = " + numberOfMouseWins + " where username = '" + player + "';");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateMouseLosses(String player, String playerCharacter) {
+		ArrayList<String> lines = queryWL("SELECT catwins, catlosses, mousewins, mouselosses from catandmouse where username = '" + player + "';");;
+		int numberOfMouseLosses = 0;
+		for(int i = 0; i<lines.size();i++) {
+			numberOfMouseLosses = Integer.parseInt(lines.get(i).split(",")[3]);
+		}
+		
+		numberOfMouseLosses = numberOfMouseLosses + 1;
+		try {
+			stmt = conn.createStatement();
+			stmt.execute("UPDATE catandmouse set mouselosses = " + numberOfMouseLosses + " where username = '" + player + "';");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
