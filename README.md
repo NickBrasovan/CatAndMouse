@@ -1,12 +1,30 @@
 # Cat and Mouse Game
 
+### Use Instructions
+- Download Repository
+- Open up XAMPP, start the MySL server
+- Open up CMD, run bat file for server
+- Click Listen, using pre-filled port and timeout inputs
+- Open up second CMD, run bat file for client
+- Open Up third CMD, run bat file for client again
+- Create an Account (if no login credentials already obtained) for each client
+- Return back to title screen
+- Log in using the correct credentials for each player client
+- If you wish to see a list of all logged on players, click refresh on the GameRoom Screen
+- If you are ready to play, click play game on both clients.
+- The server will wait for each player to click play game before the gamescreen is launched.
+- Once the game screen is opened for both clients, the mouse's objective is to avoid the cat by using the arrow keys to "run" away.
+- The cat's objective is to catch the mouse by making contact with the mouse.
+- The cat only has 30 seconds to do so, or the mouse will win.
+- Once the game is over, each user may click the play again button. 
+- If both player clients wish to do so, they may both click Play Game again in the game room screen, following the same procedure as before.
+- Once the player is finished playing, they may log out of the game using the log out button.
+
+
 ### Current Tasks:
-- Design game logo for use on title screen.
-- Fix socket not found error with logout, invite, and refresh buttons.
-- Finish implementing invite and refresh functionality.
-- Confirm that client and player ArrayLists are updated when relevant.
-- Finish maze client so Justin can know how server communications need to work.
 - Get remote database working and update db.properties.
 - Update SQL script with accurate database content.
-- Start working on documentation.
+- Finish working on documentation.
 - Update class and package diagrams.
+- Write JUnit Unit Test (Database)
+- Write JUnit Integration Test (Gameroom)
