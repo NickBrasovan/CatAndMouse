@@ -68,16 +68,12 @@ public class Titlescreen extends JPanel {
 			welcomeLbl.setFont(new Font("Tahoma", Font.BOLD, 12));
 			welcomeLbl.setBounds(250, 11, 245, 41);
 			welcomeLbl.setForeground(Color.WHITE);
-			//welcomeLbl.setOpaque(true);
-			//welcomeLbl.setBackground(Color.LIGHT_GRAY);
 			add(welcomeLbl);
 			
 			instruction1 = new JLabel("    Login with Username and Password"); // instruction label
 			instruction1.setFont(new Font("Tahoma", Font.BOLD, 12));
 			instruction1.setForeground(Color.WHITE);
 			instruction1.setBounds(240, 63, 267, 41);
-			//instruction1.setOpaque(true);
-			//instruction1.setBackground(Color.LIGHT_GRAY);
 			add(instruction1);
 
 			
@@ -85,28 +81,20 @@ public class Titlescreen extends JPanel {
 			instruction2.setFont(new Font("Tahoma", Font.BOLD, 12));
 			instruction2.setBounds(240, 113, 267, 35);
 			instruction2.setForeground(Color.WHITE);
-			//instruction2.setOpaque(true);
-			//instruction2.setBackground(Color.LIGHT_GRAY);
 			add(instruction2);
 			
 			instruction3 = new JLabel("              Create a New Account"); // instruction label
 			instruction3.setFont(new Font("Tahoma", Font.BOLD, 12));
 			instruction3.setBounds(240, 153, 267, 35);
 			instruction3.setForeground(Color.WHITE);
-			//instruction2.setOpaque(true);
-			//instruction2.setBackground(Color.LIGHT_GRAY);
 			add(instruction3);
 			
 			
 			// Create a panel for the labels at the top of the GUI.
-		    //JPanel labelPanel = new JPanel(new GridLayout(2, 1, 5, 5));
 		    errorLabel = new JLabel("", JLabel.CENTER);
 		    errorLabel.setForeground(Color.RED);
 		    errorLabel.setBounds(175, 470, 300, 25);
 		    this.add(errorLabel);
-		    //JLabel instructionLabel = new JLabel("Enter your username and password to log in.", JLabel.CENTER);
-		    //labelPanel.add(errorLabel);
-		    //labelPanel.add(instructionLabel);
 			
 			
 			// Main Panel Buttons
@@ -130,17 +118,6 @@ public class Titlescreen extends JPanel {
 			btnNewAcct.setBounds(150, 625, 122, 33);
 			add(btnNewAcct);
 			btnNewAcct.addActionListener(tc);
-			
-			
-		
-			//this.add(login_screen);
-			
-			//loginButton.setBounds(125, 200, 100, 25);
-			//loginButton.addActionListener(this);
-			
-			//resetButton.setBounds(225, 200, 100, 25);
-			//resetButton.addActionListener(this);
-			
 			
 			this.add(playerNameField);
 			this.add(passwordField);

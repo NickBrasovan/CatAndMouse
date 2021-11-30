@@ -1,3 +1,8 @@
+/*code adapted from gaspar coding "Pacman in Java" TAdapter class.  
+See https://www.youtube.com/watch?v=ATz7bIqOjiA @ 12:41*/
+/* Gamescreen and GamescreenControl Classes are adopted and adapted from 'Pacman in Java' by gaspar coding. Instructional video found at 
+ * https://www.youtube.com/watch?v=ATz7bIqOjiA&t=904sl; source code for 'Pacman in Java' https://github.com/Gaspared/Pacman/*/
+
 package cat_and_mouse;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -79,8 +84,6 @@ public class GamescreenControl extends KeyAdapter implements Serializable, Actio
 		this.setmouseX(gsd.getmouseX());
 		this.setm_req_dx(gsd.getmousereq_dx());
 		this.setm_req_dy(gsd.getmousereq_dy());
-		//this.setmousedX(gsd.getmoused_x());
-		//this.setmousedY(gsd.getmoused_y());
 
 	}
 	
@@ -91,10 +94,6 @@ public class GamescreenControl extends KeyAdapter implements Serializable, Actio
 		this.setc_req_dy(gsd.getcatreq_dy());
 	}
     
-	
-	
-	
-	
     /*MOVEMOUSE METHOD. INPUT ARRAY OF SCREENDATA*/
 	public void movemouse(short[] screenData) {
 	        int pos;
@@ -173,14 +172,6 @@ public class GamescreenControl extends KeyAdapter implements Serializable, Actio
         	CardLayout cL = (CardLayout)container.getLayout();
         	Gamescreen gs = (Gamescreen)container.getComponent(3);
         	gs.setDying(killmouse);
-        	/*
-        	try {
-				player.sendToServer("CatWin");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			*/
         }
     }
 	
@@ -273,6 +264,12 @@ public class GamescreenControl extends KeyAdapter implements Serializable, Actio
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	 }
+	 
+	 public void setInGame() {
+		 CardLayout cL = (CardLayout)container.getLayout();
+		 Gamescreen gs = (Gamescreen)container.getComponent(3);
+		 gs.setInGame();
 	 }
 	 
 	 public void actionPerformed(ActionEvent arg0) {

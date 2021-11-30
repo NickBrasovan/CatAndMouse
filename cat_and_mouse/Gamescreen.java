@@ -180,13 +180,6 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     	this.m_req_dx = gsc.getm_req_dx();
     	this.m_req_dy = gsc.getm_req_dy();
     	
-    	/*this.mouse_x = gsd.getmouseX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
-    	this.mouse_y = gsd.getmouseY();
-    	this.moused_x = gsd.getmoused_x();
-    	this.moused_y = gsd.getmoused_y();
-    	this.req_dx = gsd.getreq_dx();
-    	this.req_dy = gsd.getreq_dy();*/
-    	
         if (m_req_dx == -1) {
         	g2d.drawImage(left, mouse_x-9, mouse_y - 14, this);
         } else if (m_req_dx == 1) {
@@ -206,13 +199,6 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
     	this.catd_y = gsc.getcatdY();
     	this.c_req_dx = gsc.getc_req_dx();
     	this.c_req_dy = gsc.getc_req_dy();
-    	
-    	/*this.mouse_x = gsd.getmouseX();  //syncs graphic with mouse object's coordinates in gamscreenconroller
-    	this.mouse_y = gsd.getmouseY();
-    	this.moused_x = gsd.getmoused_x();
-    	this.moused_y = gsd.getmoused_y();
-    	this.req_dx = gsd.getreq_dx();
-    	this.req_dy = gsd.getreq_dy();*/
     	
         if (c_req_dx == -1) {
         	g2d.drawImage(catleft, cat_x-9, cat_y - 14, this);
@@ -351,6 +337,14 @@ public class Gamescreen extends JPanel implements Serializable, ActionListener {
         g2d.dispose();
     }
     
+   public void setInGame() {
+	   inGame = false;
+	   dying = true;
+	   JButton playAgain = new JButton("Play Again");
+   		playAgain.setBounds(10, 450, 120, 30);
+   		this.add(playAgain);
+   		playAgain.addActionListener(gsc);	
+   }
    
     @Override
     public void actionPerformed(ActionEvent e) {

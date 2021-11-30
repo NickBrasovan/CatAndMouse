@@ -16,7 +16,5 @@ public class BasePanel extends JPanel {
 	this.setVisible(true);
 	this.setLayout(cl);
 	
-	// Extra comment to commit
-	
 	}
 }

@@ -53,7 +53,6 @@ public class CreateAccountControl implements ActionListener{
 			titleScreen.replaceUsername();
 			titleScreen.replacePassword();
 			cL.show(container, "1");
-			//CreateAccountData data = new CreateAccountData(create_account.getPlayerName(), create_account.getPassword(), create_account.getPasswordMatch()); 
 		}
 		else if (command == "Exit") {
 			CardLayout cL = (CardLayout)container.getLayout();
@@ -62,10 +61,6 @@ public class CreateAccountControl implements ActionListener{
 			titleScreen.replacePassword();
 			cL.show(container, "1");
 		}
-		/*//Data integrity check
-	    System.out.print("Player Name in CreateAccountData is " + data.getPlayerName());
-    	System.out.print("\nPassword in CreateAccountData is " + data.getPassword());
-    	System.out.print("\nPassword Match in CreateAccountData is " + data.getPasswordMatch());*/
 	  }
 
 	public void createAccountSuccess() {

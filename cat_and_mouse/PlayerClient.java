@@ -65,14 +65,9 @@ public class PlayerClient extends AbstractClient {
 	    	  gameroomControl.playGameSuccess();
 	    	  gamescreenControl.setCharacter("Mouse");
 	      }
-	      /*
 	      else if (message.equals("CatWin")) {
-	    	  gamescreenControl.resetGame();
+	    	  gamescreenControl.setInGame();
 	      }
-	      else if (message.equals("MouseWin")) {
-	    	  gamescreenControl.resetGame();
-	      }
-	      */
 	    }
 	    
 	    /*Handle Updated Coordinates*/
@@ -105,11 +100,6 @@ public class PlayerClient extends AbstractClient {
 	      else if (error.getType().equals("CreateAccount")) {
 	    	  createAccountControl.displayError(error.getMessage());
 	      }
-	      // Display account creation errors using the create account controller.
-	      //else if (error.getType().equals("CreateAccount"))
-	      //{
-	      //  createAccountControl.displayError(error.getMessage());
-	      //}
 	    } 
 	    
 	    else if (arg0 instanceof ArrayList<?>) {

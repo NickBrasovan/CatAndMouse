@@ -35,18 +35,15 @@ public class PlayerGUI extends JFrame{
 		JPanel ts = new Titlescreen(tc);
 		JPanel gr = new Gameroom(gc);
 		JPanel ca = new CreateAccount(cac);
-		//JPanel gs = new Gamescreen(gsc); //declared and instantiated in GameroomControl
 		
 		player.setTitlescreenControl(tc);
 		player.setCreateAccountControl(cac);
 		player.setGameroomControl(gc);
-		//player.setGamescreenControl(gsc);  //declared and instantiated in GameroomControl
 		
 		//add panel layers to card layout
 		container.add(ts, "1");
 		container.add(gr, "2");
 		container.add(ca, "3");
-		//container.add(gs,"4");          //added in GameroomControl
 		
 		//show title screen on top of base panel
 		cL.show(container, "1");
