@@ -168,8 +168,7 @@ public class Database {
 		
 		numberOfCatWins = numberOfCatWins + 1;
 		try {
-			stmt = conn.createStatement();
-			stmt.execute("UPDATE catandmouse set catwins = " + numberOfCatWins + " where username = '" + player + "';");
+			executeDML("UPDATE catandmouse set catwins = " + numberOfCatWins + " where username = '" + player + "';");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -185,8 +184,7 @@ public class Database {
 		
 		numberOfCatLosses = numberOfCatLosses + 1;
 		try {
-			stmt = conn.createStatement();
-			stmt.execute("UPDATE catandmouse set catlosses = " + numberOfCatLosses + " where username = '" + player + "';");
+			executeDML("UPDATE catandmouse set catlosses = " + numberOfCatLosses + " where username = '" + player + "';");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -202,8 +200,7 @@ public class Database {
 		
 		numberOfMouseWins = numberOfMouseWins + 1;
 		try {
-			stmt = conn.createStatement();
-			stmt.execute("UPDATE catandmouse set mousewins = " + numberOfMouseWins + " where username = '" + player + "';");
+			executeDML("UPDATE catandmouse set mousewins = " + numberOfMouseWins + " where username = '" + player + "';");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -219,8 +216,7 @@ public class Database {
 		
 		numberOfMouseLosses = numberOfMouseLosses + 1;
 		try {
-			stmt = conn.createStatement();
-			stmt.execute("UPDATE catandmouse set mouselosses = " + numberOfMouseLosses + " where username = '" + player + "';");
+			executeDML("UPDATE catandmouse set mouselosses = " + numberOfMouseLosses + " where username = '" + player + "';");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
